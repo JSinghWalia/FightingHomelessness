@@ -63,7 +63,12 @@ public class PageIndex implements Handler {
 
         // Add HTML for the list of pages (as well as topnav)
         html = html + """
-            <p>Homepage information</p>
+            <p> Three facts </p>
+            <ul>
+            <li> In 2018 the age range of 20-29 had the highest number of people who were most prone to becoming homeless (with almost 20,000 being at risk Australia wide) </li>
+            <li> In 2016 females had the highest number of people who were prone to becoming homeless (with over 20,000 being at risk across Australia) </li>
+            <li> In 2018 there was a decrease in risk of being homeless for females aged between 40 to 49. </li>
+            </ul>
             """;
 
         // Close Content div
