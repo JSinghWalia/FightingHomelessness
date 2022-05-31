@@ -69,7 +69,13 @@ public class PageIndex implements Handler {
             <li> In 2016 females had the highest number of people who were prone to becoming homeless (with over 20,000 being at risk across Australia) </li>
             <li> In 2018 there was a decrease in risk of being homeless for females aged between 40 to 49. </li>
             </ul>
+
+
+            
+            
             """;
+            JDBCConnection jdbc = new JDBCConnection();
+            html = html + "Total number of LGAs: " + jdbc.countLGAs();
 
         // Close Content div
         html = html + "</div>";
