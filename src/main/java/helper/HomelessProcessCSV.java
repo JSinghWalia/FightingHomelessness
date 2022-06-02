@@ -36,7 +36,7 @@ public class HomelessProcessCSV {
    // MODIFY these to load/store to/from the correct locations
    
    private static final String DATABASE = "jdbc:sqlite:database/homelessness.db";
-   private static final String CSV_FILE = "database/homeless-2018.csv";
+   private static final String CSV_FILE = "database/homeless-2016.csv";
 
 
    public static void main (String[] args) {
@@ -61,7 +61,7 @@ public class HomelessProcessCSV {
          "f",
          "m"
       };
-      int year = 2018;
+      int year = 2016;
 
       // JDBC Database Object
       Connection connection = null;
