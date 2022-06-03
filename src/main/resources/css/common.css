@@ -32,14 +32,14 @@ img.top-image {
 /* Style the top navigation bar */
 .topnav {
    overflow: hidden;
-   background-color: #333;
+   background-color: #4f75d7;
  }
  
  /* Style the topnav links */
  .topnav a {
    float: left;
    display: block;
-   color: #f2f2f2;
+   color: #000000;
    text-align: center;
    padding: 14px 16px;
    text-decoration: none;
@@ -61,4 +61,15 @@ img.top-image {
  .footer {
    background-color: #cccccc;
    padding: 10px;
+ }
+
+ .button {
+   background-color: #4f75d7; /* Green */
+   border: none;
+   color: rgb(0, 0, 0);
+   padding: 15px 32px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 16px;
  }

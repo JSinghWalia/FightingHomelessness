@@ -52,7 +52,7 @@ public class PageIndex implements Handler {
         html = html + """
             <div class='header'>
                 <h1>
-                    <img src='logo.png' class='top-image' alt='RMIT logo' height='75'>
+                    <img src='homelessman.jpg' class='top-image' alt='Homeless man lying on bench' height='500' width='600'>
                     Homepage
                 </h1>
             </div>
@@ -75,7 +75,12 @@ public class PageIndex implements Handler {
             
             """;
             JDBCConnection jdbc = new JDBCConnection();
-            html = html + "Total number of LGAs: " + jdbc.countLGAs();
+            
+            html = html + "Total number of LGAs: " + jdbc.countLGAs()
+
+            + "<br>" + "Total population in 2016: " + jdbc.totalPopulation2016()
+
+            + "<br>" + "Total population in 2018: " + jdbc.totalPopulation2018();
 
         // Close Content div
         html = html + "</div>";
@@ -83,7 +88,8 @@ public class PageIndex implements Handler {
         // Footer
         html = html + """
             <div class='footer'>
-                <p><a href="https://www.redcross.org.au/donate/">Donate</a></p>
+            <button class="button" onclick="location.href='https://www.redcross.org.au/donate/'" type="button">
+            Donate!</button>
             </div>
         """;
 

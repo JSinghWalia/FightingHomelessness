@@ -84,7 +84,8 @@ public class PageST22 implements Handler {
         // Footer
         html = html + """
             <div class='footer'>
-                <p><a href="https://www.redcross.org.au/donate/">Donate</a></p>
+                <button onclick="location.href='https://www.redcross.org.au/donate/'" type="button">
+            Donate!</button>
             </div>
         """;
 
