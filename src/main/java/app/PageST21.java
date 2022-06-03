@@ -1,5 +1,6 @@
 package app;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import io.javalin.http.Context;
@@ -65,17 +66,50 @@ public class PageST21 implements Handler {
         // Next we will ask this *class* for the LGAs
         ArrayList<LGA> lgas = jdbc.getLGAs();
 
-        // Add HTML for the LGA list
-        html = html + "<h1>All LGAs</h1>" + "<ul>";
+    html = html + "<label for='LGA'>Choose your LGA from the list:</label>" +
+    "<input list='LGAS' name='LGA' id='LGA'>" +
+    "<datalist id= 'LGAS'>";
+            
+    for (LGA lga : lgas) {
+        html = html + "<option value ='" + lga.getName16() + "'>";
+    }
+    html = html + "</datalist>" +
+"<input type='submit'>" +
+  "</form>";
 
-        // Finally we can print out all of the LGAs
-        for (LGA lga : lgas) {
-            html = html + "<li>" + lga.getCode16()
-                        + " - " + lga.getName16() + "</li>";
+  
+
+    ArrayList<String> ageRange = jdbc.getAgeRange();
+    html = html + "      <label for='movietype_drop'>Select the age range (Dropdown):</label>";
+        html = html + "      <select id='movietype_drop' name='movietype_drop'>";
+        //Add options through database
+        
+        
+        // Add HTML for the movies list
+        
+        for (String ageGroup : ageRange) {
+            html = html + "<option>" + ageGroup + "</option>";
         }
+        
+        html = html + "      </select>";
 
-        // Finish the List HTML
-        html = html + "</ul>";
+
+
+        // sex options from database
+
+        ArrayList<String> sexes = jdbc.getSex();
+        html = html + "      <label for='movietype_drop'>Select the sex (Dropdown):</label>";
+            html = html + "      <select id='movietype_drop' name='movietype_drop'>";
+            //Add options through database
+            
+            
+            // Add HTML for the movies list
+            
+            for (String sex : sexes) {
+                html = html + "<option>" + sex + "</option>";
+            }
+            
+            html = html + "      </select>";
 
         // Close Content div
         html = html + "</div>";
