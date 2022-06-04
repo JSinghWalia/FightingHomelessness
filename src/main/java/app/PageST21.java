@@ -120,6 +120,12 @@ public class PageST21 implements Handler {
             }
             
             html = html + "      </select>";
+            html = html + "<p>" +
+            "<input type='radio' id='At Risk' name='At Risk vs Homeless' value='At Risk'>" +
+            "<label for='At Risk'>At Risk</label><br>" +
+           "<input type='radio' id='Homeless' name='At Risk vs Homeless' value='Homeless'>" +
+           "<label for='Homeless'>Homeless</label><br>" +
+           "</p>";
 
         // Close Content div
         html = html + "</div>";
