@@ -55,36 +55,96 @@ public class PageST22 implements Handler {
             </div>
         """;
 
-        // Add Div for page Content
-        html = html + "<div class='content'>";
+       // Add Div for page Content
+       html = html + "<div class='content'>";
 
-        // Look up some information from JDBC
-        // First we need to use your JDBCConnection class
-        JDBCConnection jdbc = new JDBCConnection();
+       // Look up some information from JDBC
+       // First we need to use your JDBCConnection class
+       JDBCConnection jdbc = new JDBCConnection();
 
-        // Next we will ask this *class* for the LGAs
-        ArrayList<LGA> lgas = jdbc.getLGAs();
+       // Next we will ask this *class* for the LGAs
+       ArrayList<LGA> lgas = jdbc.getLGAs();
 
-        // Add HTML for the LGA list
-        html = html + "<h1>All LGAs</h1>" + "<ul>";
+       html = html + "      <label for='ausvsstatevslga_drop'>Select Australia, State or LGA (Dropdown):</label>";
+        html = html + "      <select id='ausvsstatevslga_drop' name='ausvsstatevslga_drop'>";
+        //Add options through database
+        
+        
+        // Add HTML for the movies list
+        html = html +  "<option>" + "Australia" + "</option>"
+       + "<option>" + "State" + "</option>"
+       + "<option>" + "LGA" + "</option>"
+    + "      </select>";
 
-        // Finally we can print out all of the LGAs
-        for (LGA lga : lgas) {
-            html = html + "<li>" + lga.getCode16()
-                        + " - " + lga.getName16() + "</li>";
-        }
+   html = html + "<label for='LGA'>Choose your LGA from the list:</label>" +
+   "<input list='LGAS' name='LGA' id='LGA'>" +
+   "<datalist id= 'LGAS'>";
+           
+   for (LGA lga : lgas) {
+       html = html + "<option value ='" + lga.getName16() + "'>";
+   }
+   html = html + "</datalist>" +
+"<input type='submit'>" +"</form>";
 
-        // Finish the List HTML
-        html = html + "</ul>";
+// add error checking for leaving box empty, incorrect typing
+
+ 
+
+   ArrayList<String> ageRange = jdbc.getAgeRange();
+   html = html + "      <label for='agerange_drop'>Select the age range (Dropdown):</label>";
+       html = html + "      <select id='agerange_drop' name='agerange_drop'>";
+       //Add options through database
+       
+       
+       // Add HTML for the movies list
+       html = html +  "<option>" + "0-9" + "</option>"
+      + "<option>" + "10-19" + "</option>"
+      + "<option>" + "20-29" + "</option>"
+      + "<option>" + "30-39" + "</option>"
+       +"<option>" + "40-49" + "</option>"
+       +"<option>" + "50-59" + "</option>"
+       +"<option>" + "60+" + "</option>";
+
+       
+       // Potential database
+       //for (String ageGroup : ageRange) {
+         //  html = html + "<option>" + ageGroup + "</option>";
+       //}
+       
+       html = html + "      </select>";
 
 
-        // Close Content div
-        html = html + "</div>";
+
+       // sex options from database
+
+       ArrayList<String> sexes = jdbc.getSex();
+       html = html + "      <label for='movietype_drop'>Select the sex (Dropdown):</label>";
+           html = html + "      <select id='movietype_drop' name='movietype_drop'>";
+           //Add options through database
+           
+           
+           // Add HTML for the movies list
+           
+           for (String sex : sexes) {
+               html = html + "<option>" + sex + "</option>";
+           }
+           
+           html = html + "      </select>";
+           
+           html = html + "<p>" +
+           "<input type='radio' id='At Risk' name='At Risk vs Homeless' value='At Risk'>" +
+           "<label for='At Risk'>At Risk</label><br>" +
+          "<input type='radio' id='Homeless' name='At Risk vs Homeless' value='Homeless'>" +
+          "<label for='Homeless'>Homeless</label><br>" +
+          "</p>"
+          ;
+       // Close Content div
+       html = html + "</div>";
 
         // Footer
         html = html + """
             <div class='footer'>
-                <button onclick="location.href='https://www.redcross.org.au/donate/'" type="button">
+            <button class="button" onclick="location.href='https://www.redcross.org.au/donate/'" type="button">
             Donate!</button>
             </div>
         """;

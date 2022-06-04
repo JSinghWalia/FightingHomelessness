@@ -52,7 +52,7 @@ public class PageIndex implements Handler {
         html = html + """
             <div class='header'>
                 <h1>
-                    <img src='homelessman.jpg' class='top-image' alt='Homeless man lying on bench' height='500' width='600'>
+                    <img src='homelessman.jpg' class='top-image' alt='Homeless man lying on bench' height='100' width='100'>
                     Homepage
                 </h1>
             </div>

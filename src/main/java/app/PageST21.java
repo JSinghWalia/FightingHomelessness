@@ -74,22 +74,32 @@ public class PageST21 implements Handler {
         html = html + "<option value ='" + lga.getName16() + "'>";
     }
     html = html + "</datalist>" +
-"<input type='submit'>" +
-  "</form>";
+"<input type='submit'>" +"</form>";
+
+// add error checking for leaving box empty, incorrect typing
 
   
 
     ArrayList<String> ageRange = jdbc.getAgeRange();
-    html = html + "      <label for='movietype_drop'>Select the age range (Dropdown):</label>";
-        html = html + "      <select id='movietype_drop' name='movietype_drop'>";
+    html = html + "      <label for='agerange_drop'>Select the age range (Dropdown):</label>";
+        html = html + "      <select id='agerange_drop' name='agerange_drop'>";
         //Add options through database
         
         
         // Add HTML for the movies list
+        html = html +  "<option>" + "0-9" + "</option>"
+       + "<option>" + "10-19" + "</option>"
+       + "<option>" + "20-29" + "</option>"
+       + "<option>" + "30-39" + "</option>"
+        +"<option>" + "40-49" + "</option>"
+        +"<option>" + "50-59" + "</option>"
+        +"<option>" + "60+" + "</option>";
+
         
-        for (String ageGroup : ageRange) {
-            html = html + "<option>" + ageGroup + "</option>";
-        }
+        // Potential database
+        //for (String ageGroup : ageRange) {
+          //  html = html + "<option>" + ageGroup + "</option>";
+        //}
         
         html = html + "      </select>";
 
@@ -117,7 +127,7 @@ public class PageST21 implements Handler {
         // Footer
         html = html + """
             <div class='footer'>
-                <button onclick="location.href='https://www.redcross.org.au/donate/'" type="button">
+            <button class="button" onclick="location.href='https://www.redcross.org.au/donate/'" type="button">
             Donate!</button>
             </div>
         """;

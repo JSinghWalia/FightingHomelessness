@@ -83,7 +83,7 @@ public class PageST32 implements Handler {
         // Footer
         html = html + """
             <div class='footer'>
-                <button onclick="location.href='https://www.redcross.org.au/donate/'" type="button">
+            <button class="button" onclick="location.href='https://www.redcross.org.au/donate/'" type="button">
             Donate!</button>
             </div>
         """;
