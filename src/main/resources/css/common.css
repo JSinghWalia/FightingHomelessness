@@ -67,14 +67,14 @@ img.top-image {
    background-color: #4f75d7; /* Green */
    border: none;
    color: rgb(0, 0, 0);
-   padding: 15px 32px;
-   border-radius: 2px;
+   padding: 10px 16px;
+   border-radius: 18px;
    text-align: center;
    text-decoration: none;
    display: inline-block;
    font-size: 16px;
    cursor: pointer;
-   transition: opacity 0.15;
+   transition: opacity 0.15,
  }
 
  .button:hover {
