@@ -65,8 +65,9 @@ public class PageST21 implements Handler {
 
         // Next we will ask this *class* for the LGAs
         ArrayList<LGA> lgas = jdbc.getLGAs();
-
-    html = html + "<label for='LGA'>Choose your LGA from the list:</label>" +
+        
+        //html = html + "<form action='/page3' method='post'>";
+    html = html +"<form>" +"<label for='LGA'>Choose your LGA from the list:</label>" +
     "<input list='LGAS' name='LGA' id='LGA'>" +
     "<datalist id= 'LGAS'>";
             
@@ -81,19 +82,20 @@ public class PageST21 implements Handler {
   
 
     ArrayList<String> ageRange = jdbc.getAgeRange();
-    html = html + "      <label for='agerange_drop'>Select the age range (Dropdown):</label>";
+    html = html + "<form action='/page3.html' method='post'>";
+    html = html + "     <label for='agerange_drop'>Select the age range (Dropdown):</label>";
         html = html + "      <select id='agerange_drop' name='agerange_drop'>";
         //Add options through database
         
         
         // Add HTML for the movies list
-        html = html +  "<option>" + "0-9" + "</option>"
-       + "<option>" + "10-19" + "</option>"
-       + "<option>" + "20-29" + "</option>"
-       + "<option>" + "30-39" + "</option>"
-        +"<option>" + "40-49" + "</option>"
-        +"<option>" + "50-59" + "</option>"
-        +"<option>" + "60+" + "</option>";
+        html = html +  "<option>" + "0_9" + "</option>"
+       + "<option>" + "10_19" + "</option>"
+       + "<option>" + "20_29" + "</option>"
+       + "<option>" + "30_39" + "</option>"
+        +"<option>" + "40_49" + "</option>"
+        +"<option>" + "50_59" + "</option>"
+        +"<option>" + "60_plus" + "</option>";
 
         
         // Potential database
@@ -102,30 +104,63 @@ public class PageST21 implements Handler {
         //}
         
         html = html + "      </select>";
-
+        html = html + "   <button type='submit' class='btn btn-primary'>Get all of the movies!</button>";
+        html = html + "</form>";
 
 
         // sex options from database
 
         ArrayList<String> sexes = jdbc.getSex();
-        html = html + "      <label for='movietype_drop'>Select the sex (Dropdown):</label>";
-            html = html + "      <select id='movietype_drop' name='movietype_drop'>";
+        html = html + "<form action='/page3.html' method='post'>";
+        html = html + "     <div class='form-group'>";
+        html = html + "      <label for='sex_drop'>Select the sex (Dropdown):</label>";
+            html = html + "      <select id='sex_drop' name='sex_drop'>";
             //Add options through database
             
             
-            // Add HTML for the movies list
+            // Add HTML for the sexes list
             
             for (String sex : sexes) {
                 html = html + "<option>" + sex + "</option>";
             }
+            //html = html +  "<option>" + "m" + "</option>";
+            //html = html +  "<option>" + "f" + "</option>";
             
             html = html + "      </select>";
+            html = html + "   </div>";
+            html = html + "   <button type='submit' class='btn btn-primary'>Get all of the movies!</button>";
+            html = html + "</form>";
+           
+           
             html = html + "<p>" +
             "<input type='radio' id='At Risk' name='At Risk vs Homeless' value='At Risk'>" +
             "<label for='At Risk'>At Risk</label><br>" +
            "<input type='radio' id='Homeless' name='At Risk vs Homeless' value='Homeless'>" +
            "<label for='Homeless'>Homeless</label><br>" +
            "</p>";
+
+            
+            html = html + "</form>";
+
+           String sex_drop = context.formParam("sex_drop");
+           System.out.println(sex_drop);
+           if (sex_drop == null || sex_drop == "") {
+               // If NULL, nothing to show, therefore we make some "no results" HTML
+               html = html + "<h2><i>No Results to show for dropbox</i></h2>";
+           } else {
+               // If NOT NULL, then lookup the movie by type!
+               html = html + outputCountResultsOfSex(sex_drop);
+           }
+           String agerange_drop = context.formParam("agerange_drop");
+           System.out.println(agerange_drop);
+           if (agerange_drop == null || agerange_drop == "") {
+               // If NULL, nothing to show, therefore we make some "no results" HTML
+               html = html + "<h2><i>No Results to show for dropbox</i></h2>";
+           } else {
+               // If NOT NULL, then lookup the movie by type!
+               html = html + outputCountResultsOfAge(agerange_drop);
+           }
+
 
         // Close Content div
         html = html + "</div>";
@@ -146,5 +181,38 @@ public class PageST21 implements Handler {
         // Makes Javalin render the webpage
         context.html(html);
     }
+    public String outputCountResultsOfAge(String age) {
+        String html = "";
+        html = html + "<h2>" + age + " people</h2>";
 
+        // Look up movies from JDBC
+        JDBCConnection jdbc = new JDBCConnection();
+        ArrayList<String> ages = jdbc.getCountByAge(age);
+        
+        // Add HTML for the movies list
+        html = html + "<ul>";
+        for (String ageresult : ages) {
+            html = html + "<li>" + ageresult + "</li>";
+        }
+        html = html + "</ul>";
+
+        return html;
+    }
+    public String outputCountResultsOfSex(String sex) {
+        String html = "";
+        html = html + "<h2>" + sex + " Movies</h2>";
+
+        // Look up movies from JDBC
+        JDBCConnection jdbc = new JDBCConnection();
+        ArrayList<String> sexes = jdbc.getCountBySex(sex);
+        
+        // Add HTML for the movies list
+        html = html + "<ul>";
+        for (String sexresults : sexes) {
+            html = html + "<li>" + sexresults + "</li>";
+        }
+        html = html + "</ul>";
+
+        return html;
+    }
 }
