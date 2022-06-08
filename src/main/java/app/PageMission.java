@@ -62,20 +62,7 @@ public class PageMission implements Handler {
         // First we need to use your JDBCConnection class
         JDBCConnection jdbc = new JDBCConnection();
         
-        // Next we will ask this *class* for the LGAs
-        ArrayList<LGA> lgas = jdbc.getLGAs();
-
-        // Add HTML for the LGA list
-        html = html + "<h1>All LGAs</h1>" + "<ul>";
-
-        // Finally we can print out all of the LGAs
-        for (LGA lga : lgas) {
-            html = html + "<li>" + lga.getCode16()
-                        + " - " + lga.getName16() + "</li>";
-        }
-
-        // Finish the List HTML
-        html = html + "</ul>";
+        
 
 
         // Close Content div
