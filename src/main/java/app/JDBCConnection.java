@@ -366,9 +366,9 @@ public class JDBCConnection {
         return sexes;
     }
 
-    public ArrayList<String> getCountBySex(String sex) {
+    public int getCountBySex(String sex) {
         // Create the ArrayList of LGA objects to return
-        ArrayList<String> sexes = new ArrayList<String>();
+        int sexCount = 0;
 
         // Setup the variable for the JDBC connection
         Connection connection = null;
@@ -390,11 +390,11 @@ public class JDBCConnection {
             // Process all of the results
             while (results.next()) {
                 // Lookup the columns we need
-                String sexresult  = results.getString("Count");
+                int sexresult  = results.getInt("Count");
 
                 // Create a LGA Object
                 
-                sexes.add(sexresult);
+                sexCount = sexresult;
             }
 
             // Close the statement because we are done with it
@@ -415,11 +415,11 @@ public class JDBCConnection {
         }
 
         // Finally we return all of the lga
-        return sexes;
+        return sexCount;
     }
-    public ArrayList<String> getCountByAge(String age) {
+    public int getCountByAge(String age) {
         // Create the ArrayList of LGA objects to return
-        ArrayList<String> ages = new ArrayList<String>();
+        int count = 0;
 
         // Setup the variable for the JDBC connection
         Connection connection = null;
@@ -441,11 +441,11 @@ public class JDBCConnection {
             // Process all of the results
             while (results.next()) {
                 // Lookup the columns we need
-                String ageResult  = results.getString("Count");
+                int ageResult  = results.getInt("Count");
 
                 // Create a LGA Object
                 
-                ages.add(ageResult);
+                count = ageResult;
             }
 
             // Close the statement because we are done with it
@@ -466,7 +466,112 @@ public class JDBCConnection {
         }
 
         // Finally we return all of the lga
-        return ages;
+        return count;
     }
+
+    public int getCountByLGA(String lga_name16) {
+        // Create the ArrayList of LGA objects to return
+        int lgaCount = 0;
+
+        // Setup the variable for the JDBC connection
+        Connection connection = null;
+
+        try {
+            // Connect to JDBC data base
+            connection = DriverManager.getConnection(DATABASE);
+
+            // Prepare a new SQL Query & Set a timeout
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            // The Query
+            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "'";
+            
+            // Get Result
+            ResultSet results = statement.executeQuery(query);
+
+            // Process all of the results
+            while (results.next()) {
+                // Lookup the columns we need
+                int lgaResult  = results.getInt("Count");
+
+                // Create a LGA Object
+                
+                lgaCount = lgaResult;
+            }
+
+            // Close the statement because we are done with it
+            statement.close();
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        // Finally we return all of the lga
+        return lgaCount;
+    }
+    public int getCountByLGAAndAge(String lga_name16, String age) {
+        // Create the ArrayList of LGA objects to return
+        int lgaCount = 0;
+
+        // Setup the variable for the JDBC connection
+        Connection connection = null;
+
+        try {
+            // Connect to JDBC data base
+            connection = DriverManager.getConnection(DATABASE);
+
+            // Prepare a new SQL Query & Set a timeout
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            // The Query
+            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND age_group ='_" + age + "'";
+            
+            // Get Result
+            ResultSet results = statement.executeQuery(query);
+
+            // Process all of the results
+            while (results.next()) {
+                // Lookup the columns we need
+                int lgaResult  = results.getInt("Count");
+
+                // Create a LGA Object
+                
+                lgaCount = lgaResult;
+            }
+
+            // Close the statement because we are done with it
+            statement.close();
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        // Finally we return all of the lga
+        return lgaCount;
+    }
+    
+    
     // TODO: Add your required methods here
 }
