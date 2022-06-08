@@ -469,7 +469,7 @@ public class JDBCConnection {
         return count;
     }
 
-    public int getCountByLGA(String lga_name16) {
+    public int getCountByLGA(String lga_name16, String status) {
         // Create the ArrayList of LGA objects to return
         int lgaCount = 0;
 
@@ -485,7 +485,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "'";
+            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND status = '" + status + "'";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -520,7 +520,7 @@ public class JDBCConnection {
         // Finally we return all of the lga
         return lgaCount;
     }
-    public int getCountByLGAAndAge(String lga_name16, String age) {
+    public int getCountByLGAAndAge(String lga_name16, String age, String status) {
         // Create the ArrayList of LGA objects to return
         int lgaCount = 0;
 
@@ -536,7 +536,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND age_group ='_" + age + "'";
+            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND age_group ='_" + age + "'AND status = '" + status + "'";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -572,7 +572,7 @@ public class JDBCConnection {
         return lgaCount;
     }
     
-    public int getCountByLGAAndAgeAndSex(String lga_name16, String age, String sex) {
+    public int getCountByLGAAndAgeAndSex(String lga_name16, String age, String sex, String status) {
         // Create the ArrayList of LGA objects to return
         int lgaCount = 0;
 
@@ -588,7 +588,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND age_group ='_" + age + "' AND sex = '" + sex + "'";
+            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND age_group ='_" + age + "' AND sex = '" + sex + "'AND status = '" + status + "'";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -623,7 +623,7 @@ public class JDBCConnection {
         // Finally we return all of the lga
         return lgaCount;
     }
-    public int getCountByLGAAndSex(String lga_name16, String sex) {
+    public int getCountByLGAAndSex(String lga_name16, String sex, String status) {
         // Create the ArrayList of LGA objects to return
         int lgaCount = 0;
 
@@ -639,7 +639,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND sex ='_" + sex + "'";
+            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND sex ='_" + sex + "'AND status = '" + status + "'";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
