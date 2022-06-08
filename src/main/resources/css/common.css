@@ -67,13 +67,20 @@ img.top-image {
    background-color: #4f75d7; /* Green */
    border: none;
    color: rgb(0, 0, 0);
-   padding: 15px 32px;
+   padding: 10px 16px;
+   border-radius: 18px;
    text-align: center;
    text-decoration: none;
    display: inline-block;
    font-size: 16px;
+   cursor: pointer;
+   transition: opacity 0.15,
  }
+
  .button:hover {
-   background-color: #ddd;
-   color: black;
+  opacity: 0.8;
+ }
+
+ .button:active {
+   opacity: 0.5;
  }
