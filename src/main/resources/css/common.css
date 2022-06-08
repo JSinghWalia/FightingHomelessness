@@ -84,3 +84,22 @@ img.top-image {
  .button:active {
    opacity: 0.5;
  }
+
+ .top-image {
+  width: 300px;
+  display: inline-block;
+ }
+
+.title, p {
+  font-family: Arial;
+  text-align: center;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.persona {
+  
+}

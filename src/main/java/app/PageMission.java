@@ -58,6 +58,103 @@ public class PageMission implements Handler {
         // Add Div for page Content
         html = html + "<div class='content'>";
 
+         // Add HTML for the list of pages (as well as topnav)
+         html = html + """
+            <p class="title"> 
+                Our Mission
+            </p>
+
+            <p> 
+                The reason we dedicated this website to homelessness is, because 
+                it is a massive issue in Australia and is caused by many other 
+                problems such as PTSD, domestic violence, gambling, Covid-19, and 
+                natural disasters. It is important for us to educate people who 
+                believe that people who are homeless are only homeless due to their 
+                own fault. The aim of our website is to help spread awareness 
+                and educate people in Australia about homelessness.  
+            </p>
+
+            <p class="title">
+                Adressing the Social Challenge
+            </p>
+
+            <p>
+                Warm milk
+            </p>
+
+            <p class="title">
+                Site Use
+            </p>
+        
+            <p>
+                Warm milk
+            </p>
+        
+            <p class="title">
+                Personas
+            </p>
+
+        <div class="persona">
+            <p>
+                Name: Hamid the Baker 
+            </p>
+
+            <p>
+                Description: Hamid is a 35-year-old refugee from Afghanistan 
+                due to hardships due to the war. He is a baker that 
+                occasionally gives away bread to homeless people, 
+                he wonders why there is such a large population of 
+                homeless people.
+            </p>
+
+            <p>
+                Needs: Needs general information on homeless people, 
+                nothing too complicated and information on how to help  
+            </p>
+
+            <p>
+                Goals: To learn about the homeless epidemic 
+                and what he can do to help 
+            </p>
+
+            <p>
+                Skills and experience: Basic computer knowledge, 
+                can use non-complex websites without issues 
+                but can struggle with complex or messy websites.
+            </p>
+        </div>
+
+        <div class="persona">
+            <p>
+                Name: Sally the Student 
+            </p>
+
+            <p>
+                Description: Sally is a 20-year-old university student 
+                studying at Latrobe University. She is doing a presentation 
+                on the homelessness epidemic in Australia. 
+            </p>
+
+            <p>
+                Needs: Needs statistics, graphs, and more in-depth 
+                information on homeless people in Australia as well 
+                as homelessness.
+            </p>
+
+            <p>
+                Goals: To create a presentation about homelessness 
+                for her university class on social issues.
+            </p>
+
+            <p>
+                Skills and experience: Skilled with most software 
+                related to university, good at finding necessary 
+                information on websites. 
+            </p>
+        </div>
+            
+            """;
+
         // Look up some information from JDBC
         // First we need to use your JDBCConnection class
         JDBCConnection jdbc = new JDBCConnection();

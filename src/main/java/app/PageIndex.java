@@ -52,7 +52,7 @@ public class PageIndex implements Handler {
         html = html + """
             <div class='header'>
                 <h1>
-                    <img src='homelessman.jpg' class='top-image' alt='Homeless man lying on bench' height='100' width='100'>
+                    <img src='homelessman.jpg' class='top-image' alt='Homeless man lying on bench'>
                     Homepage
                 </h1>
             </div>
@@ -63,12 +63,45 @@ public class PageIndex implements Handler {
 
         // Add HTML for the list of pages (as well as topnav)
         html = html + """
-            <p> Three facts </p>
-            <ul>
-            <li> In 2018 the age range of 20-29 had the highest number of people who were most prone to becoming homeless (with almost 20,000 being at risk Australia wide) </li>
-            <li> In 2016 females had the highest number of people who were prone to becoming homeless (with over 20,000 being at risk across Australia) </li>
-            <li> In 2018 there was a decrease in risk of being homeless for females aged between 40 to 49. </li>
-            </ul>
+            <p class="title"> 
+                What is Homelessness? 
+            </p>
+
+            <p> 
+                Homelessness or houselessness also known as a state of being 
+                unhoused or unsheltered is the condition of lacking 
+                stable, safe, and adequate housing. 
+            </p>
+
+            <p class="title"> 
+                Fact #1 
+            </p>
+
+            <p> 
+                In 2018 the age range of 20-29 had the highest number 
+                of people who were most prone to becoming homeless 
+                (with almost 20,000 being at risk Australia wide) 
+            </p>
+
+            <p class="title">
+                Fact #2
+            </p>
+
+            <p> 
+                In 2016 females had the highest number of people 
+                who were prone to becoming homeless 
+                (with over 20,000 being at risk across Australia) 
+            </p>
+
+            <p class="title">
+                Fact #3
+            </p>
+
+            <p>
+                In 2018 there was a decrease in risk of being homeless 
+                for females aged between 40 to 49. 
+            </p>
+        
 
 
             
