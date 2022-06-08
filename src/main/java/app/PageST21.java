@@ -66,30 +66,29 @@ public class PageST21 implements Handler {
         // Next we will ask this *class* for the LGAs
         ArrayList<LGA> lgas = jdbc.getLGAs();
         
-        //html = html + "<form action='/page3' method='post'>";
-    html = html +"<form>" +"<label for='LGA'>Choose your LGA from the list:</label>" +
+        html = html + "<form action='/page3.html' method='post'>";
+    html = html +"<label for='LGA'>Choose your LGA from the list:</label>" +
     "<input list='LGAS' name='LGA' id='LGA'>" +
     "<datalist id= 'LGAS'>";
             
     for (LGA lga : lgas) {
         html = html + "<option value ='" + lga.getName16() + "'>";
     }
-    html = html + "</datalist>" +
-"<input type='submit'>" +"</form>";
+    html = html + "</datalist>";
 
 // add error checking for leaving box empty, incorrect typing
 
   
 
     ArrayList<String> ageRange = jdbc.getAgeRange();
-    html = html + "<form action='/page3.html' method='post'>";
     html = html + "     <label for='agerange_drop'>Select the age range (Dropdown):</label>";
         html = html + "      <select id='agerange_drop' name='agerange_drop'>";
         //Add options through database
         
         
         // Add HTML for the movies list
-        html = html +  "<option>" + "0_9" + "</option>"
+        html = html + "<option>" + "All" + "</option>" +
+        "<option>" + "0_9" + "</option>"
        + "<option>" + "10_19" + "</option>"
        + "<option>" + "20_29" + "</option>"
        + "<option>" + "30_39" + "</option>"
@@ -104,14 +103,11 @@ public class PageST21 implements Handler {
         //}
         
         html = html + "      </select>";
-        html = html + "   <button type='submit' class='btn btn-primary'>Get all of the movies!</button>";
-        html = html + "</form>";
 
 
         // sex options from database
 
-        ArrayList<String> sexes = jdbc.getSex();
-        html = html + "<form action='/page3.html' method='post'>";
+        //ArrayList<String> sexes = jdbc.getSex();
         html = html + "     <div class='form-group'>";
         html = html + "      <label for='sex_drop'>Select the sex (Dropdown):</label>";
             html = html + "      <select id='sex_drop' name='sex_drop'>";
@@ -120,47 +116,50 @@ public class PageST21 implements Handler {
             
             // Add HTML for the sexes list
             
-            for (String sex : sexes) {
-                html = html + "<option>" + sex + "</option>";
-            }
-            //html = html +  "<option>" + "m" + "</option>";
-            //html = html +  "<option>" + "f" + "</option>";
+            //for (String sex : sexes) {
+              //  html = html + "<option>" + sex + "</option>";
+            //}
+            html = html + "<option>" + "All" + "</option>";
+            html = html +  "<option>" + "m" + "</option>";
+            html = html +  "<option>" + "f" + "</option>";
             
             html = html + "      </select>";
             html = html + "   </div>";
-            html = html + "   <button type='submit' class='btn btn-primary'>Get all of the movies!</button>";
+           
+           
+        
+           html = html + "   <button type='submit' class='btn btn-primary'>Search</button>";
             html = html + "</form>";
-           
-           
-            html = html + "<p>" +
-            "<input type='radio' id='At Risk' name='At Risk vs Homeless' value='At Risk'>" +
-            "<label for='At Risk'>At Risk</label><br>" +
-           "<input type='radio' id='Homeless' name='At Risk vs Homeless' value='Homeless'>" +
-           "<label for='Homeless'>Homeless</label><br>" +
-           "</p>";
 
-            
-            html = html + "</form>";
+
+//getting inputs
 
            String sex_drop = context.formParam("sex_drop");
            System.out.println(sex_drop);
-           if (sex_drop == null || sex_drop == "") {
-               // If NULL, nothing to show, therefore we make some "no results" HTML
-               html = html + "<h2><i>No Results to show for dropbox</i></h2>";
-           } else {
-               // If NOT NULL, then lookup the movie by type!
-               html = html + outputCountResultsOfSex(sex_drop);
-           }
            String agerange_drop = context.formParam("agerange_drop");
            System.out.println(agerange_drop);
-           if (agerange_drop == null || agerange_drop == "") {
-               // If NULL, nothing to show, therefore we make some "no results" HTML
-               html = html + "<h2><i>No Results to show for dropbox</i></h2>";
-           } else {
-               // If NOT NULL, then lookup the movie by type!
-               html = html + outputCountResultsOfAge(agerange_drop);
+           String LGAS = context.formParam("LGA");
+           System.out.println(LGAS);
+          if (LGAS == null || LGAS == "") {
+            // If NULL, nothing to show, therefore we make some "no results" HTML
+            html = html + "<h2><i>No Results to show for search, select a LGA</i></h2>";
+              
+          }
+          
+           else if ("All".equals(sex_drop) && "All".equals(agerange_drop)){
+               html = html + outputCountResultsOfLGAS(LGAS);
            }
 
+           else if ("All".equals(sex_drop)){
+                html = html + outputCountResultsOfLGASAndAge(LGAS, agerange_drop);
+           }
+           else if ("All".equals(agerange_drop)){
+            html = html + outputCountResultsOfLGASAndSex(LGAS, sex_drop);
+       }
+       else {
+        html = html + outputCountResultsOfLGASAndAgeAndSex(LGAS, agerange_drop, sex_drop);
+    }
+       
 
         // Close Content div
         html = html + "</div>";
@@ -183,36 +182,92 @@ public class PageST21 implements Handler {
     }
     public String outputCountResultsOfAge(String age) {
         String html = "";
-        html = html + "<h2>" + age + " people</h2>";
+        html = html + "<h2>Count of people aged " + age + " </h2>";
 
         // Look up movies from JDBC
         JDBCConnection jdbc = new JDBCConnection();
-        ArrayList<String> ages = jdbc.getCountByAge(age);
+        int ages = jdbc.getCountByAge(age);
         
-        // Add HTML for the movies list
-        html = html + "<ul>";
-        for (String ageresult : ages) {
-            html = html + "<li>" + ageresult + "</li>";
-        }
-        html = html + "</ul>";
+            html = html + ages;
+
 
         return html;
     }
     public String outputCountResultsOfSex(String sex) {
         String html = "";
-        html = html + "<h2>" + sex + " Movies</h2>";
+        html = html + "<h2>Count of " + sex + " People</h2>";
 
         // Look up movies from JDBC
         JDBCConnection jdbc = new JDBCConnection();
-        ArrayList<String> sexes = jdbc.getCountBySex(sex);
+        int sexes = jdbc.getCountBySex(sex);
         
         // Add HTML for the movies list
-        html = html + "<ul>";
-        for (String sexresults : sexes) {
-            html = html + "<li>" + sexresults + "</li>";
-        }
-        html = html + "</ul>";
+        
+            html = html + sexes;
+        
+       
 
         return html;
     }
+    public String outputCountResultsOfLGAS(String LGA) {
+        String html = "";
+        html = html + "<h2>Count of People From " + LGA + "</h2>";
+
+        // Look up movies from JDBC
+        JDBCConnection jdbc = new JDBCConnection();
+        int LGAS = jdbc.getCountByLGA(LGA);
+        
+        // Add HTML for the movies list
+        
+            html = html + LGAS;
+        
+       
+
+        return html;
+    }
+    public String outputCountResultsOfLGASAndAge(String LGAS, String age) {
+        String html = "";
+        html = html + "<h2>Count of people aged " + age + " from " + LGAS + "</h2>";
+
+        // Look up movies from JDBC
+        JDBCConnection jdbc = new JDBCConnection();
+        int sexes = jdbc.getCountByLGAAndAge(LGAS, age);
+        
+        // Add HTML for the movies list
+        
+            html = html + sexes;
+        
+       
+
+        return html;
+    }
+    public String outputCountResultsOfLGASAndSex(String LGAS, String sex) {
+        String html = "";
+        html = html + "<h2>Count of " + sex + " People</h2>";
+
+        // Look up movies from JDBC
+        JDBCConnection jdbc = new JDBCConnection();
+        int sexes = jdbc.getCountByLGAAndSex(LGAS, sex);
+        
+        // Add HTML for the movies list
+        
+            html = html + sexes;
+        
+       
+
+        return html;
+    }
+    public String outputCountResultsOfLGASAndAgeAndSex(String LGAS, String age, String sex) {
+        String html = "";
+        html = html + "<h2>Count of people aged " + age + " from " + LGAS + "</h2>";
+
+        // Look up movies from JDBC
+        JDBCConnection jdbc = new JDBCConnection();
+        int allResults = jdbc.getCountByLGAAndAgeAndSex(LGAS, age, sex);
+        
+        // Add HTML for the movies list
+        
+            html = html + allResults;
+            return html;
+}
 }
