@@ -639,7 +639,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND sex ='_" + sex + "'AND status = '" + status + "'";
+            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND sex ='" + sex + "'AND status = '" + status + "'";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
