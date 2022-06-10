@@ -90,9 +90,14 @@ img.top-image {
   display: inline-block;
  }
 
-.title, p {
+.title {
   font-family: Arial;
   text-align: center;
+}
+
+.p {
+  font-family: Arial;
+  text-align: left;
 }
 
 .title {
