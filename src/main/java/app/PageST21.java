@@ -24,6 +24,8 @@ public class PageST21 implements Handler {
     public void handle(Context context) throws Exception {
         // Create a simple HTML webpage in a String
         String html = "<html>";
+        html = html + "<!DOCTYPE html>";
+        
 
         // Add some Head information
         html = html + "<head>" + 
@@ -203,7 +205,7 @@ public class PageST21 implements Handler {
         String html = "";
         html = html + "<h2>LGA Table of";
 
-        if ("Homeless".equals(status)){
+        if ("homeless".equals(status)){
             html = html + " homeless";
         }
         else {
@@ -216,7 +218,7 @@ public class PageST21 implements Handler {
         
         // Add HTML for the movies list
         
-        html = html +"<table>" +
+        html = html +"<table id='LGA'>" +
         "<tr>" +
             "<th> LGA</th>" +
             "<th> Count</th>" +
@@ -237,7 +239,7 @@ public String outputLGAFromSex(String sex, String status, String order, String y
     String html = "";
     html = html + "<h2>LGA Table of";
 
-    if ("Homeless".equals(status)){
+    if ("homeless".equals(status)){
         html = html + " homeless";
     }
     else {
@@ -256,7 +258,7 @@ public String outputLGAFromSex(String sex, String status, String order, String y
     
     // Add HTML for the movies list
     
-    html = html +"<table>" +
+    html = html +"<table id='LGA'>" +
     "<tr>" +
         "<th> LGA</th>" +
         "<th> Count</th>" +
@@ -278,7 +280,7 @@ public String outputLGAFromAge(String age, String status, String order, String y
     String html = "";
     html = html + "<h2>LGA Table of";
     
-    if ("Homeless".equals(status)){
+    if ("homeless".equals(status)){
         html = html + " homeless";
     }
     else {
@@ -316,7 +318,7 @@ public String outputLGAFromAge(String age, String status, String order, String y
     
     // Add HTML for the movies list
     
-    html = html +"<table>" +
+    html = html +"<table id='LGA'>" +
     "<tr>" +
         "<th> LGA</th>" +
         "<th> Count</th>" +
@@ -339,7 +341,7 @@ html = html + "</table>";
         html = html + "<h2>LGA Table of";
 
 
-        if ("Homeless".equals(status)){
+        if ("homeless".equals(status)){
             html = html + " homeless";
         }
         else {
@@ -386,7 +388,7 @@ html = html + "</table>";
         
         // Add HTML for the movies list
         
-        html = html +"<table>" +
+        html = html +"<table id='LGA'>" +
         "<tr>" +
             "<th> LGA</th>" +
             "<th> Count</th>" +
