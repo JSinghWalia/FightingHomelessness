@@ -101,5 +101,24 @@ img.top-image {
 }
 
 .persona {
-  
+  width: 250px;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 200px;
+  margin-left: 225px;;
+}
+
+.personapic {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.name,
+.description,
+.needs,
+.goals,
+.sande {
+  text-align: left;
+  width: 250px;
 }
