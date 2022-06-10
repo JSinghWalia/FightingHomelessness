@@ -674,5 +674,234 @@ public class JDBCConnection {
         // Finally we return all of the lga
         return lgaCount;
     }
+    
+    public ArrayList<LGAST1> getLGAFromAllFactors(String age, String sex, String status, String order, String year) {
+        // Create the ArrayList of LGA objects to return
+        ArrayList<LGAST1> lgas = new ArrayList<LGAST1>();
+
+        // Setup the variable for the JDBC connection
+        Connection connection = null;
+
+        try {
+            // Connect to JDBC data base
+            connection = DriverManager.getConnection(DATABASE);
+
+            // Prepare a new SQL Query & Set a timeout
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            // The Query
+            String query = "SELECT * FROM homlessgroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE age_group = '_" + age + "'AND sex = '" + sex + "' AND status = '" + status + "' AND year ='" + year + "' ORDER BY count " + order;
+            
+            // Get Result
+            ResultSet results = statement.executeQuery(query);
+            System.out.println(query);
+            // Process all of the results
+            while (results.next()) {
+                // Lookup the columns we need
+                String name  = results.getString("lga_name16");
+                int count = results.getInt("count");
+                double population = results.getDouble("pop2018");
+                double proportion = ((count / population) * 100.0);
+
+                // Create a LGA Object
+                LGAST1 lga = new LGAST1(name, count, proportion);
+
+                // Add the lga object to the array
+                lgas.add(lga);
+            }
+
+            // Close the statement because we are done with it
+            statement.close();
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        // Finally we return all of the lga
+        return lgas;
+    }
+
+    public ArrayList<LGAST1> getLGAFromAge(String age, String status, String order, String year) {
+        // Create the ArrayList of LGA objects to return
+        ArrayList<LGAST1> lgas = new ArrayList<LGAST1>();
+
+        // Setup the variable for the JDBC connection
+        Connection connection = null;
+
+        try {
+            // Connect to JDBC data base
+            connection = DriverManager.getConnection(DATABASE);
+
+            // Prepare a new SQL Query & Set a timeout
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            // The Query
+            String query = "SELECT * FROM homlessgroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE age_group = '_" + age + "' AND status = '" + status + "' AND year ='" + year + "' ORDER BY count " + order;
+            
+            // Get Result
+            ResultSet results = statement.executeQuery(query);
+            System.out.println(query);
+            // Process all of the results
+            while (results.next()) {
+                // Lookup the columns we need
+                String name  = results.getString("lga_name16");
+                int count = results.getInt("count");
+                double population = results.getDouble("pop2018");
+                double proportion = ((count / population) * 100.0);
+
+                // Create a LGA Object
+                LGAST1 lga = new LGAST1(name, count, proportion);
+
+                // Add the lga object to the array
+                lgas.add(lga);
+            }
+
+            // Close the statement because we are done with it
+            statement.close();
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        // Finally we return all of the lga
+        return lgas;
+    }
+
+    public ArrayList<LGAST1> getLGAFromSex(String sex, String status, String order, String year) {
+        // Create the ArrayList of LGA objects to return
+        ArrayList<LGAST1> lgas = new ArrayList<LGAST1>();
+
+        // Setup the variable for the JDBC connection
+        Connection connection = null;
+
+        try {
+            // Connect to JDBC data base
+            connection = DriverManager.getConnection(DATABASE);
+
+            // Prepare a new SQL Query & Set a timeout
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            // The Query
+            String query = "SELECT * FROM homlessgroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE sex = '" + sex + "' AND status = '" + status + "' AND year ='" + year + "' ORDER BY count " + order;
+            
+            // Get Result
+            ResultSet results = statement.executeQuery(query);
+            System.out.println(query);
+            // Process all of the results
+            while (results.next()) {
+                // Lookup the columns we need
+                String name  = results.getString("lga_name16");
+                int count = results.getInt("count");
+                double population = results.getDouble("pop2018");
+                double proportion = ((count / population) * 100.0);
+
+                // Create a LGA Object
+                LGAST1 lga = new LGAST1(name, count, proportion);
+
+                // Add the lga object to the array
+                lgas.add(lga);
+            }
+
+            // Close the statement because we are done with it
+            statement.close();
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        // Finally we return all of the lga
+        return lgas;
+    }
+
+    public ArrayList<LGAST1> getLGAFromStatus(String status, String order, String year) {
+        // Create the ArrayList of LGA objects to return
+        ArrayList<LGAST1> lgas = new ArrayList<LGAST1>();
+
+        // Setup the variable for the JDBC connection
+        Connection connection = null;
+
+        try {
+            // Connect to JDBC data base
+            connection = DriverManager.getConnection(DATABASE);
+
+            // Prepare a new SQL Query & Set a timeout
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            // The Query
+            String query = "SELECT * FROM homlessgroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE status = '" + status + " AND year ='" + year + "' ORDER BY count " + order;
+            
+            // Get Result
+            ResultSet results = statement.executeQuery(query);
+            System.out.println(query);
+            // Process all of the results
+            while (results.next()) {
+                // Lookup the columns we need
+                String name  = results.getString("lga_name16");
+                int count = results.getInt("count");
+                double population = results.getDouble("pop2018");
+                double proportion = ((count / population) * 100.0);
+
+                // Create a LGA Object
+                LGAST1 lga = new LGAST1(name, count, proportion);
+
+                // Add the lga object to the array
+                lgas.add(lga);
+            }
+
+            // Close the statement because we are done with it
+            statement.close();
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        // Finally we return all of the lga
+        return lgas;
+    }
+
     // TODO: Add your required methods here
 }
