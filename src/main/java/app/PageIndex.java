@@ -64,7 +64,7 @@ public class PageIndex implements Handler {
         // Add HTML for the list of pages (as well as topnav)
         html = html + """
             <p class="title"> 
-                What is Homelessness? 
+                What is Homelessness and who experiences it? 
             </p>
 
             <p> 
