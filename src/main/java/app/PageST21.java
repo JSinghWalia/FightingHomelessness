@@ -65,16 +65,9 @@ public class PageST21 implements Handler {
 
         // Next we will ask this *class* for the LGAs
         ArrayList<LGA> lgas = jdbc.getLGAs();
-        
         html = html + "<form action='/page3.html' method='post'>";
-    html = html +"<label for='LGA'>Choose your LGA from the list:</label>" +
-    "<input list='LGAS' name='LGA' id='LGA'>" +
-    "<datalist id= 'LGAS'>";
-            
-    for (LGA lga : lgas) {
-        html = html + "<option value ='" + lga.getName16() + "'>";
-    }
-    html = html + "</datalist>";
+        
+    
 
 // add error checking for leaving box empty, incorrect typing
 
@@ -132,6 +125,26 @@ public class PageST21 implements Handler {
             html = html + "<input type='radio' id='at_risk' name='atRiskVsHomeless' value='at_risk'>";
             html = html + "<label for='atrisk'>At Risk</label><br>";
            
+
+
+            html = html + "     <div class='form-group'>";
+            html = html + "     <label for='orderby_drop'>Select the order (Dropdown):</label>";
+            html = html + "      <select id='orderby_drop' name='orderby_drop'>";
+            html = html +  "<option value = 'asc'>" + "Best" + "</option>";
+            html = html +  "<option value = 'desc'>" + "Worst" + "</option>";
+            html = html + "      </select>";
+            html = html + "   </div>";
+           
+
+            html = html + "     <div class='form-group'>";
+            html = html + "     <label for='year_drop'>Select the order (Dropdown):</label>";
+            html = html + "      <select id='year_drop' name='year_drop'>";
+            html = html +  "<option value = '2016'>" + "2016" + "</option>";
+            html = html +  "<option value = '2018'>" + "2018" + "</option>";
+            html = html + "      </select>";
+            html = html + "   </div>";
+
+
             html = html + "   <button type='submit' class='btn btn-primary'>Search</button>";
            html = html + "</form>";
 
@@ -142,29 +155,27 @@ public class PageST21 implements Handler {
            //System.out.println(sex_drop);
            String agerange_drop = context.formParam("agerange_drop");
            //System.out.println(agerange_drop);
-           String LGAS = context.formParam("LGA");
-           //System.out.println(LGAS);
            String status = context.formParam("atRiskVsHomeless");
-          if (LGAS == null || LGAS == "") {
-            // If NULL, nothing to show, therefore we make some "no results" HTML
-            html = html + "<h2><i>No Results to show for search, select a LGA</i></h2>";
-              
-          }
-          else if (status == null || status == "") {
+           //System.out.println(atRiskVsHomeless)
+           String orderby_drop = context.formParam("orderby_drop");
+           //System.out.println(sex_drop);
+           String year_drop = context.formParam("year_drop");
+
+          if (status == null || status == "") {
             html = html + "<h2><i>No Results to show for search, select homeless or at risk</i></h2>";
           }
            else if ("All".equals(sex_drop) && "All".equals(agerange_drop)){
-               html = html + outputCountResultsOfLGAS(LGAS, status);
+               html = html + outputLGAFromStatus(status,orderby_drop,year_drop);
            }
 
            else if ("All".equals(sex_drop)){
-                html = html + outputCountResultsOfLGASAndAge(LGAS, agerange_drop, status);
+                html = html + outputLGAFromAge(agerange_drop, status,orderby_drop,year_drop);
            }
            else if ("All".equals(agerange_drop)){
-            html = html + outputCountResultsOfLGASAndSex(LGAS, sex_drop, status);
+            html = html + outputLGAFromSex(sex_drop, status, orderby_drop,year_drop);
        }
        else {
-        html = html + outputCountResultsOfLGASAndAgeAndSex(LGAS, agerange_drop, sex_drop, status);
+        html = html + outputLGAFromAllFactors(agerange_drop, sex_drop, status,orderby_drop,year_drop);
     }
        
 
@@ -187,94 +198,208 @@ public class PageST21 implements Handler {
         // Makes Javalin render the webpage
         context.html(html);
     }
-    public String outputCountResultsOfAge(String age) {
+   
+    public String outputLGAFromStatus(String status, String order, String year) {
         String html = "";
-        html = html + "<h2>Count of people aged " + age + " </h2>";
+        html = html + "<h2>LGA Table of";
 
+        if ("Homeless".equals(status)){
+            html = html + " homeless";
+        }
+        else {
+            html = html + " at risk";
+        }
+        html = html + " people</h2>";
         // Look up movies from JDBC
         JDBCConnection jdbc = new JDBCConnection();
-        int ages = jdbc.getCountByAge(age);
-        
-            html = html + ages;
-
-
-        return html;
-    }
-    public String outputCountResultsOfSex(String sex) {
-        String html = "";
-        html = html + "<h2>Count of " + sex + " People</h2>";
-
-        // Look up movies from JDBC
-        JDBCConnection jdbc = new JDBCConnection();
-        int sexes = jdbc.getCountBySex(sex);
+        ArrayList<LGAST1> lgas = jdbc.getLGAFromStatus(status, order, year);
         
         // Add HTML for the movies list
         
-            html = html + sexes;
-        
-       
+        html = html +"<table>" +
+        "<tr>" +
+            "<th> LGA</th>" +
+            "<th> Count</th>" +
+           "<th> Proportional Value</th>" +
+        "</tr>";
+for (LGAST1 lga : lgas) {
+ html = html + "<tr>" + "<td>" + lga.getName() + "</td>" +
+                        "<td>" + lga.getCount() + "</td>" +
+                        "<td>" + lga.getProportion() + "</td>" +
+                "</tr>";
+            }
+html = html + "</table>";
+
+            return html;
+}
+
+public String outputLGAFromSex(String sex, String status, String order, String year) {
+    String html = "";
+    html = html + "<h2>LGA Table of";
+
+    if ("Homeless".equals(status)){
+        html = html + " homeless";
+    }
+    else {
+        html = html + " at risk";
+    }
+
+    if ("m".equals(sex)){
+        html = html + " males</h2>";
+    }
+    else {
+        html = html + " females</h2>"; 
+    }
+    // Look up movies from JDBC
+    JDBCConnection jdbc = new JDBCConnection();
+    ArrayList<LGAST1> lgas = jdbc.getLGAFromSex(sex, status, order, year);
+    
+    // Add HTML for the movies list
+    
+    html = html +"<table>" +
+    "<tr>" +
+        "<th> LGA</th>" +
+        "<th> Count</th>" +
+       "<th> Proportional Value</th>" +
+    "</tr>";
+for (LGAST1 lga : lgas) {
+html = html + "<tr>" + "<td>" + lga.getName() + "</td>" +
+                    "<td>" + lga.getCount() + "</td>" +
+                    "<td>" + lga.getProportion() + "</td>" +
+            "</tr>";
+        }
+html = html + "</table>";
 
         return html;
+}
+
+
+public String outputLGAFromAge(String age, String status, String order, String year) {
+    String html = "";
+    html = html + "<h2>LGA Table of";
+    
+    if ("Homeless".equals(status)){
+        html = html + " homeless";
     }
-    public String outputCountResultsOfLGAS(String LGA, String status) {
+    else {
+        html = html + " at risk";
+    }
+    
+    
+    html = html + " people aged"; 
+    
+    if ("0_9".equals(status)){
+        html = html + " 0-9 years old</h2>";
+    }
+    else if ("10_19".equals(status)) {
+        html = html + " 10-19 years old</h2>";
+    }
+    else if ("20_29".equals(status)) {
+        html = html + " 20-29 years old</h2>";
+    }
+    else if ("30_39".equals(status)) {
+        html = html + " 30-39 years old</h2>";
+    }
+    else if ("40_49".equals(status)) {
+        html = html + " 40-49 years old</h2>";
+    }
+    else if ("50_59".equals(status)) {
+        html = html + " 50-59 years old</h2>";
+    }
+    else{
+        html = html + " 60+ years old</h2>";
+    }
+
+    // Look up movies from JDBC
+    JDBCConnection jdbc = new JDBCConnection();
+    ArrayList<LGAST1> lgas = jdbc.getLGAFromAge(age, status, order, year);
+    
+    // Add HTML for the movies list
+    
+    html = html +"<table>" +
+    "<tr>" +
+        "<th> LGA</th>" +
+        "<th> Count</th>" +
+       "<th> Proportional Value</th>" +
+    "</tr>";
+for (LGAST1 lga : lgas) {
+html = html + "<tr>" + "<td>" + lga.getName() + "</td>" +
+                    "<td>" + lga.getCount() + "</td>" +
+                    "<td>" + lga.getProportion() + "</td>" +
+            "</tr>";
+        }
+html = html + "</table>";
+
+        return html;
+}
+
+
+    public String outputLGAFromAllFactors(String age, String sex, String status, String order, String year) {
         String html = "";
-        html = html + "<h2>Count of People From " + LGA + "</h2>";
+        html = html + "<h2>LGA Table of";
+
+
+        if ("Homeless".equals(status)){
+            html = html + " homeless";
+        }
+        else {
+            html = html + " at risk";
+        }
+        
+
+
+
+    if ("m".equals(sex)){
+        html = html + " males";
+    }
+    else {
+        html = html + " females"; 
+    }
+        html = html + " aged";
+
+        if ("0_9".equals(status)){
+            html = html + " 0-9 years old</h2>";
+        }
+        else if ("10_19".equals(status)) {
+            html = html + " 10-19 years old</h2>";
+        }
+        else if ("20_29".equals(status)) {
+            html = html + " 20-29 years old</h2>";
+        }
+        else if ("30_39".equals(status)) {
+            html = html + " 30-39 years old</h2>";
+        }
+        else if ("40_49".equals(status)) {
+            html = html + " 40-49 years old</h2>";
+        }
+        else if ("50_59".equals(status)) {
+            html = html + " 50-59 years old</h2>";
+        }
+        else{
+            html = html + " 60+ years old</h2>";
+        }
+
 
         // Look up movies from JDBC
         JDBCConnection jdbc = new JDBCConnection();
-        int LGAS = jdbc.getCountByLGA(LGA, status);
+        ArrayList<LGAST1> lgas = jdbc.getLGAFromAllFactors(age, sex, status, order, year);
         
         // Add HTML for the movies list
         
-            html = html + LGAS;
-        
-       
+        html = html +"<table>" +
+        "<tr>" +
+            "<th> LGA</th>" +
+            "<th> Count</th>" +
+           "<th> Proportional Value</th>" +
+        "</tr>";
+for (LGAST1 lga : lgas) {
+ html = html + "<tr>" + "<td>" + lga.getName() + "</td>" +
+                        "<td>" + lga.getCount() + "</td>" +
+                        "<td>" + lga.getProportion() + "</td>" +
+                "</tr>";
+            }
+html = html + "</table>";
 
-        return html;
-    }
-    public String outputCountResultsOfLGASAndAge(String LGAS, String age, String status) {
-        String html = "";
-        html = html + "<h2>Count of people aged " + age + " from " + LGAS + "</h2>";
-
-        // Look up movies from JDBC
-        JDBCConnection jdbc = new JDBCConnection();
-        int sexes = jdbc.getCountByLGAAndAge(LGAS, age, status);
-        
-        // Add HTML for the movies list
-        
-            html = html + sexes;
-        
-       
-
-        return html;
-    }
-    public String outputCountResultsOfLGASAndSex(String LGAS, String sex, String status) {
-        String html = "";
-        html = html + "<h2>Count of " + sex + " People</h2>";
-
-        // Look up movies from JDBC
-        JDBCConnection jdbc = new JDBCConnection();
-        int sexes = jdbc.getCountByLGAAndSex(LGAS, sex, status);
-        
-        // Add HTML for the movies list
-        
-            html = html + sexes;
-        
-       
-
-        return html;
-    }
-    public String outputCountResultsOfLGASAndAgeAndSex(String LGAS, String age, String sex, String status) {
-        String html = "";
-        html = html + "<h2>Count of " + sex +"'s aged " + age + " from " + LGAS + "</h2>";
-
-        // Look up movies from JDBC
-        JDBCConnection jdbc = new JDBCConnection();
-        int allResults = jdbc.getCountByLGAAndAgeAndSex(LGAS, age, sex, status);
-        
-        // Add HTML for the movies list
-        
-            html = html + allResults;
             return html;
 }
 }
