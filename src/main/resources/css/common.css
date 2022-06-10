@@ -7,7 +7,7 @@
 body {
    font-family: Arial;
    padding: 10px;
-   background: #f1f1f1;
+   background:#f1f1f1;
 }
 
 /* Header (div) formatting */
@@ -90,7 +90,63 @@ img.top-image {
   display: inline-block;
  }
 
-.title, p {
+ .p {
+  font-family: 'Arial';
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.bigbox {
+  display: flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.bigpara,
+.smallpara {
+  margin-top: 0;
+  margin-bottom: 0;
+  width: 700px;
+}
+
+.bigpara {
+  font-family: arial;
+  font-size: 45px;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.smallpara {
+  font-family: arial;
+  font-size: 25px;
+  color: black;
+}
+
+.box1 {
+  -ms-flex: 33%;
+  flex: 33%;
+  background-color: #f1f1f1;
+  padding: 60px;
+  padding-bottom: 80px;
+}
+
+.box2 {
+  width: 340px;
+  height: 340px;
+  background-color: rgba(213, 211, 211, 0.941);
+}
+
+.facts {
+  width: 340px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+
+.title {
   font-family: Arial;
   text-align: center;
 }
