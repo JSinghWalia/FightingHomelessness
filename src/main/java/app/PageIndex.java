@@ -63,45 +63,72 @@ public class PageIndex implements Handler {
 
         // Add HTML for the list of pages (as well as topnav)
         html = html + """
-            <p class="title"> 
-                What is Homelessness and who experiences it? 
+         <div class="bigbox">
+            <p class="bigpara">
+                Homelessness is a predicament that is beyond the condition 
+                of having access to no home.  
+            </p>   
+            
+            <p class="smallpara">
+                Homelessness impacts more men than women, and it impacts them 
+                differently. Domestic violence is the number one cause of 
+                homelessness for women, while men are more likely to experience 
+                chronic homelessness. Women often have young children and nearly 
+                half of all homeless are under the age of 25. 
+                A disproportionate number are indigenous, or born overseas. Facing 
+                barriers to things like employment and private rental, or 
+                lacking in strong social support networks place people at a higher 
+                risk of homelessness. This is why specialised community supports are 
+                a vital part of addressing the issue.
             </p>
-
-            <p> 
-                Homelessness or houselessness also known as a state of being 
-                unhoused or unsheltered is the condition of lacking 
-                stable, safe, and adequate housing. 
-            </p>
-
-            <p class="title"> 
-                Fact #1 
-            </p>
-
-            <p> 
-                In 2018 the age range of 20-29 had the highest number 
-                of people who were most prone to becoming homeless 
-                (with almost 20,000 being at risk Australia wide) 
-            </p>
-
-            <p class="title">
-                Fact #2
-            </p>
-
-            <p> 
-                In 2016 females had the highest number of people 
-                who were prone to becoming homeless 
-                (with over 20,000 being at risk across Australia) 
-            </p>
-
-            <p class="title">
-                Fact #3
-            </p>
-
-            <p>
-                In 2018 there was a decrease in risk of being homeless 
-                for females aged between 40 to 49. 
-            </p>
+         </div>
         
+         <div class="bigbox">
+            <div class="box1">
+                <div class="box2">
+                <img src="hamid.png" class="box-image" alt="Image" height="320">
+                    <p class= "facts">
+                        Fact #1 
+                    </p>
+
+                    <p class= "facts">
+                        In 2018 the age range of 20-29 had the highest number 
+                        of people who were most prone to becoming homeless 
+                        (with almost 20,000 being at risk Australia wide)
+                    </p>
+                </div>
+            </div>
+
+            <div class="box1">
+                <div class="box2">
+                <img src="sally.png" class="box-image" alt="Image" height="320">
+                    <p class= "facts">
+                        Fact #2 
+                    </p>
+
+                    <p class= "facts">
+                        In 2016 females had the highest number of people 
+                        who were prone to becoming homeless 
+                        (with over 20,000 being at risk across Australia)
+                    </p>
+                </div>
+            </div>
+
+            <div class="box1">
+                <div class="box2">
+                <img src="sally.png" class="box-image" alt="Image" height="320">
+                    <p class= "facts">
+                        Fact #3
+                    </p>
+
+                    <p class= "facts">
+                        In 2018, approximately 43, 429 children aged between
+                        0 and 9 were either homeless or at risk of 
+                        being homeless
+                    </p>
+                </div>
+            </div>
+         </div>
 
 
             
