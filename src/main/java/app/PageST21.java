@@ -88,13 +88,13 @@ public class PageST21 implements Handler {
         
         // Add HTML for the movies list
         html = html + "<option>" + "All" + "</option>" +
-        "<option>" + "0_9" + "</option>"
-       + "<option>" + "10_19" + "</option>"
-       + "<option>" + "20_29" + "</option>"
-       + "<option>" + "30_39" + "</option>"
-        +"<option>" + "40_49" + "</option>"
-        +"<option>" + "50_59" + "</option>"
-        +"<option>" + "60_plus" + "</option>";
+        "<option value = '0_9'>" + "0-9" + "</option>"
+       + "<option value = '10_19'>" + "10-19" + "</option>"
+       + "<option value = '20_29'>" + "20-29" + "</option>"
+       + "<option value = '30_39'>" + "30-39" + "</option>"
+        +"<option value = '40_49'>" + "40-49" + "</option>"
+        +"<option value = '50_59'>" + "50-59" + "</option>"
+        +"<option value = '60_plus'>" + "60+" + "</option>";
 
         
         // Potential database
@@ -120,8 +120,8 @@ public class PageST21 implements Handler {
               //  html = html + "<option>" + sex + "</option>";
             //}
             html = html + "<option>" + "All" + "</option>";
-            html = html +  "<option>" + "m" + "</option>";
-            html = html +  "<option>" + "f" + "</option>";
+            html = html +  "<option value = 'm'>" + "Male" + "</option>";
+            html = html +  "<option value = 'f'>" + "Female" + "</option>";
             
             html = html + "      </select>";
             html = html + "   </div>";
