@@ -97,54 +97,37 @@ img.top-image {
   margin-bottom: 0;
 }
 
-.bigbox {
-  display: flexbox;
-  display: flex;
-  flex-wrap: wrap;
-  flex-wrap: wrap;
-}
-
 .bigpara,
 .smallpara {
-  margin-top: 0;
-  margin-bottom: 0;
-  width: 700px;
+  font-family: arial;
+  text-align: left;
+  width: 600px;
 }
 
 .bigpara {
-  font-family: arial;
-  font-size: 45px;
   font-weight: bold;
-  color: black;
-  margin-bottom: 10px;
+  font-size: 40px;
 }
 
 .smallpara {
-  font-family: arial;
-  font-size: 25px;
-  color: black;
+  font-size: 30px;
 }
 
-.box1 {
-  -ms-flex: 33%;
-  flex: 33%;
-  background-color: #f1f1f1;
-  padding: 60px;
-  padding-bottom: 80px;
+.big-box {
+  width: 660px;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 15px;
 }
 
-.box2 {
-  width: 340px;
-  height: 340px;
-  background-color: rgba(213, 211, 211, 0.941);
+.factpic {
+  height: 200px;
+  vertical-align: top;
 }
 
 .facts {
-  width: 340px;
-  margin-top: 0;
-  margin-bottom: 0;
+  display: inline-block;
 }
-
 
 .title {
   font-family: Arial;
