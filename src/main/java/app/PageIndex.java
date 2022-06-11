@@ -63,7 +63,7 @@ public class PageIndex implements Handler {
 
         // Add HTML for the list of pages (as well as topnav)
         html = html + """
-         <div class="bigbox">
+         <div class="big-box">
             <p class="bigpara">
                 Homelessness is a predicament that is beyond the condition 
                 of having access to no home.  
@@ -83,52 +83,47 @@ public class PageIndex implements Handler {
             </p>
          </div>
         
-         <div class="bigbox">
+         <div class="big-box">
             <div class="box1">
-                <div class="box2">
-                <img src="hamid.png" class="box-image" alt="Image" height="320">
-                    <p class= "facts">
-                        Fact #1 
-                    </p>
+            <img class="factpic" src="fact1.jpg">
+                <p class= "facts">
+                    Fact #1 
+                </p>
 
-                    <p class= "facts">
-                        In 2018 the age range of 20-29 had the highest number 
-                        of people who were most prone to becoming homeless 
-                        (with almost 20,000 being at risk Australia wide)
-                    </p>
-                </div>
+                <p class= "facts">
+                    In 2018 the age range of 20-29 had the highest number 
+                    of people who were most prone to becoming homeless 
+                    (with almost 20,000 being at risk Australia wide)
+                </p>
             </div>
 
             <div class="box1">
-                <div class="box2">
-                <img src="sally.png" class="box-image" alt="Image" height="320">
-                    <p class= "facts">
-                        Fact #2 
-                    </p>
+            <img class ="factpic" src="fact2.jpg">
+                <p class= "facts">
+                    Fact #2 
+                </p>
 
-                    <p class= "facts">
-                        In 2016 females had the highest number of people 
-                        who were prone to becoming homeless 
-                        (with over 20,000 being at risk across Australia)
-                    </p>
-                </div>
+                <p class= "facts">
+                    In 2016 females had the highest number of people 
+                    who were prone to becoming homeless 
+                    (with over 20,000 being at risk across Australia)
+                </p>
             </div>
 
             <div class="box1">
-                <div class="box2">
-                <img src="sally.png" class="box-image" alt="Image" height="320">
-                    <p class= "facts">
-                        Fact #3
-                    </p>
+            <img class="factpic" src="fact3.webp">
+                <p class= "facts">
+                    Fact #3
+                </p>
 
-                    <p class= "facts">
-                        In 2018, approximately 43, 429 children aged between
-                        0 and 9 were either homeless or at risk of 
-                        being homeless
-                    </p>
-                </div>
+                <p class= "facts">
+                    In 2018, approximately 43, 429 children aged between
+                    0 and 9 were either homeless or at risk of 
+                    being homeless
+                </p>
             </div>
-         </div>
+        </div>
+
 
 
             
