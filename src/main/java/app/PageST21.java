@@ -139,7 +139,7 @@ public class PageST21 implements Handler {
            
 
             html = html + "     <div class='form-group'>";
-            html = html + "     <label for='year_drop'>Select the order (Dropdown):</label>";
+            html = html + "     <label for='year_drop'>Select the year to view (Dropdown):</label>";
             html = html + "      <select id='year_drop' name='year_drop'>";
             html = html +  "<option value = '2016'>" + "2016" + "</option>";
             html = html +  "<option value = '2018'>" + "2018" + "</option>";
@@ -214,7 +214,7 @@ public class PageST21 implements Handler {
         html = html + " people</h2>";
         // Look up movies from JDBC
         JDBCConnection jdbc = new JDBCConnection();
-        ArrayList<LGAST1> lgas = jdbc.getLGAFromStatus(status, order, year);
+        ArrayList<LGAST21> lgas = jdbc.getLGAFromStatus(status, order, year);
         
         // Add HTML for the movies list
         
@@ -224,7 +224,7 @@ public class PageST21 implements Handler {
             "<th> Count</th>" +
            "<th> Proportional Value</th>" +
         "</tr>";
-for (LGAST1 lga : lgas) {
+for (LGAST21 lga : lgas) {
  html = html + "<tr>" + "<td>" + lga.getName() + "</td>" +
                         "<td>" + lga.getCount() + "</td>" +
                         "<td>" + lga.getProportion() + "</td>" +
@@ -254,7 +254,7 @@ public String outputLGAFromSex(String sex, String status, String order, String y
     }
     // Look up movies from JDBC
     JDBCConnection jdbc = new JDBCConnection();
-    ArrayList<LGAST1> lgas = jdbc.getLGAFromSex(sex, status, order, year);
+    ArrayList<LGAST21> lgas = jdbc.getLGAFromSex(sex, status, order, year);
     
     // Add HTML for the movies list
     
@@ -264,7 +264,7 @@ public String outputLGAFromSex(String sex, String status, String order, String y
         "<th> Count</th>" +
        "<th> Proportional Value</th>" +
     "</tr>";
-for (LGAST1 lga : lgas) {
+for (LGAST21 lga : lgas) {
 html = html + "<tr>" + "<td>" + lga.getName() + "</td>" +
                     "<td>" + lga.getCount() + "</td>" +
                     "<td>" + lga.getProportion() + "</td>" +
@@ -314,7 +314,7 @@ public String outputLGAFromAge(String age, String status, String order, String y
 
     // Look up movies from JDBC
     JDBCConnection jdbc = new JDBCConnection();
-    ArrayList<LGAST1> lgas = jdbc.getLGAFromAge(age, status, order, year);
+    ArrayList<LGAST21> lgas = jdbc.getLGAFromAge(age, status, order, year);
     
     // Add HTML for the movies list
     
@@ -324,7 +324,7 @@ public String outputLGAFromAge(String age, String status, String order, String y
         "<th> Count</th>" +
        "<th> Proportional Value</th>" +
     "</tr>";
-for (LGAST1 lga : lgas) {
+for (LGAST21 lga : lgas) {
 html = html + "<tr>" + "<td>" + lga.getName() + "</td>" +
                     "<td>" + lga.getCount() + "</td>" +
                     "<td>" + lga.getProportion() + "</td>" +
@@ -384,7 +384,7 @@ html = html + "</table>";
 
         // Look up movies from JDBC
         JDBCConnection jdbc = new JDBCConnection();
-        ArrayList<LGAST1> lgas = jdbc.getLGAFromAllFactors(age, sex, status, order, year);
+        ArrayList<LGAST21> lgas = jdbc.getLGAFromAllFactors(age, sex, status, order, year);
         
         // Add HTML for the movies list
         
@@ -394,7 +394,7 @@ html = html + "</table>";
             "<th> Count</th>" +
            "<th> Proportional Value</th>" +
         "</tr>";
-for (LGAST1 lga : lgas) {
+for (LGAST21 lga : lgas) {
  html = html + "<tr>" + "<td>" + lga.getName() + "</td>" +
                         "<td>" + lga.getCount() + "</td>" +
                         "<td>" + lga.getProportion() + "</td>" +
