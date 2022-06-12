@@ -160,16 +160,19 @@ public class PageST22 implements Handler {
            String LGAS = context.formParam("LGA");
            //System.out.println(LGAS);
            String status = context.formParam("atRiskVsHomeless");
+           String compare = context.formParam("ausvsstatevslga_drop");
+
           if (LGAS == null || LGAS == "") {
             // If NULL, nothing to show, therefore we make some "no results" HTML
             html = html + "<h2><i>No Results to show for search, select a LGA</i></h2>";
               
           }
-          else if (status == null || status == "") {
-            html = html + "<h2><i>No Results to show for search, select homeless or at risk</i></h2>";
+          else if ((status == null || status == "") && ("All".equals(sex_drop) && "All".equals(agerange_drop))) {
+            html = html + outputInfoOfLGASNoStatus(LGAS);
           }
            else if ("All".equals(sex_drop) && "All".equals(agerange_drop)){
-               html = html + outputCountResultsOfLGAS(LGAS, status);
+               html = html + outputInfoOfLGAS(LGAS, status);
+               html = html + outputCountOfAtRisk(LGAS, status, compare);
            }
 
            else if ("All".equals(sex_drop)){
@@ -202,7 +205,7 @@ public class PageST22 implements Handler {
         // Makes Javalin render the webpage
         context.html(html);
     }
-    public String outputCountResultsOfLGAS(String lganame, String status) {
+    public String outputInfoOfLGAS(String lganame, String status) {
         String name = "test";
         int lgaCode = 1;
         String state = "test";
@@ -232,6 +235,55 @@ public class PageST22 implements Handler {
 //type not working for some reason
         return html;
     }
+
+    public String outputInfoOfLGASNoStatus(String lganame) {
+        String name = "test";
+        int lgaCode = 1;
+        String state = "test";
+        String type = "t";
+        int population = 1;
+        double area = 1.0;
+        
+        
+        
+        String html = "";
+        html = html + "<h2>Count of people aged</h2>";
+
+        // Look up movies from JDBC
+        JDBCConnection jdbc = new JDBCConnection();
+        ArrayList<LGAST22> lgas = jdbc.getLGAInfo2016NoStatus(lganame);
+
+       for (LGAST22 lga : lgas) {
+            name =  lga.getName();
+            lgaCode = lga.getCode(); 
+            type = lga.getType();
+            state = lga.getState(lgaCode);
+             population = lga.getPopulation();
+             area = lga.getArea();
+        }
+
+        html = html + name + " " + state + " "+ type +" " + population + " " + area;
+//type not working for some reason
+        return html;
+    }
+
+    public String outputCountOfAtRisk(String LGAS, String status, String compare) {
+        String html = "";
+        html = html + "<h2>Count of  People</h2>";
+
+        // Look up movies from JDBC
+        JDBCConnection jdbc = new JDBCConnection();
+        int count = jdbc.getCountByLGAAndStatus(LGAS, status);
+         
+        
+        // Add HTML for the movies list
+        
+            html = html + count;
+       
+
+        return html;
+    }
+
     public String outputCountResultsOfSex(String sex) {
         String html = "";
         html = html + "<h2>Count of " + sex + " People</h2>";

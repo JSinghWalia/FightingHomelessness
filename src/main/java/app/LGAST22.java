@@ -70,6 +70,16 @@ public int getCode() {
       return state;
  }
 
+public int getFirstDigit(int lgaCode){
+   int firstDigit;
+
+   int digits = (int)(Math.log10(lgaCode));
+   firstDigit = (int)(lgaCode / (int)(Math.pow(10, digits)));
+
+   return firstDigit;
+
+}
+
 public String getType() {
     return type;
 }

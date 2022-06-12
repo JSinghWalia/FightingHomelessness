@@ -520,6 +520,59 @@ public class JDBCConnection {
         // Finally we return all of the lga
         return lgaCount;
     }
+
+
+    public int getCountByLGAAndStatus(String lga_name16, String status) {
+        // Create the ArrayList of LGA objects to return
+        int lgaCount = 0;
+
+        // Setup the variable for the JDBC connection
+        Connection connection = null;
+
+        try {
+            // Connect to JDBC data base
+            connection = DriverManager.getConnection(DATABASE);
+
+            // Prepare a new SQL Query & Set a timeout
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            // The Query
+            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND status = '" + status + "'";
+            
+            // Get Result
+            ResultSet results = statement.executeQuery(query);
+
+            // Process all of the results
+            while (results.next()) {
+                // Lookup the columns we need
+                int lgaResult  = results.getInt("Count");
+
+                // Create a LGA Object
+                
+                lgaCount = lgaResult;
+            }
+
+            // Close the statement because we are done with it
+            statement.close();
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        // Finally we return all of the lga
+        return lgaCount;
+    }
     public int getCountByLGAAndAge(String lga_name16, String age, String status) {
         // Create the ArrayList of LGA objects to return
         int lgaCount = 0;
@@ -985,6 +1038,65 @@ public class JDBCConnection {
         // Finally we return all of the lga
         return lgas;
     }
+
+    public ArrayList<LGAST22> getLGAInfo2016NoStatus(String lganame) {
+        // Create the ArrayList of LGA objects to return
+        ArrayList<LGAST22> lgas = new ArrayList<LGAST22>();
+
+        // Setup the variable for the JDBC connection
+        Connection connection = null;
+
+        try {
+            // Connect to JDBC data base
+            connection = DriverManager.getConnection(DATABASE);
+
+            // Prepare a new SQL Query & Set a timeout
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            // The Query
+            String query = "SELECT * FROM homlessgroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE lga_name16 = '" + lganame + "'";
+            
+            // Get Result
+            ResultSet results = statement.executeQuery(query);
+            System.out.println(query);
+            // Process all of the results
+            while (results.next()) {
+                // Lookup the columns we need
+                String name  = results.getString("lga_name16");
+                String type = results.getString("lga_type16");
+                String state = "";
+                int population = results.getInt("pop2018");
+                double area = results.getDouble("area_sqkm");
+                int lgaCode = results.getInt("lga_code16");
+                // Create a LGA Object
+                LGAST22 lga = new LGAST22(name, state, type, area, population, lgaCode);
+
+                // Add the lga object to the array
+                lgas.add(lga);
+            }
+
+            // Close the statement because we are done with it
+            statement.close();
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        // Finally we return all of the lga
+        return lgas;
+    }
+
 
     // TODO: Add your required methods here
 }
