@@ -744,7 +744,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT * FROM homlessgroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE age_group = '_" + age + "'AND sex = '" + sex + "' AND status = '" + status + "' AND year ='" + year + "' ORDER BY count " + order;
+            String query = "SELECT * FROM homlessgroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE age_group = '_" + age + "'AND sex = '" + sex + "' AND status = '" + status + "' AND year ='" + year + "'GROUP BY h.lga_code ORDER BY count " + order;
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -807,7 +807,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT * FROM homlessgroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE age_group = '_" + age + "' AND status = '" + status + "' AND year ='" + year + "' ORDER BY count " + order;
+            String query = "SELECT * FROM homlessgroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE age_group = '_" + age + "' AND status = '" + status + "' AND year ='" + year + "'GROUP BY h.lga_code ORDER BY count " + order;
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -870,7 +870,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT * FROM homlessgroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE sex = '" + sex + "' AND status = '" + status + "' AND year ='" + year + "' ORDER BY count " + order;
+            String query = "SELECT * FROM homlessgroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE sex = '" + sex + "' AND status = '" + status + "' AND year ='" + year + "'GROUP BY h.lga_code ORDER BY count " + order;
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -933,7 +933,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT * FROM homlessgroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE status = '" + status + "' AND year ='" + year + "' ORDER BY count " + order;
+            String query = "SELECT * FROM homlessgroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE status = '" + status + "' AND year ='" + year + "'GROUP BY h.lga_code ORDER BY count " + order;
             
             // Get Result
             ResultSet results = statement.executeQuery(query);

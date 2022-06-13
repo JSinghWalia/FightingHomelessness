@@ -75,8 +75,9 @@ public class PageST21 implements Handler {
 
   
 
-    ArrayList<String> ageRange = jdbc.getAgeRange();
-    html = html + "     <label for='agerange_drop'>Select the age range (Dropdown):</label>";
+    //ArrayList<String> ageRange = jdbc.getAgeRange();
+    html = html + "     <div class='form-group'>";
+        html = html + "     <label for='agerange_drop'>Select the age range (Dropdown):</label>";
         html = html + "      <select id='agerange_drop' name='agerange_drop'>";
         //Add options through database
         
@@ -120,15 +121,9 @@ public class PageST21 implements Handler {
             
             html = html + "      </select>";
             html = html + "   </div>";
-           
-           
-            html = html + "<input type='radio' id='homeless' name='atRiskVsHomeless' value='homeless'>";
-            html = html +  "<label for='homeless'>Homeless</label><br>";
-            html = html + "<input type='radio' id='at_risk' name='atRiskVsHomeless' value='at_risk'>";
-            html = html + "<label for='atrisk'>At Risk</label><br>";
-           
-
-
+            
+            
+            
             html = html + "     <div class='form-group'>";
             html = html + "     <label for='orderby_drop'>Select the order (Dropdown):</label>";
             html = html + "      <select id='orderby_drop' name='orderby_drop'>";
@@ -145,6 +140,16 @@ public class PageST21 implements Handler {
             html = html +  "<option value = '2018'>" + "2018" + "</option>";
             html = html + "      </select>";
             html = html + "   </div>";
+           
+           
+            html = html + " <br> <input type='radio' id='homeless' name='atRiskVsHomeless' value='homeless'>";
+            html = html +  "<label for='homeless'>Homeless</label><br>";
+            html = html + "<input type='radio' id='at_risk' name='atRiskVsHomeless' value='at_risk'>";
+            html = html + "<label for='atrisk'>At Risk</label><br>";
+           
+
+
+           
 
 
             html = html + "   <button type='submit' class='btn btn-primary'>Search</button>";
