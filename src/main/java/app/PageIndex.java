@@ -65,21 +65,21 @@ public class PageIndex implements Handler {
         html = html + """
          <div class="big-box">
             <p class="bigpara">
-                Homelessness is a predicament that is beyond the condition 
-                of having access to no home.  
+                Homelessness is a generational issue 
+                that is affecting all of Australia.
             </p>   
             
             <p class="smallpara">
-                Homelessness impacts more men than women, and it impacts them 
-                differently. Domestic violence is the number one cause of 
-                homelessness for women, while men are more likely to experience 
-                chronic homelessness. Women often have young children and nearly 
-                half of all homeless are under the age of 25. 
-                A disproportionate number are indigenous, or born overseas. Facing 
-                barriers to things like employment and private rental, or 
-                lacking in strong social support networks place people at a higher 
-                risk of homelessness. This is why specialised community supports are 
-                a vital part of addressing the issue.
+                Homelessness is defined as the lack of a stable, 
+                permanent, or adequate housing, as well as the means 
+                and ability to obtain one. Homelessness can take numerous 
+                forms, ranging from being unsheltered to being temporarily 
+                housed and being at risk of becoming homeless. Furthermore, 
+                numerous reasons have contributed to homelessness in Australia 
+                in recent years, the most recent being COVID-19 and its 
+                economic ramifications, which have resulted in unemployment, 
+                as well as other issues like as domestic violence, gambling, 
+                and drug and alcohol abuse.
             </p>
          </div>
         
@@ -87,10 +87,7 @@ public class PageIndex implements Handler {
             <div class="box1">
             <img class="factpic" src="fact1.jpg">
                 <p class= "facts">
-                    Fact #1 
-                </p>
-
-                <p class= "facts">
+                    <span class = "fact"> Fact #1 </span>
                     In 2018 the age range of 20-29 had the highest number 
                     of people who were most prone to becoming homeless 
                     (with almost 20,000 being at risk Australia wide)
@@ -100,10 +97,7 @@ public class PageIndex implements Handler {
             <div class="box1">
             <img class ="factpic" src="fact2.jpg">
                 <p class= "facts">
-                    Fact #2 
-                </p>
-
-                <p class= "facts">
+                    <span class = "fact"> Fact #2 </span>
                     In 2016 females had the highest number of people 
                     who were prone to becoming homeless 
                     (with over 20,000 being at risk across Australia)
@@ -113,10 +107,7 @@ public class PageIndex implements Handler {
             <div class="box1">
             <img class="factpic" src="fact3.webp">
                 <p class= "facts">
-                    Fact #3
-                </p>
-
-                <p class= "facts">
+                    <span class = "fact"> Fact #3 </span>
                     In 2018, approximately 43, 429 children aged between
                     0 and 9 were either homeless or at risk of 
                     being homeless
