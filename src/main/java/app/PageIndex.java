@@ -123,7 +123,7 @@ public class PageIndex implements Handler {
             """;
             JDBCConnection jdbc = new JDBCConnection();
             
-            html = html + "Total number of LGAs: " + jdbc.countLGAs()
+            html = html + "<br>Total number of LGAs: " + jdbc.countLGAs()
 
             + "<br>" + "Total population in 2016: " + jdbc.totalPopulation2016()
 
