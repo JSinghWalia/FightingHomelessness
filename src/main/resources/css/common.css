@@ -106,11 +106,14 @@ img.top-image {
 
 .bigpara {
   font-weight: bold;
-  font-size: 40px;
+  font-size: 45px;
+  margin-top: 0;
+  margin-bottom: 15px;
 }
 
 .smallpara {
   font-size: 30px;
+  line-height: 42px;
 }
 
 .big-box {
@@ -121,12 +124,32 @@ img.top-image {
 }
 
 .factpic {
-  height: 200px;
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
   vertical-align: top;
+  margin-bottom: 15px;
+  margin-right: 10px;
+}
+
+.fact {
+  font-weight: bold;
+  font-size: 30px;
+  display: block;
+  margin-top: 0;
+  margin-bottom: 5px;
 }
 
 .facts {
+  font-size: 20px;
   display: inline-block;
+  width: 300px;
+}
+
+.fact,
+.facts {
+  text-align: left;
+  line-height: 30px;
 }
 
 .title {
