@@ -41,7 +41,7 @@ img.top-image {
    display: block;
    color: #000000;
    text-align: center;
-   padding: 14px 16px;
+   padding: 14px 70px;
    text-decoration: none;
  }
  
@@ -144,7 +144,7 @@ img.top-image {
   display: inline-block;
   vertical-align: top;
   margin-right: 200px;
-  margin-left: 225px;;
+  margin-left: 225px;
 }
 
 .personapic {
@@ -195,3 +195,27 @@ th {
 
 }
 
+
+.btn{
+ /* background-color: #04AA6D;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+*/}
+
+.form-group {
+	display: inline-block;
+} 
+
+.nav-image{
+  width: 150px;
+  float: left;
+  padding: 14px;
+  display: block;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 20px
+}
