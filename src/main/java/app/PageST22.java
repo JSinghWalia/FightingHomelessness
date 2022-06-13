@@ -78,12 +78,10 @@ public class PageST22 implements Handler {
       
       
       
-      
-       html = html + "      <label for='ausvsstatevslga_drop'>Select Australia, State or LGA to compare to (Dropdown):</label>";
-        html = html + "      <select id='ausvsstatevslga_drop' name='ausvsstatevslga_drop'>";
-        html = html + "<option value = 'australia'>" + "Australia" + "</option>"; 
-        html = html + "<option value = 'state'>" + "State" + "</option>";
-        html = html + "<option value = 'lga'>" + "LGA" + "</option>";
+       html = html + "<br>";
+       html = html + "      <input type='checkbox' id='Option1' name='Option1' value='Aus'> <label for='Option1'> Australia</label><br>";
+        html = html + "     <input type='checkbox' id='Option2' name='Option2' value='State'> <label for='Option2'> State</label><br>";
+        html = html + "     <input type='checkbox' id='Option3' name='Option3' value='LGA'> <label for='Option3'> LGA</label><br>"; 
         html = html + "</select>";
         //Add options through database
         
@@ -142,7 +140,7 @@ public class PageST22 implements Handler {
             html = html + "   </div>";
            
            
-            html = html + "<input type='radio' id='homeless' name='atRiskVsHomeless' value='homeless'>";
+            html = html + "<br> <input type='radio' id='homeless' name='atRiskVsHomeless' value='homeless'>";
             html = html +  "<label for='homeless'>Homeless</label><br>";
             html = html + "<input type='radio' id='at_risk' name='atRiskVsHomeless' value='at_risk'>";
             html = html + "<label for='atrisk'>At Risk</label><br>";
@@ -160,8 +158,10 @@ public class PageST22 implements Handler {
            String LGAS = context.formParam("LGA");
            //System.out.println(LGAS);
            String status = context.formParam("atRiskVsHomeless");
-           String compare = context.formParam("ausvsstatevslga_drop");
-
+           String checkboxAus = context.formParam("Option1");
+           String checkboxState = context.formParam("Option2");
+           String checkboxLGA = context.formParam("Option3");
+           //System.out.println(checkboxAus);
           if (LGAS == null || LGAS == "") {
             // If NULL, nothing to show, therefore we make some "no results" HTML
             html = html + "<h2><i>No Results to show for search, select a LGA</i></h2>";
@@ -172,7 +172,7 @@ public class PageST22 implements Handler {
           }
            else if ("All".equals(sex_drop) && "All".equals(agerange_drop)){
                html = html + outputInfoOfLGAS(LGAS, status);
-               html = html + outputCountOfAtRisk(LGAS, status, compare);
+               html = html + outputCountOfAtRisk(LGAS, status, checkboxAus);
            }
 
            else if ("All".equals(sex_drop)){
