@@ -53,7 +53,7 @@ public class PageIndex implements Handler {
             <div class='header'>
                 <h1>
                     <img src='homelessman.jpg' class='top-image' alt='Homeless man lying on bench'>
-                    Homepage
+                    Fighting Homelessness Homepage
                 </h1>
             </div>
         """;
