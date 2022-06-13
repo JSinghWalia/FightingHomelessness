@@ -295,22 +295,22 @@ public String outputLGAFromAge(String age, String status, String order, String y
     
     html = html + " people aged"; 
     
-    if ("0_9".equals(status)){
+    if ("0_9".equals(age)){
         html = html + " 0-9 years old</h2>";
     }
-    else if ("10_19".equals(status)) {
+    else if ("10_19".equals(age)) {
         html = html + " 10-19 years old</h2>";
     }
-    else if ("20_29".equals(status)) {
+    else if ("20_29".equals(age)) {
         html = html + " 20-29 years old</h2>";
     }
-    else if ("30_39".equals(status)) {
+    else if ("30_39".equals(age)) {
         html = html + " 30-39 years old</h2>";
     }
-    else if ("40_49".equals(status)) {
+    else if ("40_49".equals(age)) {
         html = html + " 40-49 years old</h2>";
     }
-    else if ("50_59".equals(status)) {
+    else if ("50_59".equals(age)) {
         html = html + " 50-59 years old</h2>";
     }
     else{
@@ -364,22 +364,22 @@ html = html + "</table>";
     }
         html = html + " aged";
 
-        if ("0_9".equals(status)){
+        if ("0_9".equals(age)){
             html = html + " 0-9 years old</h2>";
         }
-        else if ("10_19".equals(status)) {
+        else if ("10_19".equals(age)) {
             html = html + " 10-19 years old</h2>";
         }
-        else if ("20_29".equals(status)) {
+        else if ("20_29".equals(age)) {
             html = html + " 20-29 years old</h2>";
         }
-        else if ("30_39".equals(status)) {
+        else if ("30_39".equals(age)) {
             html = html + " 30-39 years old</h2>";
         }
-        else if ("40_49".equals(status)) {
+        else if ("40_49".equals(age)) {
             html = html + " 40-49 years old</h2>";
         }
-        else if ("50_59".equals(status)) {
+        else if ("50_59".equals(age)) {
             html = html + " 50-59 years old</h2>";
         }
         else{
