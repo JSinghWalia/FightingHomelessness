@@ -60,11 +60,12 @@ public class PageMission implements Handler {
 
          // Add HTML for the list of pages (as well as topnav)
          html = html + """
+         <div class="bigbox2">   
             <p class="title"> 
-                Our Mission
+                The Mission
             </p>
 
-            <p> 
+            <p class="reason"> 
                 The reason we dedicated this website to homelessness is, because 
                 it is a massive issue in Australia and is caused by many other 
                 problems such as PTSD, domestic violence, gambling, Covid-19, and 
@@ -78,84 +79,94 @@ public class PageMission implements Handler {
                 Adressing the Social Challenge
             </p>
 
-            <p>
-                Warm milk
+            <p class="reason">
+                We address the social challenge of homeless in Australia through 
+                technology. The website we created will provide basic information 
+                about homelessness in Australia, as well as data, to uneducated readers. 
+                It will also provide advanced statistics to those who may require it 
+                for professional reasons. Users who want support our cause of fighting 
+                homelessness in Australia can make donations at the bottom of our 
+                page via the Red Cross.
             </p>
 
             <p class="title">
                 Site Use
             </p>
         
-            <p>
-                Warm milk
-            </p>
-        
-            <p class="title">
-                Personas
-            </p>
+            <ul class="reason">
+                <li> Basic Information &#38; statistics </li>
+                <li> Advanced Data </li>
+                <li> Donations </li>
+            </ul>
+        </div>
     
-        <div class="persona">
-            <img class="personapic" src="hamid.jpg">
-
-            <p class="name">
-                <strong> Name: </strong> Hamid the Baker 
+        <div class="bigbox2">
+            <p class="title">
+                Sample Users
             </p>
+            <div class="persona">
+                <img class="personapic" src="hamid.jpg">
 
-            <p class="description">
-                <strong> Description: </strong> Hamid is a 35-year-old refugee from Afghanistan 
-                due to hardships due to the war. He is a baker that 
-                occasionally gives away bread to homeless people, 
-                he wonders why there is such a large population of 
-                homeless people.
-            </p>
+                <p class="name">
+                    <strong> Name: </strong> Hamid the Baker 
+                </p>
 
-            <p class="needs">
-                <strong> Needs: </strong> Needs general information on homeless people, 
-                nothing too complicated and information on how to help  
-            </p>
+                <p class="description">
+                    <strong> Description: </strong> Hamid is a 35-year-old refugee from Afghanistan 
+                    due to hardships due to the war. He is a baker that 
+                    occasionally gives away bread to homeless people, 
+                    he wonders why there is such a large population of 
+                    homeless people.
+                </p>
 
-            <p class="goals">
-                <strong> Goals: </strong> To learn about the homeless epidemic 
-                and what he can do to help 
-            </p>
+                <p class="needs">
+                    <strong> Needs: </strong> Needs general information on homeless people, 
+                    nothing too complicated and information on how to help  
+                </p>
 
-            <p class="sande">
-                <strong> Skills and experience: </strong> Basic computer knowledge, 
-                can use non-complex websites without issues 
-                but can struggle with complex or messy websites.
-            </p>
-        </div>   
+                <p class="goals">
+                    <strong> Goals: </strong> To learn about the homeless epidemic 
+                    and what he can do to help 
+                </p>
 
-        <div class="persona">
-            <img class="personapic" src="sally.jpg">
+                <p class="sande">
+                    <strong> Skills and experience: </strong> Basic computer knowledge, 
+                    can use non-complex websites without issues 
+                    but can struggle with complex or messy websites.
+                </p>
+            </div>   
 
-            <p class="name">
-                <strong> Name: </strong> Sally the Student 
-            </p>
+            <div class="persona">
+                <img class="personapic" src="sally.jpg">
 
-            <p class="description">
-                <strong> Description: </strong> Sally is a 20-year-old university student 
-                studying at Latrobe University. She is doing a presentation 
-                on the homelessness epidemic in Australia. 
-            </p>
+                <p class="name">
+                    <strong> Name: </strong> Sally the Student 
+                </p>
 
-            <p class="needs">
-                <strong> Needs: </strong> Needs statistics, graphs, and more in-depth 
-                information on homeless people in Australia as well 
-                as homelessness.
-            </p>
+                <p class="description">
+                    <strong> Description: </strong> Sally is a 20-year-old university student 
+                    studying at Latrobe University. She is doing a presentation 
+                    on the homelessness epidemic in Australia. 
+                </p>
 
-            <p class="goals">
-                <strong> Goals: </strong> To create a presentation about homelessness 
-                for her university class on social issues.
-            </p>
+                <p class="needs">
+                    <strong> Needs: </strong> Needs statistics, graphs, and more in-depth 
+                    information on homeless people in Australia as well 
+                    as homelessness.
+                </p>
 
-            <p class="sande">
-                <strong> Skills and experience: </strong> Skilled with most software 
-                related to university, good at finding necessary 
-                information on websites. 
-            </p>
-        </div>     
+                <p class="goals">
+                    <strong> Goals: </strong> To create a presentation about homelessness 
+                    for her university class on social issues.
+                </p>
+
+                <p class="sande">
+                    <strong> Skills and experience: </strong> Skilled with most software 
+                    related to university, good at finding necessary 
+                    information on websites. 
+                </p>
+            </div>   
+        </div>  
             """;
 
         // Look up some information from JDBC

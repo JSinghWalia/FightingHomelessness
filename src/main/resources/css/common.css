@@ -152,22 +152,39 @@ img.top-image {
   line-height: 30px;
 }
 
-.title {
-  font-family: Arial;
-  text-align: center;
+.bigbox2 {
+  width: 670px;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 15px;
+}
+
+.title,
+.reason {
+  font-family: arial;
+  text-align: left;
+  width: 600px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .title {
   font-weight: bold;
+  font-size: 35px;
+  margin-bottom: 10px;
+}
+
+.reason {
   font-size: 25px;
+  line-height: 35px;
+  margin-bottom: 10px;
 }
 
 .persona {
   width: 250px;
   display: inline-block;
   vertical-align: top;
-  margin-right: 200px;
-  margin-left: 225px;
+  margin-right: 60px;
 }
 
 .personapic {
@@ -181,6 +198,7 @@ img.top-image {
 .needs,
 .goals,
 .sande {
+  font-size: 19px;  
   text-align: left;
   width: 250px;
 }
