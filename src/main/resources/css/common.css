@@ -63,6 +63,10 @@ img.top-image {
    padding: 10px;
  }
 
+ .navimage {
+   padding: 0;
+ }
+
  .button {
    background-color: #4f75d7; /* Green */
    border: none;
