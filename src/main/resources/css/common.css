@@ -41,7 +41,7 @@ img.top-image {
    display: block;
    color: #000000;
    text-align: center;
-   padding: 14px 70px;
+   padding: 14px 72.25px;
    text-decoration: none;
  }
  
@@ -71,12 +71,12 @@ img.top-image {
    background-color: #4f75d7; /* Green */
    border: none;
    color: rgb(0, 0, 0);
-   padding: 10px 16px;
+   padding: 10px 40px;
    border-radius: 18px;
    text-align: center;
    text-decoration: none;
    display: inline-block;
-   font-size: 16px;
+   font-size: 20px;
    cursor: pointer;
    transition: opacity 0.15,
  }

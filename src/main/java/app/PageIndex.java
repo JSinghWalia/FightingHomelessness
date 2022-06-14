@@ -39,7 +39,6 @@ public class PageIndex implements Handler {
         // This uses a Java v15+ Text Block
         html = html + """
             <div class='topnav'>
-            <img src='weblogoblack.png' class='nav-image' alt='Logo'>
                 <a href='/'>Homepage</a>
                 <a href='mission.html'>Our Mission</a>
                 <a href='page3.html'>Sub Task 2.1</a>
