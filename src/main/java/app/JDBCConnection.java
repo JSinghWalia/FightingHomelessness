@@ -366,7 +366,7 @@ public class JDBCConnection {
         return sexes;
     }
 
-    public int getCountBySex(String lga_name16, String sex) {
+    public int getCountBySex(String lga_name16, String sex, String year) {
         // Create the ArrayList of LGA objects to return
         int sexCount = 0;
 
@@ -382,7 +382,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND sex = '" + sex + "'";
+            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND sex = '" + sex + "'AND year = '" + year + "'";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -417,7 +417,7 @@ public class JDBCConnection {
         // Finally we return all of the lga
         return sexCount;
     }
-    public int getCountByAge(String lga_name16, String age) {
+    public int getCountByAge(String lga_name16, String age, String year) {
         // Create the ArrayList of LGA objects to return
         int count = 0;
 
@@ -433,7 +433,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' age_group = '_" + age + "'";
+            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' age_group = '_" + age + "'AND year = '" + year + "'";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -678,6 +678,61 @@ public class JDBCConnection {
         // Finally we return all of the lga
         return lgaCount;
     }
+
+
+    public int getCountByAgeAndSex(String lga_name16, String age, String sex, String year) {
+        // Create the ArrayList of LGA objects to return
+        int lgaCount = 0;
+
+        // Setup the variable for the JDBC connection
+        Connection connection = null;
+
+        try {
+            // Connect to JDBC data base
+            connection = DriverManager.getConnection(DATABASE);
+
+            // Prepare a new SQL Query & Set a timeout
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            // The Query
+            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND age_group ='_" + age + "' AND sex = '" + sex + "'AND year ='" + year + "'";
+            
+            // Get Result
+            ResultSet results = statement.executeQuery(query);
+
+            // Process all of the results
+            while (results.next()) {
+                // Lookup the columns we need
+                int lgaResult  = results.getInt("Count");
+
+                // Create a LGA Object
+                
+                lgaCount = lgaResult;
+            }
+
+            // Close the statement because we are done with it
+            statement.close();
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        // Finally we return all of the lga
+        return lgaCount;
+    }
+
+
     public int getCountByLGAAndSex(String lga_name16, String sex, String status, String year) {
         // Create the ArrayList of LGA objects to return
         int lgaCount = 0;
