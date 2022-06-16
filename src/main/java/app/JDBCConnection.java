@@ -366,7 +366,7 @@ public class JDBCConnection {
         return sexes;
     }
 
-    public int getCountBySex(String sex) {
+    public int getCountBySex(String lga_name16, String sex) {
         // Create the ArrayList of LGA objects to return
         int sexCount = 0;
 
@@ -382,7 +382,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup WHERE sex = '" + sex + "'";
+            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND sex = '" + sex + "'";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -417,7 +417,7 @@ public class JDBCConnection {
         // Finally we return all of the lga
         return sexCount;
     }
-    public int getCountByAge(String age) {
+    public int getCountByAge(String lga_name16, String age) {
         // Create the ArrayList of LGA objects to return
         int count = 0;
 
@@ -433,7 +433,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup WHERE age_group = '_" + age + "'";
+            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' age_group = '_" + age + "'";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -1035,7 +1035,9 @@ public class JDBCConnection {
     }
 
 
-    public ArrayList<LGAST22> getLGAInfo2016(String lganame, String status) {
+    
+
+    public ArrayList<LGAST22> getLGAInfo2016NoStatus(String lganame, String year) {
         // Create the ArrayList of LGA objects to return
         ArrayList<LGAST22> lgas = new ArrayList<LGAST22>();
 
@@ -1051,7 +1053,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT * FROM homlessgroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE lga_name16 = '" + lganame + "' AND status = '" + status + "'";
+            String query = "SELECT * FROM homlessgroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE lga_name16 = '" + lganame + "' AND year = '" + year +"'";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -1062,7 +1064,13 @@ public class JDBCConnection {
                 String name  = results.getString("lga_name16");
                 String type = results.getString("lga_type16");
                 String state = "";
-                int population = results.getInt("pop2018");
+                int population = 0;
+                if ("2016".equals(year)){
+                    population = results.getInt("pop2016");
+                }
+                else{
+                    population = results.getInt("pop2018");
+                }
                 double area = results.getDouble("area_sqkm");
                 int lgaCode = results.getInt("lga_code16");
                 // Create a LGA Object
@@ -1093,9 +1101,9 @@ public class JDBCConnection {
         return lgas;
     }
 
-    public ArrayList<LGAST22> getLGAInfo2016NoStatus(String lganame) {
+    public double getPopulationOfLGA(String lga_name16, String year) {
         // Create the ArrayList of LGA objects to return
-        ArrayList<LGAST22> lgas = new ArrayList<LGAST22>();
+        double lgaCount = 0.0;
 
         // Setup the variable for the JDBC connection
         Connection connection = null;
@@ -1109,25 +1117,19 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT * FROM homlessgroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE lga_name16 = '" + lganame + "'";
+            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND year ='" + year + "'";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
-            System.out.println(query);
+
             // Process all of the results
             while (results.next()) {
                 // Lookup the columns we need
-                String name  = results.getString("lga_name16");
-                String type = results.getString("lga_type16");
-                String state = "";
-                int population = results.getInt("pop2018");
-                double area = results.getDouble("area_sqkm");
-                int lgaCode = results.getInt("lga_code16");
-                // Create a LGA Object
-                LGAST22 lga = new LGAST22(name, state, type, area, population, lgaCode);
+                double lgaResult  = results.getInt("Count");
 
-                // Add the lga object to the array
-                lgas.add(lga);
+                // Create a LGA Object
+                
+                lgaCount = lgaResult;
             }
 
             // Close the statement because we are done with it
@@ -1148,9 +1150,114 @@ public class JDBCConnection {
         }
 
         // Finally we return all of the lga
-        return lgas;
+        return lgaCount;
     }
 
 
+    public double getPopulationOfState(String lga_name16, int firstDigit, String year) {
+        // Create the ArrayList of LGA objects to return
+        double lgaCount = 0.0;
+
+        // Setup the variable for the JDBC connection
+        Connection connection = null;
+
+        try {
+            // Connect to JDBC data base
+            connection = DriverManager.getConnection(DATABASE);
+
+            // Prepare a new SQL Query & Set a timeout
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            // The Query
+            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_code16 LIKE '" + firstDigit + "%' AND year ='" + year + "'";
+            
+            // Get Result
+            ResultSet results = statement.executeQuery(query);
+            System.out.println(query);
+
+            // Process all of the results
+            while (results.next()) {
+                // Lookup the columns we need
+                double lgaResult  = results.getInt("Count");
+
+                // Create a LGA Object
+                
+                lgaCount = lgaResult;
+            }
+
+            // Close the statement because we are done with it
+            statement.close();
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        // Finally we return all of the lga
+        return lgaCount;
+    }
+
+
+    public double getPopulationOfAus(String lga_name16, String year) {
+        // Create the ArrayList of LGA objects to return
+        double lgaCount = 0.0;
+
+        // Setup the variable for the JDBC connection
+        Connection connection = null;
+
+        try {
+            // Connect to JDBC data base
+            connection = DriverManager.getConnection(DATABASE);
+
+            // Prepare a new SQL Query & Set a timeout
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            // The Query
+            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE year ='" + year + "'";
+            
+            // Get Result
+            ResultSet results = statement.executeQuery(query);
+
+            // Process all of the results
+            while (results.next()) {
+                // Lookup the columns we need
+                double lgaResult  = results.getInt("Count");
+
+                // Create a LGA Object
+                
+                lgaCount = lgaResult;
+            }
+
+            // Close the statement because we are done with it
+            statement.close();
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        // Finally we return all of the lga
+        return lgaCount;
+    }
     // TODO: Add your required methods here
 }
