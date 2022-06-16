@@ -27,7 +27,7 @@ public class PageST22 implements Handler {
 
         // Add some Head information
         html = html + "<head>" + 
-               "<title>Subtask 2.2</title>";
+               "<title>LGA Information</title>";
 
         // Add some CSS (external file)
         html = html + "<link rel='stylesheet' type='text/css' href='common.css' />";
@@ -38,14 +38,14 @@ public class PageST22 implements Handler {
 
         // Add the topnav
         // This uses a Java v15+ Text Block
-        html = html + """
+         html = html + """
             <div class='topnav'>
                 <a href='/'>Homepage</a>
                 <a href='mission.html'>Our Mission</a>
-                <a href='page3.html'>Sub Task 2.1</a>
-                <a href='page4.html'>Sub Task 2.2</a>
-                <a href='page5.html'>Sub Task 3.1</a>
-                <a href='page6.html'>Sub Task 3.2</a>
+                <a href='page3.html'>LGA Rankings</a>
+                <a href='page4.html'>LGA Information</a>
+                <a href='page5.html'>Rate of Homelessness</a>
+                <a href='page6.html'>Change in Homelessness over time</a>
             </div>
         """;
 
@@ -720,7 +720,7 @@ public String outputAusProportionStatus(String LGA, String status, String year) 
     
     // Add HTML for the movies list
     
-        html = html + proportion+ "%";
+        html = html + String.format("%.3f", proportion)+ "%";
    
 
     return html;
@@ -764,7 +764,7 @@ public String outputStateProportionStatus(String LGA, String status, String year
     
     // Add HTML for the movies list
     
-        html = html + proportion+ "%";
+        html = html + String.format("%.3f", proportion)+ "%";
    
 
     return html;
@@ -791,7 +791,7 @@ public String outputLGAProportionStatus(String LGA, String status, String year) 
     
     // Add HTML for the movies list
     
-        html = html + proportion+ "%";
+        html = html + String.format("%.3f", proportion)+ "%";
    
 
     return html;
@@ -837,7 +837,7 @@ public String outputAusProportionAge(String LGA, String age, String year) {
     
     // Add HTML for the movies list
     
-        html = html + proportion+ "%";
+        html = html + String.format("%.3f", proportion)+ "%";
    
 
     return html;
@@ -898,7 +898,7 @@ public String outputStateProportionAge(String LGA, String age, String year) {
     
     // Add HTML for the movies list
     
-        html = html + proportion+ "%";
+        html = html + String.format("%.3f", proportion)+ "%";
    
 
     return html;
@@ -942,7 +942,7 @@ public String outputLGAProportionAge(String LGA, String age, String year) {
     
     // Add HTML for the movies list
     
-        html = html + proportion+ "%";
+        html = html + String.format("%.3f", proportion)+ "%";
    
 
     return html;
@@ -996,7 +996,7 @@ public String outputAusProportionAgeandStatus(String LGA, String age, String sta
     
     // Add HTML for the movies list
     
-        html = html + proportion+ "%";
+        html = html + String.format("%.3f", proportion)+ "%";
    
 
     return html;
@@ -1063,7 +1063,7 @@ public String outputStateProportionAgeandStatus(String LGA, String age, String s
     
     // Add HTML for the movies list
     
-        html = html + proportion+ "%";
+        html = html + String.format("%.3f", proportion)+ "%";
    
 
     return html;
@@ -1113,7 +1113,7 @@ public String outputLGAProportionAgeandStatus(String LGA, String age,  String st
     
     // Add HTML for the movies list
     
-        html = html + proportion+ "%";
+        html = html + String.format("%.3f", proportion)+ "%";
    
 
     return html;
@@ -1144,7 +1144,7 @@ public String outputAusProportionSex(String LGA, String sex, String year) {
     
     // Add HTML for the movies list
     
-        html = html + proportion+ "%";
+        html = html + String.format("%.3f", proportion)+ "%";
    
 
     return html;
@@ -1189,7 +1189,7 @@ public String outputStateProportionSex(String LGA, String sex, String year) {
     
     // Add HTML for the movies list
     
-        html = html + proportion+ "%";
+        html = html + String.format("%.3f", proportion)+ "%";
    
 
     return html;
@@ -1217,7 +1217,7 @@ public String outputLGAProportionSex(String LGA, String sex, String year) {
     
     // Add HTML for the movies list
     
-        html = html + proportion+ "%";
+        html = html + String.format("%.3f", proportion)+ "%";
    
 
     return html;
@@ -1255,7 +1255,7 @@ public String outputAusProportionSexandStatus(String LGA, String sex, String sta
     
     // Add HTML for the movies list
     
-        html = html + proportion+ "%";
+        html = html + String.format("%.3f", proportion)+ "%";
    
 
     return html;
@@ -1306,7 +1306,7 @@ public String outputStateProportionSexandStatus(String LGA, String sex, String s
     
     // Add HTML for the movies list
     
-        html = html + proportion+ "%";
+        html = html + String.format("%.3f", proportion)+ "%";
    
 
     return html;
@@ -1340,7 +1340,7 @@ public String outputLGAProportionSexandStatus(String LGA, String sex, String sta
     
     // Add HTML for the movies list
     
-        html = html + proportion+ "%";
+        html = html + String.format("%.3f", proportion)+ "%";
    
 
     return html;
@@ -1401,7 +1401,7 @@ else {
     
     // Add HTML for the movies list
     
-        html = html + proportion+ "%";
+        html = html + String.format("%.3f", proportion)+ "%";
    
 
     return html;
@@ -1478,7 +1478,7 @@ else {
     
     // Add HTML for the movies list
     
-        html = html + proportion+ "%";
+        html = html + String.format("%.3f", proportion)+ "%";
    
 
     return html;
@@ -1538,7 +1538,7 @@ else {
     
     // Add HTML for the movies list
     
-        html = html + proportion+ "%";
+        html = html + String.format("%.3f", proportion)+ "%";
    
 
     return html;
@@ -1593,7 +1593,7 @@ else {
     
     // Add HTML for the movies list
     
-        html = html + proportion+ "%";
+        html = html + String.format("%.3f", proportion)+ "%";
    
 
     return html;
@@ -1661,7 +1661,7 @@ else {
     
     // Add HTML for the movies list
     
-        html = html + proportion+ "%";
+        html = html + String.format("%.3f", proportion)+ "%";
    
 
     return html;
@@ -1713,7 +1713,7 @@ else {
     
     // Add HTML for the movies list
     
-        html = html + proportion + "%";
+        html = html + String.format("%.3f", proportion) + "%";
    
 
     return html;
