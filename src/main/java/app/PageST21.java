@@ -232,7 +232,7 @@ public class PageST21 implements Handler {
 for (LGAST21 lga : lgas) {
  html = html + "<tr>" + "<td>" + lga.getName() + "</td>" +
                         "<td>" + lga.getCount() + "</td>" +
-                        "<td>" + lga.getProportion() + "</td>" +
+                        "<td>" + String.format("%.3f", lga.getProportion()) + "%</td>" +
                 "</tr>";
             }
 html = html + "</table>";
@@ -272,7 +272,7 @@ public String outputLGAFromSex(String sex, String status, String order, String y
 for (LGAST21 lga : lgas) {
 html = html + "<tr>" + "<td>" + lga.getName() + "</td>" +
                     "<td>" + lga.getCount() + "</td>" +
-                    "<td>" + lga.getProportion() + "</td>" +
+                    "<td>" + String.format("%.3f", lga.getProportion()) + "%</td>" +
             "</tr>";
         }
 html = html + "</table>";
@@ -332,7 +332,7 @@ public String outputLGAFromAge(String age, String status, String order, String y
 for (LGAST21 lga : lgas) {
 html = html + "<tr>" + "<td>" + lga.getName() + "</td>" +
                     "<td>" + lga.getCount() + "</td>" +
-                    "<td>" + lga.getProportion() + "</td>" +
+                    "<td>" + String.format("%.3f", lga.getProportion()) + "%</td>" +
             "</tr>";
         }
 html = html + "</table>";
@@ -402,7 +402,7 @@ html = html + "</table>";
 for (LGAST21 lga : lgas) {
  html = html + "<tr>" + "<td>" + lga.getName() + "</td>" +
                         "<td>" + lga.getCount() + "</td>" +
-                        "<td>" + lga.getProportion() + "</td>" +
+                        "<td>" + String.format("%.3f", lga.getProportion()) + "%</td>" +
                 "</tr>";
             }
 html = html + "</table>";
