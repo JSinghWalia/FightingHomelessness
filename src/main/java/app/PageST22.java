@@ -202,8 +202,41 @@ public class PageST22 implements Handler {
             }
             
            }
+           else if ("All".equals(sex_drop) && (status == null || status == "")) {
+            html = html + outputInfoOfLGASNoStatus(LGAS, year_drop);
+            html = html + outputCountResultsOfAge(LGAS, agerange_drop, year_drop);
 
+            if ("Aus".equals(checkboxAus)) {
+                html = html + outputAusProportionAge(LGAS, agerange_drop, year_drop);
 
+            }
+            if ("State".equals(checkboxState)) {
+                html = html + outputStateProportionAge(LGAS, agerange_drop, year_drop);
+            }
+
+            if ("LGA".equals(checkboxLGA)) {
+                html = html + outputLGAProportionAge(LGAS, agerange_drop, year_drop);
+            }
+
+           }
+
+           else if ("All".equals(agerange_drop) && (status == null || status == "")) {
+            html = html + outputInfoOfLGASNoStatus(LGAS, year_drop);
+            html = html + outputCountResultsOfSex(LGAS, sex_drop, year_drop);
+
+            if ("Aus".equals(checkboxAus)) {
+                html = html + outputAusProportionSex(LGAS, sex_drop, year_drop);
+
+            }
+            if ("State".equals(checkboxState)) {
+                html = html + outputStateProportionSex(LGAS, sex_drop, year_drop);
+            }
+
+            if ("LGA".equals(checkboxLGA)) {
+                html = html + outputLGAProportionSex(LGAS, sex_drop, year_drop);
+            }
+
+           }
 
            else if ("All".equals(sex_drop)){
             html = html + outputInfoOfLGASNoStatus(LGAS, year_drop);
@@ -337,6 +370,81 @@ public class PageST22 implements Handler {
     }
 
 
+    public String outputCountResultsOfAge(String LGAS, String age, String year) {
+        String html = "";
+        html = html + "<h2>Count of";
+        
+        html = html + " people aged";
+        
+
+        if ("0_9".equals(age)){
+            html = html + " 0-9 years old";
+        }
+        else if ("10_19".equals(age)) {
+            html = html + " 10-19 years old";
+        }
+        else if ("20_29".equals(age)) {
+            html = html + " 20-29 years old";
+        }
+        else if ("30_39".equals(age)) {
+            html = html + " 30-39 years old";
+        }
+        else if ("40_49".equals(age)) {
+            html = html + " 40-49 years old";
+        }
+        else if ("50_59".equals(age)) {
+            html = html + " 50-59 years old";
+        }
+        else{
+            html = html + " 60+ years old";
+        }
+        
+        html = html + " from " + LGAS + "</h2>";
+        
+        // Look up movies from JDBC
+        JDBCConnection jdbc = new JDBCConnection();
+        int sexes = jdbc.getCountByAge(LGAS, age, year);
+        
+        // Add HTML for the movies list
+        
+            html = html + sexes;
+        
+       
+
+        return html;
+    }
+
+
+
+
+    public String outputCountResultsOfSex(String LGAS, String sex, String year) {
+        String html = "";
+        html = html + "<h2>Count of";
+        
+        if ("m".equals(sex)){
+            html = html + " males";
+        }
+        else {
+            html = html + " females"; 
+        }
+        
+        html = html + " from " + LGAS + "</h2>";
+        
+        // Look up movies from JDBC
+        JDBCConnection jdbc = new JDBCConnection();
+        int sexes = jdbc.getCountBySex(LGAS, sex, year);
+        
+        // Add HTML for the movies list
+        
+            html = html + sexes;
+        
+       
+
+        return html;
+    }
+
+
+
     
     public String outputCountResultsOfLGASAndAge(String LGAS, String age, String status, String year) {
         String html = "";
@@ -389,7 +497,13 @@ public class PageST22 implements Handler {
     public String outputCountResultsOfLGASAndSex(String LGAS, String sex, String status, String year) {
         String html = "";
         html = html + "<h2>Count of";
-
+        
+        if ("homeless".equals(status)){
+            html = html + " homeless";
+        }
+        else {
+            html = html + " at risk";
+        }
 
         if ("m".equals(sex)){
             html = html + " males";
@@ -616,6 +730,160 @@ public String outputLGAProportionStatus(String LGA, String status, String year) 
     return html;
 }
 
+// age
+
+public String outputAusProportionAge(String LGA, String age, String year) {
+    String html = "";
+    html = html + "<h2>Proportion of";
+    
+    html = html + " people aged";
+
+    if ("0_9".equals(age)){
+        html = html + " 0-9 years old";
+    }
+    else if ("10_19".equals(age)) {
+        html = html + " 10-19 years old";
+    }
+    else if ("20_29".equals(age)) {
+        html = html + " 20-29 years old";
+    }
+    else if ("30_39".equals(age)) {
+        html = html + " 30-39 years old";
+    }
+    else if ("40_49".equals(age)) {
+        html = html + " 40-49 years old";
+    }
+    else if ("50_59".equals(age)) {
+        html = html + " 50-59 years old";
+    }
+    else{
+        html = html + " 60+ years old";
+    }
+    html = html + " from " + LGA + " compared to total at risk/homeless population in Australia</h2>";
+
+    // Look up movies from JDBC
+    JDBCConnection jdbc = new JDBCConnection();
+    int count = jdbc.getCountByAge(LGA, age, year);
+    double population = jdbc.getPopulationOfAus(LGA, year);
+    double proportion = (count/population) * 100.0;
+     
+    
+    // Add HTML for the movies list
+    
+        html = html + proportion;
+   
+
+    return html;
+}
+
+
+public String outputStateProportionAge(String LGA, String age, String year) {
+        int lgaCode = 1;
+        String state = "test";
+        int firstDigit = 1;
+   
+   
+    String html = "";
+
+
+    JDBCConnection jdbc = new JDBCConnection();
+    
+
+    ArrayList<LGAST22> lgas = jdbc.getLGAInfo2016NoStatus(LGA, year);
+
+       for (LGAST22 lga : lgas) {
+            lgaCode = lga.getCode(); 
+            firstDigit = lga.getFirstDigit(lgaCode);
+            state = lga.getState(lgaCode);
+        }
+        int count = jdbc.getCountByAge(LGA, age, year);
+        double population = jdbc.getPopulationOfState(LGA, firstDigit, year);
+        double proportion = (count/population) * 100.0;
+        html = html + "<h2>Proportion of";
+        html = html + " people aged";
+    
+        if ("0_9".equals(age)){
+            html = html + " 0-9 years old";
+        }
+        else if ("10_19".equals(age)) {
+            html = html + " 10-19 years old";
+        }
+        else if ("20_29".equals(age)) {
+            html = html + " 20-29 years old";
+        }
+        else if ("30_39".equals(age)) {
+            html = html + " 30-39 years old";
+        }
+        else if ("40_49".equals(age)) {
+            html = html + " 40-49 years old";
+        }
+        else if ("50_59".equals(age)) {
+            html = html + " 50-59 years old";
+        }
+        else{
+            html = html + " 60+ years old";
+        }
+        html = html + " from " + LGA + " compared to total at risk/homeless population in " + state + "</h2>";
+
+    // Look up movies from JDBC
+    
+     
+    
+    // Add HTML for the movies list
+    
+        html = html + proportion;
+   
+
+    return html;
+}
+
+
+public String outputLGAProportionAge(String LGA, String age, String year) {
+    String html = "";
+    html = html + "<h2>Proportion of";
+    html = html + " people aged";
+
+    if ("0_9".equals(age)){
+        html = html + " 0-9 years old";
+    }
+    else if ("10_19".equals(age)) {
+        html = html + " 10-19 years old";
+    }
+    else if ("20_29".equals(age)) {
+        html = html + " 20-29 years old";
+    }
+    else if ("30_39".equals(age)) {
+        html = html + " 30-39 years old";
+    }
+    else if ("40_49".equals(age)) {
+        html = html + " 40-49 years old";
+    }
+    else if ("50_59".equals(age)) {
+        html = html + " 50-59 years old";
+    }
+    else{
+        html = html + " 60+ years old";
+    }
+    html = html + " from " + LGA + " compared to total at risk/homeless population in "+ LGA + "</h2>";
+
+    // Look up movies from JDBC
+    JDBCConnection jdbc = new JDBCConnection();
+    int count = jdbc.getCountByAge(LGA, age, year);
+    double population = jdbc.getPopulationOfLGA(LGA, year);
+    double proportion = (count/population) * 100.0;
+     
+    
+    // Add HTML for the movies list
+    
+        html = html + proportion;
+   
+
+    return html;
+}
+
+
+
+
 // age and status
 
 public String outputAusProportionAgeandStatus(String LGA, String age, String status, String year) {
@@ -783,6 +1051,111 @@ public String outputLGAProportionAgeandStatus(String LGA, String age,  String st
 
     return html;
 }
+
+
+//sex
+
+public String outputAusProportionSex(String LGA, String sex, String year) {
+    String html = "";
+    html = html + "<h2>Proportion of";
+
+    if ("m".equals(sex)){
+        html = html + " males";
+    }
+    else {
+        html = html + " females"; 
+    }
+
+    html = html + " from " + LGA + " compared to total at risk/homeless population in Australia</h2>";
+
+    // Look up movies from JDBC
+    JDBCConnection jdbc = new JDBCConnection();
+    int count = jdbc.getCountBySex(LGA, sex, year);
+    double population = jdbc.getPopulationOfAus(LGA, year);
+    double proportion = (count/population) * 100.0;
+     
+    
+    // Add HTML for the movies list
+    
+        html = html + proportion;
+   
+
+    return html;
+}
+
+
+public String outputStateProportionSex(String LGA, String sex, String year) {
+        int lgaCode = 1;
+        String state = "test";
+        int firstDigit = 1;
+   
+   
+    String html = "";
+
+
+    JDBCConnection jdbc = new JDBCConnection();
+    
+
+    ArrayList<LGAST22> lgas = jdbc.getLGAInfo2016NoStatus(LGA, year);
+
+       for (LGAST22 lga : lgas) {
+            lgaCode = lga.getCode(); 
+            firstDigit = lga.getFirstDigit(lgaCode);
+            state = lga.getState(lgaCode);
+        }
+        int count = jdbc.getCountBySex(LGA, sex, year);
+        double population = jdbc.getPopulationOfState(LGA, firstDigit, year);
+        double proportion = (count/population) * 100.0;
+    html = html + "<h2>Proportion of";
+
+    if ("m".equals(sex)){
+        html = html + " males";
+    }
+    else {
+        html = html + " females"; 
+    }
+    html = html + " from " + LGA + " compared to total at risk/homeless population in " + state + "</h2>";
+
+    // Look up movies from JDBC
+    
+     
+    
+    // Add HTML for the movies list
+    
+        html = html + proportion;
+   
+
+    return html;
+}
+
+
+public String outputLGAProportionSex(String LGA, String sex, String year) {
+    String html = "";
+    html = html + "<h2>Proportion of";
+
+    if ("m".equals(sex)){
+        html = html + " males";
+    }
+    else {
+        html = html + " females"; 
+    }
+    html = html + " from " + LGA + " compared to total at risk/homeless population in " + LGA + "</h2>";
+
+    // Look up movies from JDBC
+    JDBCConnection jdbc = new JDBCConnection();
+    int count = jdbc.getCountBySex(LGA, sex, year);
+    double population = jdbc.getPopulationOfLGA(LGA, year);
+    double proportion = (count/population) * 100.0;
+     
+    
+    // Add HTML for the movies list
+    
+        html = html + proportion;
+   
+
+    return html;
+}
+
 
 // sex and status
 
