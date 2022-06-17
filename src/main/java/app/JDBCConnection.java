@@ -1314,5 +1314,78 @@ public class JDBCConnection {
         // Finally we return all of the lga
         return lgaCount;
     }
+
+
+// subtask 3.1
+
+
+public ArrayList<LGAST31> getRatioHomeless(String state, String year, String sortby, String orderby) {
+    // Create the ArrayList of LGA objects to return
+    ArrayList<LGAST31> lgas = new ArrayList<LGAST31>();
+
+    // Setup the variable for the JDBC connection
+    Connection connection = null;
+
+    try {
+        // Connect to JDBC data base
+        connection = DriverManager.getConnection(DATABASE);
+
+        // Prepare a new SQL Query & Set a timeout
+        Statement statement = connection.createStatement();
+        statement.setQueryTimeout(30);
+
+        // The Query
+        String query = "SELECT sum(count) AS sumCount, * FROM homlessgroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code JOIN income i ON i.lga_code = h.lga_code WHERE year = '" + year + "' AND status = 'homeless' GROUP BY i.lga_code ORDER BY " + sortby + " " + orderby;
+        
+        // Get Result
+        ResultSet results = statement.executeQuery(query);
+        System.out.println(query);
+        // Process all of the results
+        while (results.next()) {
+            // Lookup the columns we need
+            String name  = results.getString("lga_name16");
+            int totalHomeless = results.getInt("sumCount");
+           double totalNumber = 0.0;
+           if ("2016".equals(year)){
+               totalNumber = results.getDouble("pop2016");
+           }
+           else{
+               totalNumber = results.getDouble("pop2018");
+           }
+           double ratioHomelesstoTotal = 0.0;
+           int weeklyIncome = results.getInt("median_household_weekly_income");
+           int medianAge = results.getInt("median_age");
+           int mortgageRepay = results.getInt("median_mortgage_repay_monthly");
+           int rentWeekly = results.getInt("median_rent_weekly");
+            // Create a LGA Object
+            LGAST31 lga = new LGAST31(name, totalHomeless, totalNumber, ratioHomelesstoTotal, weeklyIncome, medianAge, mortgageRepay, rentWeekly);
+
+            // Add the lga object to the array
+            lgas.add(lga);
+        }
+
+        // Close the statement because we are done with it
+        statement.close();
+    } catch (SQLException e) {
+        // If there is an error, lets just pring the error
+        System.err.println(e.getMessage());
+    } finally {
+        // Safety code to cleanup
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            // connection close failed.
+            System.err.println(e.getMessage());
+        }
+    }
+
+    // Finally we return all of the lga
+    return lgas;
+}
+
+
+
     // TODO: Add your required methods here
 }
