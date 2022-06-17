@@ -44,17 +44,17 @@ public class PageST21 implements Handler {
             <div class='topnav'>
                 <a href='/'>Homepage</a>
                 <a href='mission.html'>Our Mission</a>
-                <a href='page3.html'>Sub Task 2.1</a>
-                <a href='page4.html'>Sub Task 2.2</a>
-                <a href='page5.html'>Sub Task 3.1</a>
-                <a href='page6.html'>Sub Task 3.2</a>
+                <a href='page3.html'>LGA Rankings</a>
+                <a href='page4.html'>LGA Information</a>
+                <a href='page5.html'>Rate of Homelessness</a>
+                <a href='page6.html'>Change in Homelessness over time</a>
             </div>
         """;
 
         // Add header content block
         html = html + """
             <div class='header'>
-                <h1>Subtask 2.1</h1>
+                <h1>LGA Rankings</h1>
             </div>
         """;
 
@@ -232,7 +232,7 @@ public class PageST21 implements Handler {
 for (LGAST21 lga : lgas) {
  html = html + "<tr>" + "<td>" + lga.getName() + "</td>" +
                         "<td>" + lga.getCount() + "</td>" +
-                        "<td>" + lga.getProportion() + "</td>" +
+                        "<td>" + String.format("%.3f", lga.getProportion()) + "%</td>" +
                 "</tr>";
             }
 html = html + "</table>";
@@ -272,7 +272,7 @@ public String outputLGAFromSex(String sex, String status, String order, String y
 for (LGAST21 lga : lgas) {
 html = html + "<tr>" + "<td>" + lga.getName() + "</td>" +
                     "<td>" + lga.getCount() + "</td>" +
-                    "<td>" + lga.getProportion() + "</td>" +
+                    "<td>" + String.format("%.3f", lga.getProportion()) + "%</td>" +
             "</tr>";
         }
 html = html + "</table>";
@@ -332,7 +332,7 @@ public String outputLGAFromAge(String age, String status, String order, String y
 for (LGAST21 lga : lgas) {
 html = html + "<tr>" + "<td>" + lga.getName() + "</td>" +
                     "<td>" + lga.getCount() + "</td>" +
-                    "<td>" + lga.getProportion() + "</td>" +
+                    "<td>" + String.format("%.3f", lga.getProportion()) + "%</td>" +
             "</tr>";
         }
 html = html + "</table>";
@@ -402,7 +402,7 @@ html = html + "</table>";
 for (LGAST21 lga : lgas) {
  html = html + "<tr>" + "<td>" + lga.getName() + "</td>" +
                         "<td>" + lga.getCount() + "</td>" +
-                        "<td>" + lga.getProportion() + "</td>" +
+                        "<td>" + String.format("%.3f", lga.getProportion()) + "%</td>" +
                 "</tr>";
             }
 html = html + "</table>";

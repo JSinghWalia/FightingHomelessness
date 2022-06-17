@@ -42,10 +42,10 @@ public class PageIndex implements Handler {
                 <img src="weblogoblack.png" class="navimage" alt="fighting homelessness logo">
                 <a href='/'>Homepage</a>
                 <a href='mission.html'>Our Mission</a>
-                <a href='page3.html'>Sub Task 2.1</a>
-                <a href='page4.html'>Sub Task 2.2</a>
-                <a href='page5.html'>Sub Task 3.1</a>
-                <a href='page6.html'>Sub Task 3.2</a>
+                <a href='page3.html'>LGA Rankings</a>
+                <a href='page4.html'>LGA Information</a>
+                <a href='page5.html'>Rate of Homelessness</a>
+                <a href='page6.html'>Change in Homelessness over time</a>
             </div>
         """;
 
