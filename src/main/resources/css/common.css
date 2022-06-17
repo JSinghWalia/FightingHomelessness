@@ -31,17 +31,18 @@ img.top-image {
 /* CSS Layout from W3Schools: https://www.w3schools.com/css/css_templates.asp */
 /* Style the top navigation bar */
 .topnav {
-   overflow: hidden;
+  display: flex; 
+  overflow: hidden;
    background-color: #4f75d7;
  }
  
  /* Style the topnav links */
  .topnav a {
-   float: left;
-   display: block;
+   flex: 1;
+   align-self: center;
    color: #000000;
    text-align: center;
-   padding: 14px 57px;
+   padding: 14px 0px;
    text-decoration: none;
  }
  
