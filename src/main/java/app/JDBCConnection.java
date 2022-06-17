@@ -433,8 +433,8 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' age_group = '_" + age + "'AND year = '" + year + "'";
-            
+            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "'AND age_group = '_" + age + "'AND year = '" + year + "'";
+            System.out.println(query);
             // Get Result
             ResultSet results = statement.executeQuery(query);
 

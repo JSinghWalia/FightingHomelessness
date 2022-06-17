@@ -186,40 +186,7 @@ public class PageST22 implements Handler {
           else if ((status == null || status == "") && ("All".equals(sex_drop) && "All".equals(agerange_drop))) {
             html = html + outputInfoOfLGASNoStatus(LGAS, year_drop);
           }
-
-          else if ((status == null || status == "")) {
-            html = html + outputInfoOfLGASNoStatus(LGAS, year_drop);
-            html = html + outputCountResultsOfAgeAndSex(LGAS, agerange_drop, sex_drop, year_drop);
-            if ("Aus".equals(checkboxAus)) {
-                html = html + outputAusProportionAgeandSex(LGAS, agerange_drop, sex_drop, year_drop);
-
-            }
-            if ("State".equals(checkboxState)) {
-                html = html + outputStateProportionAgeandSex(LGAS, agerange_drop, sex_drop, year_drop);
-            }
-
-            if ("LGA".equals(checkboxLGA)) {
-                html = html + outputLGAProportionAgeandSex(LGAS, agerange_drop, sex_drop, year_drop);
-            }
-          }
-
-           else if ("All".equals(sex_drop) && "All".equals(agerange_drop)){
-            html = html + outputInfoOfLGASNoStatus(LGAS, year_drop);
-            html = html + outputCountOfLGAAndStatus(LGAS, status, year_drop);
-            if ("Aus".equals(checkboxAus)) {
-                html = html + outputAusProportionStatus(LGAS, status, year_drop);
-
-            }
-            if ("State".equals(checkboxState)) {
-                html = html + outputStateProportionStatus(LGAS, status, year_drop);
-            }
-
-            if ("LGA".equals(checkboxLGA)) {
-                html = html + outputLGAProportionStatus(LGAS, agerange_drop, year_drop);
-            }
-            
-           }
-           else if ("All".equals(sex_drop) && (status == null || status == "")) {
+          else if ("All".equals(sex_drop) && (status == null || status == "")) {
             html = html + outputInfoOfLGASNoStatus(LGAS, year_drop);
             html = html + outputCountResultsOfAge(LGAS, agerange_drop, year_drop);
 
@@ -254,6 +221,39 @@ public class PageST22 implements Handler {
             }
 
            }
+          else if ((status == null || status == "")) {
+            html = html + outputInfoOfLGASNoStatus(LGAS, year_drop);
+            html = html + outputCountResultsOfAgeAndSex(LGAS, agerange_drop, sex_drop, year_drop);
+            if ("Aus".equals(checkboxAus)) {
+                html = html + outputAusProportionAgeandSex(LGAS, agerange_drop, sex_drop, year_drop);
+
+            }
+            if ("State".equals(checkboxState)) {
+                html = html + outputStateProportionAgeandSex(LGAS, agerange_drop, sex_drop, year_drop);
+            }
+
+            if ("LGA".equals(checkboxLGA)) {
+                html = html + outputLGAProportionAgeandSex(LGAS, agerange_drop, sex_drop, year_drop);
+            }
+          }
+
+           else if ("All".equals(sex_drop) && "All".equals(agerange_drop)){
+            html = html + outputInfoOfLGASNoStatus(LGAS, year_drop);
+            html = html + outputCountOfLGAAndStatus(LGAS, status, year_drop);
+            if ("Aus".equals(checkboxAus)) {
+                html = html + outputAusProportionStatus(LGAS, status, year_drop);
+
+            }
+            if ("State".equals(checkboxState)) {
+                html = html + outputStateProportionStatus(LGAS, status, year_drop);
+            }
+
+            if ("LGA".equals(checkboxLGA)) {
+                html = html + outputLGAProportionStatus(LGAS, agerange_drop, year_drop);
+            }
+            
+           }
+           
 
            else if ("All".equals(sex_drop)){
             html = html + outputInfoOfLGASNoStatus(LGAS, year_drop);
