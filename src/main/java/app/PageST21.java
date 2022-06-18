@@ -127,8 +127,8 @@ public class PageST21 implements Handler {
             html = html + "     <div class='form-group'>";
             html = html + "     <label for='orderby_drop'>Select the order (Dropdown):</label>";
             html = html + "      <select id='orderby_drop' name='orderby_drop'>";
-            html = html +  "<option value = 'asc'>" + "Best" + "</option>";
-            html = html +  "<option value = 'desc'>" + "Worst" + "</option>";
+            html = html +  "<option value = 'desc'>" + "Most" + "</option>";
+            html = html +  "<option value = 'asc'>" + "Least" + "</option>";
             html = html + "      </select>";
             html = html + "   </div>";
            

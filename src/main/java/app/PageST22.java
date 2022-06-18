@@ -370,7 +370,7 @@ public class PageST22 implements Handler {
         else {
             html = html + " at risk";
         }
-        html = html + " people from" + LGA + "</h2>";
+        html = html + " people from " + LGA + "</h2>";
 
         // Look up movies from JDBC
         JDBCConnection jdbc = new JDBCConnection();
