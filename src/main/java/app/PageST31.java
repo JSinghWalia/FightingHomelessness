@@ -110,6 +110,12 @@ public class PageST31 implements Handler {
      
 
 
+     html = html + "  <br>   <div class='form-group'>";
+     html = html + "     <label for='agerangemin'>Select the median age: </label>";
+     html = html + "     <input type = 'number' value = '0' id ='agerangemin' name = 'agerangemin' min = '0' max = '60'>";
+     html = html + "     <label for='agerangemax'> to</label>";
+     html = html + "     <input type = 'number' value = '60' id ='agerangemax' name = 'agerangemax' min = '0' max = '60'>";
+     html = html + "   </div>";
 
   
 
@@ -124,12 +130,7 @@ public class PageST31 implements Handler {
 
     
 
-     html = html + "  <br>   <div class='form-group'>";
-     html = html + "     <label for='agerangemin'>Select the median age: </label>";
-     html = html + "     <input type = 'number' value = '0' id ='agerangemin' name = 'agerangemin' min = '0' max = '60'>";
-     html = html + "     <label for='agerangemax'> to</label>";
-     html = html + "     <input type = 'number' value = '60' id ='agerangemax' name = 'agerangemax' min = '0' max = '60'>";
-     html = html + "   </div>";
+    
 
      
 
@@ -179,15 +180,24 @@ public class PageST31 implements Handler {
        // getting inputs
        String state = context.formParam("state_drop");
        String sex = context.formParam("sex_drop");
-       String incomeMin = context.formParam("incomerangemin_drop");
-       String incomeMax = context.formParam("incomerangemax_drop");
+       String incomeMin = context.formParam("incomerangemin");
+       String incomeMax = context.formParam("incomerangemax");
+       String ageMin = context.formParam("agerangemin");
+       String ageMax = context.formParam("agerangemax");
+       String mortgageMin = context.formParam("mortgagerangemin");
+       String mortgageMax = context.formParam("mortgagerangemax");
+       String rentMin = context.formParam("rentweeklymin");
+       String rentMax = context.formParam("rentweeklymax");
        String sortBy = context.formParam("sortby_drop");
        String orderBy = context.formParam("orderby_drop");
        String year = context.formParam("year_drop");
        
+       if ("All".equals(state)){
+        html = html + outputRatioHomelessNoState(year, sortBy, orderBy);
+    }
        
-       if ("All".equals(sex)){
-           html = html + outputRatioHomeless(state, year, sortBy, orderBy);
+      else if ("All".equals(sex)){
+           html = html + outputRatioHomeless(state, year, sortBy, orderBy, incomeMin, incomeMax, ageMin, ageMax, mortgageMin, mortgageMax, rentMin, rentMax);
        }
        
        else {
@@ -215,11 +225,11 @@ public class PageST31 implements Handler {
         context.html(html);
     }
 
-    public String outputRatioHomeless(String state, String year, String sortby, String orderby){
+    public String outputRatioHomelessNoState(String year, String sortby, String orderby){
         String html = "";
 
         JDBCConnection jdbc = new JDBCConnection();
-        ArrayList<LGAST31> lgas = jdbc.getRatioHomeless(state, year, sortby, orderby);
+        ArrayList<LGAST31> lgas = jdbc.getRatioHomelessNoState(year, sortby, orderby);
 
 
         html = html +"<table id='LGA'>" +
@@ -248,6 +258,38 @@ html = html + "</table>";
         return html;
     }
 
+    public String outputRatioHomeless(String state, String year, String sortBy, String orderBy, String incomeMin, String incomeMax, String ageMin, String ageMax, String mortgageMin, String mortgageMax, String rentMin, String rentMax){
+        String html = "";
+
+        JDBCConnection jdbc = new JDBCConnection();
+        ArrayList<LGAST31> lgas = jdbc.getRatioHomeless(state, year, sortBy, orderBy, incomeMin, incomeMax, ageMin, ageMax, mortgageMin, mortgageMax, rentMin, rentMax);
+
+
+        html = html +"<table id='LGA'>" +
+        "<tr>" +
+            "<th> LGA</th>" +
+            "<th> Ratio of homeless to total people</th>" +
+           "<th> Median Weekly Income</th>" +
+           "<th> Median age</th>" +
+           "<th> Median Mortgage repayments</th>" +
+           "<th> Median Weekly Rent</th>" +
+        "</tr>";
+for (LGAST31 lga : lgas) {
+    int totalHomeless = lga.getTotalHomeless();
+    double totalNumber = lga.getTotalNumber();
+ html = html + "<tr>" + "<td>" + lga.getName() + "</td>" +
+                        "<td>" + lga.getRatioHomelesstoTotal(totalHomeless, totalNumber) + "</td>" +
+                        "<td>" + lga.getWeeklyIncome() + "</td>" +
+                        "<td>" + lga.getMedianAge() + "</td>" +
+                        "<td>" + lga.getMortgageRepay() + "</td>" +
+                        "<td>" + lga.getRentWeekly() + "</td>" +
+                "</tr>";
+            }
+html = html + "</table>";
+
+
+        return html;
+    }
 
 
 }
