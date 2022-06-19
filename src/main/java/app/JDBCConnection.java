@@ -1575,6 +1575,220 @@ public ArrayList<LGAST31Age> getRatioHomelessAgeandSex(String state, String year
     return lgas;
 }
 */
+// subtask 3.2
+
+
+public ArrayList<LGAST32Homeless2016> getChangeHomeless2016(String state, String sex, String age) {
+    // Create the ArrayList of LGA objects to return
+    ArrayList<LGAST32Homeless2016> lgas = new ArrayList<LGAST32Homeless2016>();
+
+    // Setup the variable for the JDBC connection
+    Connection connection = null;
+
+    try {
+        // Connect to JDBC data base
+        connection = DriverManager.getConnection(DATABASE);
+
+        // Prepare a new SQL Query & Set a timeout
+        Statement statement = connection.createStatement();
+        statement.setQueryTimeout(30);
+
+        
+
+
+        // The Query
+        String query; 
+        
+       
+        if ("All".equals(sex) && "All".equals(age)) {
+        
+       query = "SELECT sum(count) AS sumCount, * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE lga_code16 LIKE '" + state + "%' AND year = '2016' AND status = 'homeless' GROUP BY h.lga_code";
+        }
+         
+         else if ("All".equals(sex)){
+            query = "SELECT sum(count) AS sumCount, * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE lga_code16 LIKE '" + state + "%' AND year = '2016' AND status = 'homeless' AND age_group = '_" + age + "' GROUP BY h.lga_code";
+        }
+
+          else if ("All".equals(age)){
+            query = "SELECT sum(count) AS sumCount, * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE lga_code16 LIKE '" + state + "%' AND year = '2016' AND status = 'homeless' AND sex = '" + sex + " GROUP BY h.lga_code";
+          }
+          else {
+              query = "SELECT sum(count) AS sumCount, * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE lga_code16 LIKE '" + state + "%' AND year = '2016' AND status = 'homeless' AND age_group = '_" + age + "' AND sex = '" + sex + " GROUP BY h.lga_code";
+          }
+        // Get Result
+        ResultSet results = statement.executeQuery(query);
+        System.out.println(query);
+        // Process all of the results
+        while (results.next()) {
+            // Lookup the columns we need
+            String name  = results.getString("lga_name16");
+            int homeless2016 = results.getInt("sumCount");
+            int homeless2018 = 0;
+           
+            // Create a LGA Object
+            LGAST32Homeless2016 lga = new LGAST32Homeless2016(name, homeless2016, homeless2018);
+
+            // Add the lga object to the array
+            lgas.add(lga);
+        }
+
+   // Close the statement because we are done with it
+        statement.close();
+    } catch (SQLException e) {
+        // If there is an error, lets just pring the error
+        System.err.println(e.getMessage());
+    } finally {
+        // Safety code to cleanup
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            // connection close failed.
+            System.err.println(e.getMessage());
+        }
+    }
+         
+    try {
+        // Connect to JDBC data base
+        connection = DriverManager.getConnection(DATABASE);
+
+        // Prepare a new SQL Query & Set a timeout
+        Statement statement = connection.createStatement();
+        statement.setQueryTimeout(30);
+
+        
+        String query; 
+       
+        if ("All".equals(sex) && "All".equals(age)) {
+        
+        query = "SELECT sum(count) AS sumCount, * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE lga_code16 LIKE '" + state + "%' AND year = '2018' AND status = 'homeless' GROUP BY h.lga_code";
+        }
+         
+         else if ("All".equals(sex)){
+            query = "SELECT sum(count) AS sumCount, * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE lga_code16 LIKE '" + state + "%' AND year = '2018' AND status = 'homeless' AND age_group = '_" + age + "' GROUP BY h.lga_code";
+        }
+
+          else if ("All".equals(age)){
+            query = "SELECT sum(count) AS sumCount, * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE lga_code16 LIKE '" + state + "%' AND year = '2018' AND status = 'homeless' AND sex = '" + sex + " GROUP BY h.lga_code";
+          }
+          else {
+              query = "SELECT sum(count) AS sumCount, * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE lga_code16 LIKE '" + state + "%' AND year = '2018' AND status = 'homeless' AND age_group = '_" + age + "' AND sex = '" + sex + " GROUP BY h.lga_code";
+          }
+        // Get Result
+         ResultSet results = statement.executeQuery(query);
+        System.out.println(query);
+        // Process all of the results
+        while (results.next()) {
+            // Lookup the columns we need
+            String name  = results.getString("lga_name16");
+            int homeless2016 = 0;
+            int homeless2018 = results.getInt("sumCount");
+           
+           
+            // Create a LGA Object
+            LGAST32Homeless2016 lga2 = new LGAST32Homeless2016(name, homeless2016, homeless2018);
+
+            // Add the lga object to the array
+            lgas.add(lga2);
+        }
+
+        // Close the statement because we are done with it
+        statement.close();
+    } catch (SQLException e) {
+        // If there is an error, lets just pring the error
+        System.err.println(e.getMessage());
+    } finally {
+        // Safety code to cleanup
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            // connection close failed.
+            System.err.println(e.getMessage());
+        }
+    }
+
+    // Finally we return all of the lga
+    return lgas;
+ }
+
+ public ArrayList<LGAST32Homeless2018> getChangeHomeless2018(String state, String sex, String age) {
+    // Create the ArrayList of LGA objects to return
+    ArrayList<LGAST32Homeless2018> lgas = new ArrayList<LGAST32Homeless2018>();
+
+    // Setup the variable for the JDBC connection
+    Connection connection = null;
+
+    try {
+        // Connect to JDBC data base
+        connection = DriverManager.getConnection(DATABASE);
+
+        // Prepare a new SQL Query & Set a timeout
+        Statement statement = connection.createStatement();
+        statement.setQueryTimeout(30);
+
+        
+
+
+        // The Query
+        String query; 
+        
+       
+        if ("All".equals(sex) && "All".equals(age)) {
+        
+       query = "SELECT sum(count) AS sumCount, * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE lga_code16 LIKE '" + state + "%' AND year = '2018' AND status = 'homeless' GROUP BY h.lga_code";
+        }
+         
+         else if ("All".equals(sex)){
+            query = "SELECT sum(count) AS sumCount, * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE lga_code16 LIKE '" + state + "%' AND year = '2018' AND status = 'homeless' AND age_group = '_" + age + "' GROUP BY h.lga_code";
+        }
+
+          else if ("All".equals(age)){
+            query = "SELECT sum(count) AS sumCount, * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE lga_code16 LIKE '" + state + "%' AND year = '2018' AND status = 'homeless' AND sex = '" + sex + " GROUP BY h.lga_code";
+          }
+          else {
+              query = "SELECT sum(count) AS sumCount, * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE lga_code16 LIKE '" + state + "%' AND year = '2018' AND status = 'homeless' AND age_group = '_" + age + "' AND sex = '" + sex + " GROUP BY h.lga_code";
+          }
+        // Get Result
+        ResultSet results = statement.executeQuery(query);
+        System.out.println(query);
+        // Process all of the results
+        while (results.next()) {
+            // Lookup the columns we need
+            String name  = results.getString("lga_name16");
+            int homeless2018 = results.getInt("sumCount");
+           
+           
+            // Create a LGA Object
+            LGAST32Homeless2018 lga = new LGAST32Homeless2018(name, homeless2018);
+
+            // Add the lga object to the array
+            lgas.add(lga);
+        }
+
+        // Close the statement because we are done with it
+        statement.close();
+    } catch (SQLException e) {
+        // If there is an error, lets just pring the error
+        System.err.println(e.getMessage());
+    } finally {
+        // Safety code to cleanup
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            // connection close failed.
+            System.err.println(e.getMessage());
+        }
+    }
+
+    // Finally we return all of the lga
+    return lgas;
+ }
+
 
 // personas
 
@@ -1636,56 +1850,5 @@ public ArrayList<Persona> getPersonas(String personaName) {
     return personas;
 }
 
-public String getPersonaImage(String personaName) {
-    // Create the ArrayList of LGA objects to return
-    String imageFilepath = "Sally.jpg";
-
-    // Setup the variable for the JDBC connection
-    Connection connection = null;
-
-    try {
-        // Connect to JDBC data base
-        connection = DriverManager.getConnection(DATABASE);
-
-        // Prepare a new SQL Query & Set a timeout
-        Statement statement = connection.createStatement();
-        statement.setQueryTimeout(30);
-
-        // The Query
-        String query = "SELECT * from persona p JOIN personaattributes pa ON p.name = pa.name WHERE p.name = '" + personaName +"'";
-        
-        // Get Result
-        ResultSet results = statement.executeQuery(query);
-
-        // Process all of the results
-        while (results.next()) {
-            // Lookup the columns we need
-            String lgaResult  = results.getString("imagelink");
-
-            // Create a LGA Object
-            
-            imageFilepath = lgaResult;
-        }
-
-        // Close the statement because we are done with it
-        statement.close();
-    } catch (SQLException e) {
-        // If there is an error, lets just pring the error
-        System.err.println(e.getMessage());
-    } finally {
-        // Safety code to cleanup
-        try {
-            if (connection != null) {
-                connection.close();
-            }
-        } catch (SQLException e) {
-            // connection close failed.
-            System.err.println(e.getMessage());
-        }
-    }
-
-    // Finally we return all of the lga
-    return imageFilepath;
-}
     // TODO: Add your required methods here
 }
