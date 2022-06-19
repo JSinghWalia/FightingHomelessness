@@ -104,74 +104,98 @@ public class PageMission implements Handler {
             <p class="title">
                 Sample Users
             </p>
-            <div class="persona">
-                <img class="personapic" src="hamid.jpg">
 
-                <p class="name">
-                    <strong> Name: </strong> Hamid the Baker 
-                </p>
+""";
+    JDBCConnection jdbc = new JDBCConnection();
+    ArrayList<Persona> personas = jdbc.getPersonas("Hamid");
+    String personaName = "";
+    String personaImage = "";
+    String personaDescription = "";
+    String personaNeeds = "";
+    String personaGoals = "";
+    String personaSkillsXP = "";
+   for (Persona personaInfo : personas) {
+    personaName = personaInfo.getName();
+    personaImage = personaInfo.getImageFilepath();
+    personaDescription = personaInfo.getDescription();
+    personaNeeds = personaInfo.getNeeds();
+    personaGoals =personaInfo.getGoals();
+    personaSkillsXP = personaInfo.getskillsandxp();
+   }
+   html = html + 
+            "<div class='persona'>" +
+               " <img class='personapic' src=" + personaImage + ">" +
 
-                <p class="description">
-                    <strong> Description: </strong> Hamid is a 35-year-old refugee from Afghanistan 
-                    due to hardships due to the war. He is a baker that 
-                    occasionally gives away bread to homeless people, 
-                    he wonders why there is such a large population of 
-                    homeless people.
-                </p>
+               "<p class='name'>" +
+                    "<strong> Name: </strong>" + personaName + 
+                "</p>" +
 
-                <p class="needs">
-                    <strong> Needs: </strong> Needs general information on homeless people, 
-                    nothing too complicated and information on how to help  
-                </p>
+                "<p class='description'>"+
+                   "<strong> Description: </strong>" + personaDescription +
+                "</p>" +
 
-                <p class="goals">
-                    <strong> Goals: </strong> To learn about the homeless epidemic 
-                    and what he can do to help 
-                </p>
+                "<p class='needs'>" +
+                    "<strong> Needs: </strong>" + personaNeeds +  
+                "</p>" +
 
-                <p class="sande">
-                    <strong> Skills and experience: </strong> Basic computer knowledge, 
-                    can use non-complex websites without issues 
-                    but can struggle with complex or messy websites.
-                </p>
-            </div>   
+                "<p class='goals'>" +
+                    "<strong> Goals: </strong>" + personaGoals +
+                "</p>" +
 
-            <div class="persona">
-                <img class="personapic" src="sally.jpg">
+                "<p class='sande'>" +
+                    "<strong> Skills and experience: </strong>" + personaSkillsXP +
+                "</p>" +
+           " </div> " +   
+    
+"";
+    
+        
 
-                <p class="name">
-                    <strong> Name: </strong> Sally the Student 
-                </p>
+     personas = jdbc.getPersonas("Sally");
+     personaName = "";
+     personaImage = "";
+     personaDescription = "";
+     personaNeeds = "";
+     personaGoals = "";
+     personaSkillsXP = "";
+   for (Persona personaInfo : personas) {
+    personaName = personaInfo.getName();
+    personaImage = personaInfo.getImageFilepath();
+    personaDescription = personaInfo.getDescription();
+    personaNeeds = personaInfo.getNeeds();
+    personaGoals =personaInfo.getGoals();
+    personaSkillsXP = personaInfo.getskillsandxp();
+   }
+   html = html + 
+            "<div class='persona'>" +
+               " <img class='personapic' src=" + personaImage + ">" +
 
-                <p class="description">
-                    <strong> Description: </strong> Sally is a 20-year-old university student 
-                    studying at Latrobe University. She is doing a presentation 
-                    on the homelessness epidemic in Australia. 
-                </p>
+               "<p class='name'>" +
+                    "<strong> Name: </strong>" + personaName + 
+                "</p>" +
 
-                <p class="needs">
-                    <strong> Needs: </strong> Needs statistics, graphs, and more in-depth 
-                    information on homeless people in Australia as well 
-                    as homelessness.
-                </p>
+                "<p class='description'>"+
+                   "<strong> Description: </strong>" + personaDescription +
+                "</p>" +
 
-                <p class="goals">
-                    <strong> Goals: </strong> To create a presentation about homelessness 
-                    for her university class on social issues.
-                </p>
+                "<p class='needs'>" +
+                    "<strong> Needs: </strong>" + personaNeeds +  
+                "</p>" +
 
-                <p class="sande">
-                    <strong> Skills and experience: </strong> Skilled with most software 
-                    related to university, good at finding necessary 
-                    information on websites. 
-                </p>
-            </div>   
-        </div>  
-            """;
+                "<p class='goals'>" +
+                    "<strong> Goals: </strong>" + personaGoals +
+                "</p>" +
+
+                "<p class='sande'>" +
+                    "<strong> Skills and experience: </strong>" + personaSkillsXP +
+                "</p>" +
+           " </div> " +   
+    
+"";
 
         // Look up some information from JDBC
         // First we need to use your JDBCConnection class
-        JDBCConnection jdbc = new JDBCConnection();
+       
         
         
 

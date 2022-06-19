@@ -1572,5 +1572,117 @@ public ArrayList<LGAST31Age> getRatioHomelessAgeandSex(String state, String year
     return lgas;
 }
 */
+
+// personas
+
+public ArrayList<Persona> getPersonas(String personaName) {
+    // Create the ArrayList of LGA objects to return
+    ArrayList<Persona> personas = new ArrayList<Persona>();
+
+    // Setup the variable for the JDBC connection
+    Connection connection = null;
+
+    try {
+        // Connect to JDBC data base
+        connection = DriverManager.getConnection(DATABASE);
+
+        // Prepare a new SQL Query & Set a timeout
+        Statement statement = connection.createStatement();
+        statement.setQueryTimeout(30);
+
+        // The Query
+        String query = "SELECT * from persona p JOIN personaattributes pa ON p.name = pa.name WHERE p.name = '" + personaName +"'";
+        
+        // Get Result
+        ResultSet results = statement.executeQuery(query);
+        System.out.println(query);
+        // Process all of the results
+        while (results.next()) {
+            // Lookup the columns we need
+            String name  = results.getString("Name");
+            String imageFilepath = results.getString("imagelink");
+            String description = results.getString("description");
+           String needs = results.getString("description");
+           String goals = results.getString("description");
+           String skillsandxp = results.getString("description");
+            // Create a LGA Object
+            Persona personaInfo = new Persona(name, imageFilepath, description, needs, goals, skillsandxp);
+
+            // Add the lga object to the array
+            personas.add(personaInfo);
+        }
+
+        // Close the statement because we are done with it
+        statement.close();
+    } catch (SQLException e) {
+        // If there is an error, lets just pring the error
+        System.err.println(e.getMessage());
+    } finally {
+        // Safety code to cleanup
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            // connection close failed.
+            System.err.println(e.getMessage());
+        }
+    }
+
+    // Finally we return all of the lga
+    return personas;
+}
+
+public String getPersonaImage(String personaName) {
+    // Create the ArrayList of LGA objects to return
+    String imageFilepath = "Sally.jpg";
+
+    // Setup the variable for the JDBC connection
+    Connection connection = null;
+
+    try {
+        // Connect to JDBC data base
+        connection = DriverManager.getConnection(DATABASE);
+
+        // Prepare a new SQL Query & Set a timeout
+        Statement statement = connection.createStatement();
+        statement.setQueryTimeout(30);
+
+        // The Query
+        String query = "SELECT * from persona p JOIN personaattributes pa ON p.name = pa.name WHERE p.name = '" + personaName +"'";
+        
+        // Get Result
+        ResultSet results = statement.executeQuery(query);
+
+        // Process all of the results
+        while (results.next()) {
+            // Lookup the columns we need
+            String lgaResult  = results.getString("imagelink");
+
+            // Create a LGA Object
+            
+            imageFilepath = lgaResult;
+        }
+
+        // Close the statement because we are done with it
+        statement.close();
+    } catch (SQLException e) {
+        // If there is an error, lets just pring the error
+        System.err.println(e.getMessage());
+    } finally {
+        // Safety code to cleanup
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            // connection close failed.
+            System.err.println(e.getMessage());
+        }
+    }
+
+    // Finally we return all of the lga
+    return imageFilepath;
+}
     // TODO: Add your required methods here
 }
