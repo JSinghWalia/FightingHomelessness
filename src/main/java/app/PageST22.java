@@ -51,8 +51,12 @@ public class PageST22 implements Handler {
 
         // Add header content block
         html = html + """
-            <div class='header'>
-                <h1>LGA Information</h1>
+            <div class="header4">
+                <div class="header-text">
+                    <h1>
+                        LGA Information
+                    </h1>
+                </div>
             </div>
         """;
 

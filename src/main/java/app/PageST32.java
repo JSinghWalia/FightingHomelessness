@@ -51,8 +51,12 @@ public class PageST32 implements Handler {
 
         // Add header content block
         html = html + """
-            <div class='header'>
-                <h1>Subtask 3.2</h1>
+            <div class="header6">
+                <div class="header-text">
+                    <h1>
+                        Change in Homelessness over time
+                    </h1>
+                </div>
             </div>
         """;
 

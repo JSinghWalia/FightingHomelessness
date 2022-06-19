@@ -53,8 +53,12 @@ public class PageST21 implements Handler {
 
         // Add header content block
         html = html + """
-            <div class='header'>
-                <h1>LGA Rankings</h1>
+            <div class="header3">
+                <div class="header-text">
+                    <h1>
+                        LGA Rankings
+                    </h1>
+                </div>
             </div>
         """;
 

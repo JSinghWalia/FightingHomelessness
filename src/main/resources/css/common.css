@@ -12,14 +12,72 @@ body {
 
 /* Header (div) formatting */
 .header {
-   padding: 10px;
-   text-align: center;
-   background-color: #cccccc;
-   color: #000000;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  url("header1.jpg");
+  height: 55%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }
 
-.header h1 {
-   font-size: 50px;
+.header2 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  url("header2.jpg");
+  height: 55%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.header3 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  url("header3.webp");
+  height: 55%;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.header4 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  url("header4.jpg");
+  height: 55%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.header5 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  url("header5.jpg");
+  height: 55%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.header6 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  url("header6.jpg");
+  height: 55%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.header-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
 }
 
 
@@ -33,7 +91,7 @@ img.top-image {
 .topnav {
   display: flex; 
   overflow: hidden;
-   background-color: #4f75d7;
+  background-color: #4f75d7;
  }
  
  /* Style the topnav links */
@@ -42,15 +100,18 @@ img.top-image {
    align-self: center;
    color: #000000;
    text-align: center;
-   padding: 14px 0px;
+   padding: 10px 10px;
    text-decoration: none;
+   transition: color 0.15s;
  }
  
  /* Change color on hover */
  .topnav a:hover {
-   background-color: #ddd;
-   color: black;
+   color: white;
+   text-decoration: none;
  }
+
+ 
  
  /* Style the content */
  .content {
@@ -92,7 +153,8 @@ img.top-image {
  }
 
  .top-image {
-  width: 300px;
+  height: 100%; 
+  width: 100%;
   display: inline-block;
  }
 
