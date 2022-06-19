@@ -50,11 +50,12 @@ public class PageIndex implements Handler {
 
         // Add header content block
         html = html + """
-            <div class='header'>
-                <h1>
-                    <img src='homelessman.jpg' class='top-image' alt='Homeless man lying on bench'>
-                    Fighting Homelessness Homepage
-                </h1>
+            <div class="header">
+                <div class="header-text">
+                    <h1>
+                        Fighting Homelessness Homepage
+                    </h1>
+                </div>
             </div>
         """;
 

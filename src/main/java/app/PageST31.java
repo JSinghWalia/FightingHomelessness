@@ -51,8 +51,12 @@ public class PageST31 implements Handler {
 
         // Add header content block
         html = html + """
-            <div class='header'>
-                <h1>Rate of Homelessness</h1>
+            <div class="header5">
+                <div class="header-text">
+                    <h1>
+                        Rate of Homelessness
+                    </h1>
+                </div>
             </div>
         """;
 

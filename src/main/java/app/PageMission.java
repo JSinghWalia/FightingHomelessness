@@ -50,8 +50,12 @@ public class PageMission implements Handler {
 
         // Add header content block
         html = html + """
-            <div class='header'>
-                <h1>Our Mission</h1>
+            <div class="header2">
+                <div class="header-text">
+                    <h1>
+                        Our Mission
+                    </h1>
+                </div>
             </div>
         """;
 
