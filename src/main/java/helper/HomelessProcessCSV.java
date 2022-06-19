@@ -114,7 +114,7 @@ public class HomelessProcessCSV {
                // statement.setQueryTimeout(30);
 
                // Create Insert Statement
-               String query = "INSERT into HomlessGroup VALUES ("
+               String query = "INSERT into HomelessGroup VALUES ("
                               + lgaCode + ","
                               + "'" + year + "',"
                               + "'" + status[indexStatus] + "',"
