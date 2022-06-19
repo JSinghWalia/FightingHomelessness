@@ -277,7 +277,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT DISTINCT age_group FROM HomlessGroup ORDER BY age_group";
+            String query = "SELECT DISTINCT age_group FROM HomelessGroup ORDER BY age_group";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -330,7 +330,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT DISTINCT sex FROM HomlessGroup ORDER BY sex";
+            String query = "SELECT DISTINCT sex FROM HomelessGroup ORDER BY sex";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -382,7 +382,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND sex = '" + sex + "'AND year = '" + year + "'";
+            String query = "SELECT SUM(COUNT) AS Count FROM HomelessGroup JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND sex = '" + sex + "'AND year = '" + year + "'";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -433,7 +433,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "'AND age_group = '_" + age + "'AND year = '" + year + "'";
+            String query = "SELECT SUM(COUNT) AS Count FROM HomelessGroup JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "'AND age_group = '_" + age + "'AND year = '" + year + "'";
             System.out.println(query);
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -487,7 +487,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND status = '" + status + "'AND year ='" + year + "'";
+            String query = "SELECT SUM(COUNT) AS Count FROM HomelessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND status = '" + status + "'AND year ='" + year + "'";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -538,7 +538,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND age_group ='_" + age + "'AND status = '" + status + "'AND year ='" + year + "'";
+            String query = "SELECT SUM(COUNT) AS Count FROM HomelessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND age_group ='_" + age + "'AND status = '" + status + "'AND year ='" + year + "'";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -590,7 +590,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND age_group ='_" + age + "AND year ='" + year + "'";
+            String query = "SELECT SUM(COUNT) AS Count FROM HomelessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND age_group ='_" + age + "AND year ='" + year + "'";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -643,7 +643,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND age_group ='_" + age + "' AND sex = '" + sex + "'AND status = '" + status + "'AND year ='" + year + "'";
+            String query = "SELECT SUM(COUNT) AS Count FROM HomelessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND age_group ='_" + age + "' AND sex = '" + sex + "'AND status = '" + status + "'AND year ='" + year + "'";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -696,7 +696,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND age_group ='_" + age + "' AND sex = '" + sex + "'AND year ='" + year + "'";
+            String query = "SELECT SUM(COUNT) AS Count FROM HomelessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND age_group ='_" + age + "' AND sex = '" + sex + "'AND year ='" + year + "'";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -749,7 +749,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND sex ='" + sex + "'AND status = '" + status + "'AND year ='" + year + "'";
+            String query = "SELECT SUM(COUNT) AS Count FROM HomelessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND sex ='" + sex + "'AND status = '" + status + "'AND year ='" + year + "'";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -801,7 +801,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND sex ='" + sex + "'AND year ='" + year+ "'";
+            String query = "SELECT SUM(COUNT) AS Count FROM HomelessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND sex ='" + sex + "'AND year ='" + year+ "'";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -853,7 +853,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT * FROM homlessgroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE age_group = '_" + age + "'AND sex = '" + sex + "' AND status = '" + status + "' AND year ='" + year + "'GROUP BY h.lga_code ORDER BY count " + order;
+            String query = "SELECT * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE age_group = '_" + age + "'AND sex = '" + sex + "' AND status = '" + status + "' AND year ='" + year + "'GROUP BY h.lga_code ORDER BY count " + order;
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -916,7 +916,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT * FROM homlessgroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE age_group = '_" + age + "' AND status = '" + status + "' AND year ='" + year + "'GROUP BY h.lga_code ORDER BY count " + order;
+            String query = "SELECT * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE age_group = '_" + age + "' AND status = '" + status + "' AND year ='" + year + "'GROUP BY h.lga_code ORDER BY count " + order;
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -979,7 +979,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT * FROM homlessgroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE sex = '" + sex + "' AND status = '" + status + "' AND year ='" + year + "'GROUP BY h.lga_code ORDER BY count " + order;
+            String query = "SELECT * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE sex = '" + sex + "' AND status = '" + status + "' AND year ='" + year + "'GROUP BY h.lga_code ORDER BY count " + order;
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -1042,7 +1042,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT * FROM homlessgroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE status = '" + status + "' AND year ='" + year + "'GROUP BY h.lga_code ORDER BY count " + order;
+            String query = "SELECT * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE status = '" + status + "' AND year ='" + year + "'GROUP BY h.lga_code ORDER BY count " + order;
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -1108,7 +1108,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT * FROM homlessgroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE lga_name16 = '" + lganame + "' AND year = '" + year +"'";
+            String query = "SELECT * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code WHERE lga_name16 = '" + lganame + "' AND year = '" + year +"'";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -1172,7 +1172,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND year ='" + year + "'";
+            String query = "SELECT SUM(COUNT) AS Count FROM HomelessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_name16 = '" + lga_name16 + "' AND year ='" + year + "'";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -1225,7 +1225,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_code16 LIKE '" + firstDigit + "%' AND year ='" + year + "'";
+            String query = "SELECT SUM(COUNT) AS Count FROM HomelessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE lga_code16 LIKE '" + firstDigit + "%' AND year ='" + year + "'";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -1279,7 +1279,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT SUM(COUNT) AS Count FROM HomlessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE year ='" + year + "'";
+            String query = "SELECT SUM(COUNT) AS Count FROM HomelessGroup H JOIN LGA L ON lga_code = lga_code16 WHERE year ='" + year + "'";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -1319,7 +1319,194 @@ public class JDBCConnection {
 // subtask 3.1
 
 
-public ArrayList<LGAST31> getRatioHomeless(String state, String year, String sortBy, String orderBy, String incomeMin, String incomeMax, String ageMin, String ageMax, String mortgageMin, String mortgageMax, String rentMin, String rentMax) {
+public ArrayList<LGAST31> getRatioHomeless(String state, String year, String sortBy, String orderBy, String incomeMin, String incomeMax, String ageMin, String ageMax, String mortgageMin, String mortgageMax, String rentMin, String rentMax, String sex, String age) {
+    // Create the ArrayList of LGA objects to return
+    ArrayList<LGAST31> lgas = new ArrayList<LGAST31>();
+
+    // Setup the variable for the JDBC connection
+    Connection connection = null;
+
+    try {
+        // Connect to JDBC data base
+        connection = DriverManager.getConnection(DATABASE);
+
+        // Prepare a new SQL Query & Set a timeout
+        Statement statement = connection.createStatement();
+        statement.setQueryTimeout(30);
+
+        
+
+
+        // The Query
+        String query; 
+        
+        if ("All".equals(state) && "All".equals(sex) &&"All".equals(age)){
+            query = "SELECT sum(count) AS sumCount, * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code JOIN income i ON i.lga_code = h.lga_code WHERE year = '" + year + "' AND status = 'homeless' AND median_household_weekly_income >="+ incomeMin + " AND median_household_weekly_income <=" + incomeMax + " AND median_age >="+ ageMin + " AND median_age <=" + ageMax + " AND median_mortgage_repay_monthly >="+ mortgageMin + " AND median_mortgage_repay_monthly <=" + mortgageMax + " AND median_rent_weekly >="+ rentMin + " AND median_rent_weekly <=" + rentMax + " GROUP BY i.lga_code ORDER BY " + sortBy + " " + orderBy;
+        }
+        else if ("All".equals(sex) && "All".equals(age)) {
+        
+       query = "SELECT sum(count) AS sumCount, * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code JOIN income i ON i.lga_code = h.lga_code WHERE lga_code16 LIKE '" + state + "%' AND year = '" + year + "' AND status = 'homeless' AND median_household_weekly_income >="+ incomeMin + " AND median_household_weekly_income <=" + incomeMax + " AND median_age >="+ ageMin + " AND median_age <=" + ageMax + " AND median_mortgage_repay_monthly >="+ mortgageMin + " AND median_mortgage_repay_monthly <=" + mortgageMax + " AND median_rent_weekly >="+ rentMin + " AND median_rent_weekly <=" + rentMax + " GROUP BY i.lga_code ORDER BY " + sortBy + " " + orderBy;
+        }
+        else if ("All".equals(state) && "All".equals(sex)){
+          query =   "SELECT sum(count) AS sumCount, * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code JOIN income i ON i.lga_code = h.lga_code WHERE year = '" + year + "' AND status = 'homeless' AND median_household_weekly_income >="+ incomeMin + " AND median_household_weekly_income <=" + incomeMax + " AND median_age >="+ ageMin + " AND median_age <=" + ageMax + " AND median_mortgage_repay_monthly >="+ mortgageMin + " AND median_mortgage_repay_monthly <=" + mortgageMax + " AND median_rent_weekly >="+ rentMin + " AND median_rent_weekly <=" + rentMax + " AND age_group = '_" + age + "' GROUP BY i.lga_code ORDER BY " + sortBy + " " + orderBy;
+        }
+        else if ("All".equals(state) && "All".equals(age)){
+            query =   "SELECT sum(count) AS sumCount, * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code JOIN income i ON i.lga_code = h.lga_code WHERE year = '" + year + "' AND status = 'homeless' AND median_household_weekly_income >="+ incomeMin + " AND median_household_weekly_income <=" + incomeMax + " AND median_age >="+ ageMin + " AND median_age <=" + ageMax + " AND median_mortgage_repay_monthly >="+ mortgageMin + " AND median_mortgage_repay_monthly <=" + mortgageMax + " AND median_rent_weekly >="+ rentMin + " AND median_rent_weekly <=" + rentMax + " AND sex = '" + sex + "' GROUP BY i.lga_code ORDER BY " + sortBy + " " + orderBy;
+          }
+         
+         else if ("All".equals(state)){
+            query = "SELECT sum(count) AS sumCount, * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code JOIN income i ON i.lga_code = h.lga_code WHERE year = '" + year + "' AND status = 'homeless' AND median_household_weekly_income >="+ incomeMin + " AND median_household_weekly_income <=" + incomeMax + " AND median_age >="+ ageMin + " AND median_age <=" + ageMax + " AND median_mortgage_repay_monthly >="+ mortgageMin + " AND median_mortgage_repay_monthly <=" + mortgageMax + " AND median_rent_weekly >="+ rentMin + " AND median_rent_weekly <=" + rentMax + " AND age_group = '_" + age + "' AND sex = '" + sex + "' GROUP BY i.lga_code ORDER BY " + sortBy + " " + orderBy;
+        }
+
+          else if ("All".equals(age)){
+            query = "SELECT sum(count) AS sumCount, * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code JOIN income i ON i.lga_code = h.lga_code WHERE lga_code16 LIKE '" + state + "%' AND year = '" + year + "' AND status = 'homeless' AND median_household_weekly_income >="+ incomeMin + " AND median_household_weekly_income <=" + incomeMax + " AND median_age >="+ ageMin + " AND median_age <=" + ageMax + " AND median_mortgage_repay_monthly >="+ mortgageMin + " AND median_mortgage_repay_monthly <=" + mortgageMax + " AND median_rent_weekly >="+ rentMin + " AND median_rent_weekly <=" + rentMax + " AND age_group = '_" + age + "' GROUP BY i.lga_code ORDER BY " + sortBy + " " + orderBy;
+          }
+          else {
+              query = "SELECT sum(count) AS sumCount, * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code JOIN income i ON i.lga_code = h.lga_code WHERE lga_code16 LIKE '" + state + "%' AND year = '" + year + "' AND status = 'homeless' AND median_household_weekly_income >="+ incomeMin + " AND median_household_weekly_income <=" + incomeMax + " AND median_age >="+ ageMin + " AND median_age <=" + ageMax + " AND median_mortgage_repay_monthly >="+ mortgageMin + " AND median_mortgage_repay_monthly <=" + mortgageMax + " AND median_rent_weekly >="+ rentMin + " AND median_rent_weekly <=" + rentMax + " AND sex = '" + sex + "' GROUP BY i.lga_code ORDER BY " + sortBy + " " + orderBy;
+          }
+        // Get Result
+        ResultSet results = statement.executeQuery(query);
+        System.out.println(query);
+        // Process all of the results
+        while (results.next()) {
+            // Lookup the columns we need
+            String name  = results.getString("lga_name16");
+            int totalHomeless = results.getInt("sumCount");
+           double totalNumber = 0.0;
+           
+           
+           
+           if ("2016".equals(year)){
+               totalNumber = results.getDouble("pop2016");
+           }
+           else{
+               totalNumber = results.getDouble("pop2018");
+           }
+           double ratioHomelesstoTotal = 0.0;
+           int weeklyIncome = results.getInt("median_household_weekly_income");
+           int medianAge = results.getInt("median_age");
+           int mortgageRepay = results.getInt("median_mortgage_repay_monthly");
+           int rentWeekly = results.getInt("median_rent_weekly");
+           
+           
+            // Create a LGA Object
+            LGAST31 lga = new LGAST31(name, totalHomeless, totalNumber, ratioHomelesstoTotal, weeklyIncome, medianAge, mortgageRepay, rentWeekly);
+
+            // Add the lga object to the array
+            lgas.add(lga);
+        }
+
+        // Close the statement because we are done with it
+        statement.close();
+    } catch (SQLException e) {
+        // If there is an error, lets just pring the error
+        System.err.println(e.getMessage());
+    } finally {
+        // Safety code to cleanup
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            // connection close failed.
+            System.err.println(e.getMessage());
+        }
+    }
+
+    // Finally we return all of the lga
+    return lgas;
+}
+
+
+public ArrayList<LGAST31Age> getRatioHomelessAgeandSex(String state, String year, String sortBy, String orderBy, String incomeMin, String incomeMax, String ageMin, String ageMax, String mortgageMin, String mortgageMax, String rentMin, String rentMax, String sex, String age) {
+    // Create the ArrayList of LGA objects to return
+    ArrayList<LGAST31Age> lgasAge = new ArrayList<LGAST31Age>();
+
+    // Setup the variable for the JDBC connection
+    Connection connection = null;
+
+    try {
+        // Connect to JDBC data base
+        connection = DriverManager.getConnection(DATABASE);
+
+        // Prepare a new SQL Query & Set a timeout
+        Statement statement = connection.createStatement();
+        statement.setQueryTimeout(30);
+
+        
+
+
+        // The Query
+        String query; 
+        
+        if ("All".equals(state) && "All".equals(sex) &&"All".equals(age)){
+            query = "SELECT sum(count) AS sumCount, * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code JOIN income i ON i.lga_code = h.lga_code WHERE year = '" + year + "' AND status = 'homeless' AND median_household_weekly_income >="+ incomeMin + " AND median_household_weekly_income <=" + incomeMax + " AND median_age >="+ ageMin + " AND median_age <=" + ageMax + " AND median_mortgage_repay_monthly >="+ mortgageMin + " AND median_mortgage_repay_monthly <=" + mortgageMax + " AND median_rent_weekly >="+ rentMin + " AND median_rent_weekly <=" + rentMax + " GROUP BY i.lga_code ORDER BY " + sortBy + " " + orderBy;
+        }
+        else if ("All".equals(sex) && "All".equals(age)) {
+        
+       query = "SELECT sum(count) AS sumCount, * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code JOIN income i ON i.lga_code = h.lga_code WHERE lga_code16 LIKE '" + state + "%' AND year = '" + year + "' AND status = 'homeless' AND median_household_weekly_income >="+ incomeMin + " AND median_household_weekly_income <=" + incomeMax + " AND median_age >="+ ageMin + " AND median_age <=" + ageMax + " AND median_mortgage_repay_monthly >="+ mortgageMin + " AND median_mortgage_repay_monthly <=" + mortgageMax + " AND median_rent_weekly >="+ rentMin + " AND median_rent_weekly <=" + rentMax + " GROUP BY i.lga_code ORDER BY " + sortBy + " " + orderBy;
+        }
+        else if ("All".equals(state) && "All".equals(sex)){
+          query =   "SELECT sum(count) AS sumCount, * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code JOIN income i ON i.lga_code = h.lga_code WHERE year = '" + year + "' AND status = 'homeless' AND median_household_weekly_income >="+ incomeMin + " AND median_household_weekly_income <=" + incomeMax + " AND median_age >="+ ageMin + " AND median_age <=" + ageMax + " AND median_mortgage_repay_monthly >="+ mortgageMin + " AND median_mortgage_repay_monthly <=" + mortgageMax + " AND median_rent_weekly >="+ rentMin + " AND median_rent_weekly <=" + rentMax + " AND age_group = '_" + age + "' GROUP BY i.lga_code ORDER BY " + sortBy + " " + orderBy;
+        }
+        else if ("All".equals(state) && "All".equals(age)){
+            query =   "SELECT sum(count) AS sumCount, * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code JOIN income i ON i.lga_code = h.lga_code WHERE year = '" + year + "' AND status = 'homeless' AND median_household_weekly_income >="+ incomeMin + " AND median_household_weekly_income <=" + incomeMax + " AND median_age >="+ ageMin + " AND median_age <=" + ageMax + " AND median_mortgage_repay_monthly >="+ mortgageMin + " AND median_mortgage_repay_monthly <=" + mortgageMax + " AND median_rent_weekly >="+ rentMin + " AND median_rent_weekly <=" + rentMax + " AND sex = '" + sex + "' GROUP BY i.lga_code ORDER BY " + sortBy + " " + orderBy;
+          }
+          else if ("All".equals(age)){
+            query = "SELECT sum(count) AS sumCount, * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code JOIN income i ON i.lga_code = h.lga_code WHERE lga_code16 LIKE '" + state + "%' AND year = '" + year + "' AND status = 'homeless' AND median_household_weekly_income >="+ incomeMin + " AND median_household_weekly_income <=" + incomeMax + " AND median_age >="+ ageMin + " AND median_age <=" + ageMax + " AND median_mortgage_repay_monthly >="+ mortgageMin + " AND median_mortgage_repay_monthly <=" + mortgageMax + " AND median_rent_weekly >="+ rentMin + " AND median_rent_weekly <=" + rentMax + " AND age_group = '_" + age + "' GROUP BY i.lga_code ORDER BY " + sortBy + " " + orderBy;
+          }
+          else {
+              query = "SELECT sum(count) AS sumCount, * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code JOIN income i ON i.lga_code = h.lga_code WHERE lga_code16 LIKE '" + state + "%' AND year = '" + year + "' AND status = 'homeless' AND median_household_weekly_income >="+ incomeMin + " AND median_household_weekly_income <=" + incomeMax + " AND median_age >="+ ageMin + " AND median_age <=" + ageMax + " AND median_mortgage_repay_monthly >="+ mortgageMin + " AND median_mortgage_repay_monthly <=" + mortgageMax + " AND median_rent_weekly >="+ rentMin + " AND median_rent_weekly <=" + rentMax + " AND sex = '" + sex + "' GROUP BY i.lga_code ORDER BY " + sortBy + " " + orderBy;
+          }
+        // Get Result
+        ResultSet results = statement.executeQuery(query);
+        System.out.println(query);
+        // Process all of the results
+        while (results.next()) {
+            // Lookup the columns we need
+           int totalHomelessAgeandSex = results.getInt("sumCount");
+           double totalNumber = 0.0;
+           double ratioHomelesstoTotalAgeandSex = 0.0;
+           
+           
+           if ("2016".equals(year)){
+               totalNumber = results.getDouble("pop2016");
+           }
+           else{
+               totalNumber = results.getDouble("pop2018");
+           }
+           
+           
+            // Create a LGA Object
+                LGAST31Age lgaAge = new LGAST31Age(totalNumber, totalHomelessAgeandSex, ratioHomelesstoTotalAgeandSex);
+
+            // Add the lga object to the array
+            lgasAge.add(lgaAge);
+        }
+
+        // Close the statement because we are done with it
+        statement.close();
+    } catch (SQLException e) {
+        // If there is an error, lets just pring the error
+        System.err.println(e.getMessage());
+    } finally {
+        // Safety code to cleanup
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            // connection close failed.
+            System.err.println(e.getMessage());
+        }
+    }
+
+    // Finally we return all of the lga
+    return lgasAge;
+}
+
+
+/*public ArrayList<LGAST31> getRatioHomelessNoState(String year, String sortby, String orderby) {
     // Create the ArrayList of LGA objects to return
     ArrayList<LGAST31> lgas = new ArrayList<LGAST31>();
 
@@ -1335,7 +1522,7 @@ public ArrayList<LGAST31> getRatioHomeless(String state, String year, String sor
         statement.setQueryTimeout(30);
 
         // The Query
-        String query = "SELECT sum(count) AS sumCount, * FROM homlessgroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code JOIN income i ON i.lga_code = h.lga_code WHERE lga_code16 LIKE '" + state + "%' AND year = '" + year + "' AND status = 'homeless' AND median_household_weekly_income >="+ incomeMin + " AND median_household_weekly_income <=" + incomeMax + " AND median_age >="+ ageMin + " AND median_age <=" + ageMax + " AND median_mortgage_repay_monthly >="+ mortgageMin + " AND median_mortgage_repay_monthly <=" + mortgageMax + " AND median_rent_weekly >="+ rentMin + " AND median_rent_weekly <=" + rentMax + " GROUP BY i.lga_code ORDER BY " + sortBy + " " + orderBy;
+        String query = "SELECT sum(count) AS sumCount, * FROM HomelessGroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code JOIN income i ON i.lga_code = h.lga_code WHERE year = '" + year + "' AND status = 'homeless' GROUP BY i.lga_code ORDER BY " + sortby + " " + orderby;
         
         // Get Result
         ResultSet results = statement.executeQuery(query);
@@ -1384,73 +1571,6 @@ public ArrayList<LGAST31> getRatioHomeless(String state, String year, String sor
     // Finally we return all of the lga
     return lgas;
 }
-
-
-public ArrayList<LGAST31> getRatioHomelessNoState(String year, String sortby, String orderby) {
-    // Create the ArrayList of LGA objects to return
-    ArrayList<LGAST31> lgas = new ArrayList<LGAST31>();
-
-    // Setup the variable for the JDBC connection
-    Connection connection = null;
-
-    try {
-        // Connect to JDBC data base
-        connection = DriverManager.getConnection(DATABASE);
-
-        // Prepare a new SQL Query & Set a timeout
-        Statement statement = connection.createStatement();
-        statement.setQueryTimeout(30);
-
-        // The Query
-        String query = "SELECT sum(count) AS sumCount, * FROM homlessgroup h JOIN LGA L ON h.lga_code = lga_code16 JOIN Population P ON p.lga_code = h.lga_code JOIN income i ON i.lga_code = h.lga_code WHERE year = '" + year + "' AND status = 'homeless' GROUP BY i.lga_code ORDER BY " + sortby + " " + orderby;
-        
-        // Get Result
-        ResultSet results = statement.executeQuery(query);
-        System.out.println(query);
-        // Process all of the results
-        while (results.next()) {
-            // Lookup the columns we need
-            String name  = results.getString("lga_name16");
-            int totalHomeless = results.getInt("sumCount");
-           double totalNumber = 0.0;
-           if ("2016".equals(year)){
-               totalNumber = results.getDouble("pop2016");
-           }
-           else{
-               totalNumber = results.getDouble("pop2018");
-           }
-           double ratioHomelesstoTotal = 0.0;
-           int weeklyIncome = results.getInt("median_household_weekly_income");
-           int medianAge = results.getInt("median_age");
-           int mortgageRepay = results.getInt("median_mortgage_repay_monthly");
-           int rentWeekly = results.getInt("median_rent_weekly");
-            // Create a LGA Object
-            LGAST31 lga = new LGAST31(name, totalHomeless, totalNumber, ratioHomelesstoTotal, weeklyIncome, medianAge, mortgageRepay, rentWeekly);
-
-            // Add the lga object to the array
-            lgas.add(lga);
-        }
-
-        // Close the statement because we are done with it
-        statement.close();
-    } catch (SQLException e) {
-        // If there is an error, lets just pring the error
-        System.err.println(e.getMessage());
-    } finally {
-        // Safety code to cleanup
-        try {
-            if (connection != null) {
-                connection.close();
-            }
-        } catch (SQLException e) {
-            // connection close failed.
-            System.err.println(e.getMessage());
-        }
-    }
-
-    // Finally we return all of the lga
-    return lgas;
-}
-
+*/
     // TODO: Add your required methods here
 }
