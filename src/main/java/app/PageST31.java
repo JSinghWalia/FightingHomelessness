@@ -40,7 +40,7 @@ public class PageST31 implements Handler {
         // This uses a Java v15+ Text Block
          html = html + """
             <div class='topnav'>
-                <a href='/'>Homepage</a>
+            <a href='/'><img src="weblogoblack.png" class="navimage" alt="fighting homelessness logo"></a>
                 <a href='mission.html'>Our Mission</a>
                 <a href='page3.html'>LGA Rankings</a>
                 <a href='page4.html'>LGA Information</a>
@@ -64,7 +64,7 @@ public class PageST31 implements Handler {
         html = html + "     <div class='form-group'>";
         html = html + "     <label for='state_drop'>Select the state (Dropdown):</label>";
         html = html + "      <select id='state_drop' name='state_drop'>";
-        html = html +  "<option value = '1'>" + "All" + "</option>";
+        html = html +  "<option>" + "All" + "</option>";
         html = html +  "<option value = '1'>" + "New South Wales" + "</option>";
         html = html +  "<option value = '2'>" + "Victoria" + "</option>";
         html = html +  "<option value = '3'>" + "Queensland" + "</option>";
@@ -77,7 +77,30 @@ public class PageST31 implements Handler {
         html = html + "      </select>";
         html = html + "   </div>";
 
+        html = html + "     <div class='form-group'>";
+        html = html + "     <label for='agerange_drop'>Select the age range (Dropdown):</label>";
+        html = html + "      <select id='agerange_drop' name='agerange_drop'>";
+        //Add options through database
+        
+        
+        // Add HTML for the movies list
+        html = html + "<option>" + "All" + "</option>" +
+        "<option value = '0_9'>" + "0-9" + "</option>"
+       + "<option value = '10_19'>" + "10-19" + "</option>"
+       + "<option value = '20_29'>" + "20-29" + "</option>"
+       + "<option value = '30_39'>" + "30-39" + "</option>"
+        +"<option value = '40_49'>" + "40-49" + "</option>"
+        +"<option value = '50_59'>" + "50-59" + "</option>"
+        +"<option value = '60_plus'>" + "60+" + "</option>";
 
+        
+        // Potential database
+        //for (String ageGroup : ageRange) {
+          //  html = html + "<option>" + ageGroup + "</option>";
+        //}
+        
+        html = html + "      </select>";
+        html = html + "   </div>";
 
  //ArrayList<String> sexes = jdbc.getSex();
  html = html + "     <div class='form-group'>";
@@ -150,10 +173,11 @@ public class PageST31 implements Handler {
      html = html + " <br> <div class='form-group'>";
      html = html + "     <label for='sortby_drop'>Sort by (Dropdown):</label>";
      html = html + "      <select id='sortby_drop' name='sortby_drop'>";
-     html = html +  "<option value = 'median_household_weekly_income'>" + "Weekly income" + "</option>";
+    // html = html +  "<option value = 'sumCount'>" + "Ratio of homeless to total people by age and sex" + "</option>";
+     html = html +  "<option value = 'median_household_weekly_income'>" + "Median weekly income" + "</option>";
      html = html +  "<option value = 'median_age'>" + "Median age" + "</option>";
-     html = html +  "<option value = 'median_mortgage_repay_monthly'>" + "Mortagage repayment" + "</option>";
-     html = html +  "<option value = 'median_rent_weekly'>" + "Weekly rent" + "</option>";
+     html = html +  "<option value = 'median_mortgage_repay_monthly'>" + "Median monthly mortagage repayment" + "</option>";
+     html = html +  "<option value = 'median_rent_weekly'>" + "Median weekly rent" + "</option>";
      html = html + "      </select>";
      html = html + "   </div>";
 
@@ -180,6 +204,7 @@ public class PageST31 implements Handler {
        // getting inputs
        String state = context.formParam("state_drop");
        String sex = context.formParam("sex_drop");
+       String age = context.formParam("agerange_drop");
        String incomeMin = context.formParam("incomerangemin");
        String incomeMax = context.formParam("incomerangemax");
        String ageMin = context.formParam("agerangemin");
@@ -192,18 +217,12 @@ public class PageST31 implements Handler {
        String orderBy = context.formParam("orderby_drop");
        String year = context.formParam("year_drop");
        
-       if ("All".equals(state)){
-        html = html + outputRatioHomelessNoState(year, sortBy, orderBy);
-    }
-       
-      else if ("All".equals(sex)){
-           html = html + outputRatioHomeless(state, year, sortBy, orderBy, incomeMin, incomeMax, ageMin, ageMax, mortgageMin, mortgageMax, rentMin, rentMax);
-       }
-       
-       else {
-           System.out.print("no");
-       }
-       
+       if (state == null || state == "") {
+        html = html + "<h2><i>Press search or change filters to begin</i></h2>";
+      }
+else{
+     html =  html +  outputRatioHomeless(state, year, sortBy, orderBy, incomeMin, incomeMax, ageMin, ageMax, mortgageMin, mortgageMax, rentMin, rentMax, sex, age);
+}  
        
        // Close Content div
         html = html + "</div>";
@@ -225,17 +244,19 @@ public class PageST31 implements Handler {
         context.html(html);
     }
 
-    public String outputRatioHomelessNoState(String year, String sortby, String orderby){
+    
+
+    public String outputRatioHomeless(String state, String year, String sortBy, String orderBy, String incomeMin, String incomeMax, String ageMin, String ageMax, String mortgageMin, String mortgageMax, String rentMin, String rentMax, String sex, String age){
         String html = "";
 
         JDBCConnection jdbc = new JDBCConnection();
-        ArrayList<LGAST31> lgas = jdbc.getRatioHomelessNoState(year, sortby, orderby);
+        ArrayList<LGAST31> lgas = jdbc.getRatioHomeless(state, year, sortBy, orderBy, incomeMin, incomeMax, ageMin, ageMax, mortgageMin, mortgageMax, rentMin, rentMax, sex, age);
 
 
         html = html +"<table id='LGA'>" +
         "<tr>" +
             "<th> LGA</th>" +
-            "<th> Ratio of homeless to total people</th>" +
+            "<th> Ratio of homeless to total people by age and sex</th>" +
            "<th> Median Weekly Income</th>" +
            "<th> Median age</th>" +
            "<th> Median Mortgage repayments</th>" +
@@ -245,40 +266,7 @@ for (LGAST31 lga : lgas) {
     int totalHomeless = lga.getTotalHomeless();
     double totalNumber = lga.getTotalNumber();
  html = html + "<tr>" + "<td>" + lga.getName() + "</td>" +
-                        "<td>" + lga.getRatioHomelesstoTotal(totalHomeless, totalNumber) + "</td>" +
-                        "<td>" + lga.getWeeklyIncome() + "</td>" +
-                        "<td>" + lga.getMedianAge() + "</td>" +
-                        "<td>" + lga.getMortgageRepay() + "</td>" +
-                        "<td>" + lga.getRentWeekly() + "</td>" +
-                "</tr>";
-            }
-html = html + "</table>";
-
-
-        return html;
-    }
-
-    public String outputRatioHomeless(String state, String year, String sortBy, String orderBy, String incomeMin, String incomeMax, String ageMin, String ageMax, String mortgageMin, String mortgageMax, String rentMin, String rentMax){
-        String html = "";
-
-        JDBCConnection jdbc = new JDBCConnection();
-        ArrayList<LGAST31> lgas = jdbc.getRatioHomeless(state, year, sortBy, orderBy, incomeMin, incomeMax, ageMin, ageMax, mortgageMin, mortgageMax, rentMin, rentMax);
-
-
-        html = html +"<table id='LGA'>" +
-        "<tr>" +
-            "<th> LGA</th>" +
-            "<th> Ratio of homeless to total people</th>" +
-           "<th> Median Weekly Income</th>" +
-           "<th> Median age</th>" +
-           "<th> Median Mortgage repayments</th>" +
-           "<th> Median Weekly Rent</th>" +
-        "</tr>";
-for (LGAST31 lga : lgas) {
-    int totalHomeless = lga.getTotalHomeless();
-    double totalNumber = lga.getTotalNumber();
- html = html + "<tr>" + "<td>" + lga.getName() + "</td>" +
-                        "<td>" + lga.getRatioHomelesstoTotal(totalHomeless, totalNumber) + "</td>" +
+                        "<td>" + String.format("%.9f",lga.getRatioHomelesstoTotal(totalHomeless, totalNumber)) + "</td>" +
                         "<td>" + lga.getWeeklyIncome() + "</td>" +
                         "<td>" + lga.getMedianAge() + "</td>" +
                         "<td>" + lga.getMortgageRepay() + "</td>" +
