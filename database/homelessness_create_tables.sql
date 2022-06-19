@@ -1,6 +1,6 @@
 PRAGMA foreign_keys = OFF;
 drop table if exists LGA;
-drop table if exists HomlessGroup;
+drop table if exists HomelessGroup;
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE LGA (
@@ -13,7 +13,7 @@ CREATE TABLE LGA (
     PRIMARY KEY (lga_code)
 );
 
-CREATE TABLE HomlessGroup (
+CREATE TABLE HomelessGroup (
     lga_code          INTEGER NOT NULL,
     year              INTEGER NOT NULL,
     status            CHAR (10) NOT NULL,

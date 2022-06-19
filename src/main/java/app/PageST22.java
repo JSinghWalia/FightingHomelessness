@@ -40,7 +40,7 @@ public class PageST22 implements Handler {
         // This uses a Java v15+ Text Block
          html = html + """
             <div class='topnav'>
-                <a href='/'>Homepage</a>
+            <a href='/'><img src="weblogoblack.png" class="navimage" alt="fighting homelessness logo"></a>
                 <a href='mission.html'>Our Mission</a>
                 <a href='page3.html'>LGA Rankings</a>
                 <a href='page4.html'>LGA Information</a>
@@ -52,7 +52,7 @@ public class PageST22 implements Handler {
         // Add header content block
         html = html + """
             <div class='header'>
-                <h1>Subtask 2.2</h1>
+                <h1>LGA Information</h1>
             </div>
         """;
 

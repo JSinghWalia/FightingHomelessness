@@ -42,7 +42,7 @@ public class PageST21 implements Handler {
         // This uses a Java v15+ Text Block
         html = html + """
             <div class='topnav'>
-                <a href='/'>Homepage</a>
+            <a href='/'><img src="weblogoblack.png" class="navimage" alt="fighting homelessness logo"></a>
                 <a href='mission.html'>Our Mission</a>
                 <a href='page3.html'>LGA Rankings</a>
                 <a href='page4.html'>LGA Information</a>

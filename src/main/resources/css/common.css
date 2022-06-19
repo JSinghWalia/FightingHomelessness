@@ -65,7 +65,8 @@ img.top-image {
  }
 
  .navimage {
-   float: left;
+  width: 500px; 
+  float: left;
  }
 
  .button {
@@ -255,13 +256,3 @@ th {
 .form-group {
 	display: inline-block;
 } 
-
-.nav-image{
-  width: 150px;
-  float: left;
-  padding: 14px;
-  display: block;
-  margin-right: 10px;
-  margin-left: 10px;
-  margin-bottom: 20px
-}

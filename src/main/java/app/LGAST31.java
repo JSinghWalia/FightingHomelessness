@@ -32,9 +32,15 @@ public String getName() {
  public int getTotalHomeless() {
      return totalHomeless;
  }
+
+ 
+
  public double getTotalNumber() {
         return totalNumber;
      }
+
+
+
 public double getRatioHomelesstoTotal(int totalHomeless,double totalNumber) {
         ratioHomelesstoTotal = totalHomeless/totalNumber;
         
