@@ -68,7 +68,7 @@ public class PageST32 implements Handler {
        html = html + "     <div class='form-group'>";
        html = html + "     <label for='state_drop'>Select the state (Dropdown):</label>";
        html = html + "      <select id='state_drop' name='state_drop'>";
-       html = html +  "<option value = ''>" + "All" + "</option>";
+       html = html +  "<option value = 'All'>" + "All" + "</option>";
        html = html +  "<option value = '1'>" + "New South Wales" + "</option>";
        html = html +  "<option value = '2'>" + "Victoria" + "</option>";
        html = html +  "<option value = '3'>" + "Queensland" + "</option>";
